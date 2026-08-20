@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head><!-- Script Netlify Identity pour gérer les connexions et mots de passe -->
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -411,15 +423,37 @@
     .pricing-track::-webkit-scrollbar { display: none; }
     .pricing-track > .pricing-col, .pricing-track > .glass-card { scroll-snap-align: center; flex: 0 0 auto; width: min(84vw, 380px); }
 
+    @keyframes rippleAnim { to { transform: translate(-50%,-50%) scale(22); opacity: 0; } }
+
+    /* base glass — sobre, façon barre de recherche Apple */
     .glass-card {
-      position: relative; width: 100%; background: rgba(255,255,255,.06); backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+      position: relative; width: 100%; overflow: hidden;
+      background: linear-gradient(165deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+      will-change: transform;
       border: 1px solid rgba(255,255,255,.14); border-radius: 24px; padding: 2.4rem 2rem; text-align: center; color: #fff;
-      display: flex; flex-direction: column; box-shadow: 0 25px 60px rgba(0,0,0,.35);
-      transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+      display: flex; flex-direction: column;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 0 40px rgba(255,255,255,.02), 0 25px 60px rgba(0,0,0,.35);
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
     }
-    .glass-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.28); }
-    .glass-card.glass-popular { background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,107,74,.55); box-shadow: 0 30px 70px rgba(255,107,74,.16), 0 25px 60px rgba(0,0,0,.4); }
-    .glass-card.glass-popular:hover { transform: translateY(-6px); }
+    .glass-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .4s;
+      background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.14), transparent 60%);
+    }
+    .glass-card:hover::before { opacity: 1; }
+    .glass-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.24); }
+    .glass-card.is-selected { border-color: rgba(255,255,255,.4); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 1.5px rgba(255,255,255,.2), 0 30px 65px rgba(0,0,0,.4); }
+    .glass-card .ripple { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.35); transform: translate(-50%,-50%) scale(0); pointer-events: none; animation: rippleAnim .6s ease-out forwards; }
+
+    /* PACK SÉRÉNITÉ — l'offre recommandée : sobre, juste un peu plus affirmée */
+    .glass-card.glass-popular {
+      background: linear-gradient(165deg, rgba(255,255,255,.13), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,107,74,.38);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 30px 70px rgba(255,107,74,.12), 0 25px 60px rgba(0,0,0,.4);
+    }
+    .glass-card.glass-popular:hover { transform: translateY(-5px); border-color: rgba(255,107,74,.55); }
+    .glass-card.glass-popular.is-selected { border-color: rgba(255,107,74,.7); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 1.5px rgba(255,107,74,.4), 0 30px 70px rgba(255,107,74,.2); }
+    .glass-card.glass-popular .pricing-num .new { color: var(--coral); }
 
     .promo-ribbon {
       display: inline-flex; align-items: center; gap: .45rem; font-family: var(--ff-mono);
@@ -432,16 +466,32 @@
     .glass-card .pricing-num { display: flex; justify-content: center; align-items: baseline; gap: .6rem; margin-bottom: 1.2rem; }
     .glass-card .pricing-num .old { font-size: 1.2rem; font-weight: 700; color: rgba(255,255,255,.4); text-decoration: line-through; font-family: var(--ff-mono); }
     .glass-card .pricing-num .new { font-size: 3.2rem; font-weight: 700; line-height: 1; letter-spacing: -.03em; font-family: var(--ff-disp); color: #fff; }
-    .glass-card.glass-popular .pricing-num .new { color: var(--coral); }
     .glass-card .pricing-num .permonth, .glass-card .pricing-num .recurrent { font-family: var(--ff-mono); font-size: 1rem; font-weight: 700; color: rgba(255,255,255,.65); }
     .glass-card .pricing-desc { font-size: .85rem; color: rgba(255,255,255,.55); line-height: 1.55; margin-bottom: 1.6rem; }
     .glass-card .pricing-includes { list-style: none; margin: 0 0 1.6rem; display: flex; flex-direction: column; gap: .85rem; flex-grow: 1; text-align: left; }
-    .glass-card .pricing-includes li { font-size: .86rem; color: rgba(255,255,255,.78); display: flex; align-items: center; gap: .7rem; }
+    .glass-card .pricing-includes li { font-size: .86rem; color: rgba(255,255,255,.78); display: flex; align-items: center; gap: .7rem; opacity: 0; transform: translateX(-10px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+    .reveal.in .pricing-includes li { opacity: 1; transform: none; }
+    .reveal.in .pricing-includes li:nth-child(1) { transition-delay: .15s; }
+    .reveal.in .pricing-includes li:nth-child(2) { transition-delay: .25s; }
+    .reveal.in .pricing-includes li:nth-child(3) { transition-delay: .35s; }
+    .reveal.in .pricing-includes li:nth-child(4) { transition-delay: .45s; }
+    .reveal.in .pricing-includes li:nth-child(5) { transition-delay: .55s; }
+    .reveal.in .pricing-includes li:nth-child(6) { transition-delay: .65s; }
+    @keyframes ctaInvite { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+    .reveal.in .btn-tarif-glass-primary { animation: ctaInvite .55s ease .9s 1 both; }
+    @media (prefers-reduced-motion: reduce) { .reveal.in .btn-tarif-glass-primary { animation: none; } }
     .glass-card .pricing-includes li::before { content: '✓'; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(255,255,255,.12); border-radius: 50%; flex-shrink: 0; font-size: .65rem; color: #fff; font-weight: 700; }
     .glass-card.glass-popular .pricing-includes li::before { background: rgba(255,107,74,.22); color: var(--coral); }
     .glass-card .pricing-includes li strong { color: #fff; }
     .glass-card .form-legal-check { color: rgba(255,255,255,.6); }
     .glass-card .form-legal-check a { color: var(--coral); }
+
+    .btn-tarif-glass-primary { position: relative; overflow: hidden; }
+    .btn-tarif-glass-primary::after {
+      content: ''; position: absolute; top: 0; left: -60%; width: 30%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg); transition: left .8s ease;
+    }
+    .btn-tarif-glass-primary:hover::after { left: 130%; }
 
     .glass-addon-plus {
       width: 32px; height: 32px; border-radius: 50%; background: var(--ink); border: 1.5px solid rgba(255,255,255,.25);
@@ -449,14 +499,16 @@
       color: var(--coral); position: relative; left: 50%; transform: translate(-50%, -50%); z-index: 2; flex-shrink: 0;
     }
     .glass-addon-card {
-      background: rgba(255,255,255,.08); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-      border: 1px dashed rgba(255,255,255,.28); border-radius: 0 0 18px 18px; margin-top: -16px; padding: 1.5rem 1.5rem 1.6rem; text-align: left;
+      background: rgba(255,255,255,.06); backdrop-filter: blur(14px) saturate(150%); -webkit-backdrop-filter: blur(14px) saturate(150%);
+      border: 1px dashed rgba(255,255,255,.22); border-radius: 0 0 18px 18px; margin-top: -16px; padding: 1.5rem 1.5rem 1.6rem; text-align: left;
+      transition: background .3s, border-color .3s;
     }
-    .glass-addon-card .addon-tag { font-family: var(--ff-mono); font-size: .66rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--coral); margin-bottom: .7rem; }
-    .glass-addon-card .addon-checkbox-row { display: flex; align-items: flex-start; gap: .65rem; margin-bottom: 1rem; font-size: .84rem; color: rgba(255,255,255,.9); cursor: pointer; line-height: 1.4; }
+    .glass-addon-card:has(#addon-hebergement:checked) { background: rgba(255,107,74,.08); border-color: rgba(255,107,74,.4); }
+    .glass-addon-card .addon-tag { font-family: var(--ff-mono); font-size: .66rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: .7rem; }
+    .glass-addon-card .addon-checkbox-row { display: flex; align-items: flex-start; gap: .65rem; margin-bottom: 1rem; font-size: .84rem; color: rgba(255,255,255,.85); cursor: pointer; line-height: 1.4; }
     .glass-addon-card .addon-checkbox-row input { width: 17px; height: 17px; accent-color: var(--coral); cursor: pointer; flex-shrink: 0; margin-top: 1px; }
     .glass-addon-card .addon-checkbox-row strong { color: var(--coral); }
-    .glass-addon-card p { font-size: .8rem; color: rgba(255,255,255,.55); line-height: 1.55; }
+    .glass-addon-card p { font-size: .8rem; color: rgba(255,255,255,.5); line-height: 1.55; }
 
     .pricing-nav { display: flex; justify-content: center; align-items: center; gap: 1.4rem; margin-top: 1.8rem; position: relative; z-index: 1; }
     .pricing-arrow {
@@ -894,7 +946,7 @@
             </div>
           </div>
 
-          <!-- PACK SÉRÉNITÉ -->
+          <!-- PACK SÉRÉNITÉ — l'offre recommandée -->
           <div class="glass-card glass-popular reveal">
             <div class="promo-ribbon"><span class="live-dot"></span>Le Choix Clé en Main</div>
             <div class="pricing-name">Pack Sérénité</div>
@@ -1335,6 +1387,51 @@
     }
   }
   window.toggleAddon = toggleAddon;
+
+  /* ── GLASS CARDS : GLARE AU CURSEUR + SÉLECTION AVEC RIPPLE ── */
+  (function glassCardInteractions() {
+    const cards = document.querySelectorAll('.glass-card');
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (canHover && !reducedMotion) {
+      let raf = null;
+      cards.forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          if (raf) return;
+          raf = requestAnimationFrame(() => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width) * 100 + '%');
+            card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height) * 100 + '%');
+            raf = null;
+          });
+        }, { passive: true });
+      });
+    }
+
+    // Détection de swipe : on ignore le "clic" si le doigt/la souris a bougé (évite une sélection accidentelle en faisant défiler le carrousel)
+    cards.forEach((card) => {
+      let downX = 0, downY = 0, moved = false;
+      card.addEventListener('pointerdown', (e) => { downX = e.clientX; downY = e.clientY; moved = false; }, { passive: true });
+      card.addEventListener('pointermove', (e) => {
+        if (Math.abs(e.clientX - downX) > 6 || Math.abs(e.clientY - downY) > 6) moved = true;
+      }, { passive: true });
+      card.addEventListener('click', (e) => {
+        if (moved || e.target.closest('a, button, input, label')) return;
+        cards.forEach((c) => c.classList.remove('is-selected'));
+        card.classList.add('is-selected');
+        if (!reducedMotion) {
+          const rect = card.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          ripple.style.left = (e.clientX - rect.left) + 'px';
+          ripple.style.top = (e.clientY - rect.top) + 'px';
+          card.appendChild(ripple);
+          ripple.addEventListener('animationend', () => ripple.remove());
+        }
+      });
+    });
+  })();
 
   /* ── CARROUSEL DE TARIFS : NAVIGATION + PASTILLES ── */
   (function pricingCarousel() {
