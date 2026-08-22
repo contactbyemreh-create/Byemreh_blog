@@ -13,4 +13,6 @@ collections:
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Date de publication", name: "date", widget: "datetime"}
+      - {label: "Image de couverture", name: "cover", widget: "image", required: false}
+      - {label: "Résumé", name: "summary", widget: "text", required: false}
       - {label: "Contenu", name: "body", widget: "markdown"}
