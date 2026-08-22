@@ -122,7 +122,7 @@
   }
 
   if (!slug) {
-    container.innerHTML = '<p class="state-msg">Article introuvable : aucun slug fourni dans l\\'URL.</p>';
+    container.innerHTML = '<p class="state-msg">Article introuvable : aucun slug fourni dans l\'URL.</p>';
   } else {
     fetch('/.netlify/functions/blog-article?slug=' + encodeURIComponent(slug))
       .then(res => {
@@ -131,7 +131,7 @@
       })
       .then(renderArticle)
       .catch(() => {
-        container.innerHTML = '<p class="state-msg">Cet article est introuvable ou n\\'a pas pu être chargé.</p>';
+        container.innerHTML = '<p class="state-msg">Cet article est introuvable ou n\'a pas pu être chargé.</p>';
       });
   }
 </script>
