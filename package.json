@@ -1,0 +1,9 @@
+{
+  "name": "byemreh-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site ByEmreh - fonctions Netlify pour le blog",
+  "dependencies": {
+    "marked": "^12.0.0"
+  }
+}

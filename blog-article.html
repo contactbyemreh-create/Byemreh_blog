@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Article — ByEmreh</title>
+  <meta name="description" id="pageDescription" content="" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0B0C10;
+      --paper:      #F6F4EE;
+      --signal:     #6C5CE7;
+      --signal-lt:  #EFEBFF;
+      --coral:      #FF6B4A;
+      --muted:      #6B6A74;
+      --border:     #E3DFD3;
+      --code-bg:    #101116;
+      --ease: cubic-bezier(.16,1,.3,1);
+      --ff-disp: 'Fraunces', Georgia, serif;
+      --ff-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --ff-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    html, body { max-width: 100vw; overflow-x: hidden; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--ff-body); line-height: 1.6; }
+
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: rgba(246,244,238,.85); border-bottom: 1px solid var(--border); }
+    nav { max-width: 1100px; margin: 0 auto; padding: 1.1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-family: var(--ff-disp); font-weight: 600; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+    .nav-brand span { color: var(--signal); }
+    .nav-brand::after { content: '_'; color: var(--coral); }
+    .nav-cta { background: var(--ink); color: #fff; padding: .65rem 1.3rem; border-radius: 99px; font-size: .85rem; font-weight: 600; text-decoration: none; }
+    .nav-cta:hover { background: var(--signal); }
+
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 600; margin: 2.2rem auto 0; max-width: 720px; padding: 0 1.5rem; }
+    .back-link:hover { color: var(--signal); }
+
+    article { max-width: 720px; margin: 0 auto; padding: 1.6rem 1.5rem 6rem; }
+
+    .article-date { font-family: var(--ff-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--signal); margin-bottom: 1rem; }
+    .article-hero-title { font-family: var(--ff-disp); font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.18; margin-bottom: 1.6rem; }
+    .article-hero-cover { width: 100%; border-radius: 18px; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 2.2rem; }
+
+    /* --- Mise en style automatique du contenu publié via le CMS --- */
+    .prose { font-size: 1.05rem; color: var(--ink); }
+    .prose > * + * { margin-top: 1.3em; }
+    .prose h2 { font-family: var(--ff-disp); font-size: 1.55rem; font-weight: 600; letter-spacing: -.01em; margin-top: 2.2em; }
+    .prose h3 { font-family: var(--ff-disp); font-size: 1.25rem; font-weight: 600; margin-top: 1.8em; }
+    .prose p { line-height: 1.75; color: #1c1d24; }
+    .prose a { color: var(--signal); text-decoration: underline; text-decoration-color: var(--signal-lt); text-underline-offset: 3px; }
+    .prose a:hover { text-decoration-color: var(--signal); }
+    .prose strong { font-weight: 700; }
+    .prose em { font-style: italic; }
+    .prose ul, .prose ol { padding-left: 1.4em; line-height: 1.75; }
+    .prose li + li { margin-top: .4em; }
+    .prose img { width: 100%; border-radius: 14px; display: block; }
+    .prose figcaption { text-align: center; font-size: .8rem; color: var(--muted); margin-top: .6em; }
+    .prose blockquote { border-left: 3px solid var(--signal); background: var(--signal-lt); padding: 1.1em 1.3em; border-radius: 0 12px 12px 0; font-family: var(--ff-disp); font-style: italic; font-size: 1.1rem; color: #2b2140; }
+    .prose code { font-family: var(--ff-mono); font-size: .88em; background: var(--signal-lt); color: #4636b8; padding: .15em .4em; border-radius: 5px; }
+    .prose pre { background: var(--code-bg); color: #E4E2F0; padding: 1.3em; border-radius: 14px; overflow-x: auto; font-size: .85rem; line-height: 1.6; }
+    .prose pre code { background: none; color: inherit; padding: 0; }
+    .prose hr { border: none; border-top: 1.5px solid var(--border); margin: 2.6em 0; }
+    .prose table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .prose th, .prose td { border: 1px solid var(--border); padding: .6em .8em; text-align: left; }
+    .prose th { background: var(--signal-lt); font-weight: 600; }
+
+    .state-msg { text-align: center; color: var(--muted); padding: 5rem 1.5rem; font-size: .95rem; max-width: 720px; margin: 0 auto; }
+
+    .skeleton-line { height: 14px; background: var(--border); border-radius: 7px; animation: pulse 1.4s ease-in-out infinite; }
+    .skeleton-line + .skeleton-line { margin-top: 1rem; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="/" class="nav-brand">By<span>Emreh</span></a>
+    <a href="/#contact" class="nav-cta">Demander un devis</a>
+  </nav>
+</header>
+
+<a href="/blog.html" class="back-link">← Retour au blog</a>
+
+<article id="articleContent">
+  <div class="skeleton-line" style="width:40%"></div>
+  <div class="skeleton-line" style="width:90%; height:34px; margin-top:1.4rem;"></div>
+  <div class="skeleton-line" style="width:70%; height:34px;"></div>
+  <div class="skeleton-line" style="width:100%; height:220px; margin-top:2rem; border-radius:18px;"></div>
+</article>
+
+<script>
+  const container = document.getElementById('articleContent');
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function renderArticle(a) {
+    document.getElementById('pageTitle').textContent = a.title + ' — ByEmreh';
+    document.getElementById('pageDescription').setAttribute('content', a.summary || '');
+
+    container.innerHTML = `
+      ${a.date ? `<div class="article-date">${formatDate(a.date)}</div>` : ''}
+      <h1 class="article-hero-title">${a.title}</h1>
+      ${a.cover ? `<img class="article-hero-cover" src="${a.cover}" alt="${a.title}" />` : ''}
+      <div class="prose">${a.html}</div>
+    `;
+  }
+
+  if (!slug) {
+    container.innerHTML = '<p class="state-msg">Article introuvable : aucun slug fourni dans l\\'URL.</p>';
+  } else {
+    fetch('/.netlify/functions/blog-article?slug=' + encodeURIComponent(slug))
+      .then(res => {
+        if (!res.ok) throw new Error('Erreur ' + res.status);
+        return res.json();
+      })
+      .then(renderArticle)
+      .catch(() => {
+        container.innerHTML = '<p class="state-msg">Cet article est introuvable ou n\\'a pas pu être chargé.</p>';
+      });
+  }
+</script>
+
+</body>
+</html>

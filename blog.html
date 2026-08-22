@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — ByEmreh</title>
+  <meta name="description" content="Conseils, coulisses et retours d'expérience sur la création de sites web pour commerçants et artisans en PACA." />
+  <link rel="canonical" href="https://www.byemreh.fr/blog.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0B0C10;
+      --paper:      #F6F4EE;
+      --signal:     #6C5CE7;
+      --signal-lt:  #EFEBFF;
+      --coral:      #FF6B4A;
+      --muted:      #6B6A74;
+      --border:     #E3DFD3;
+      --ease: cubic-bezier(.16,1,.3,1);
+      --ff-disp: 'Fraunces', Georgia, serif;
+      --ff-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --ff-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    html, body { max-width: 100vw; overflow-x: hidden; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--ff-body); line-height: 1.5; }
+
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: rgba(246,244,238,.85); border-bottom: 1px solid var(--border); }
+    nav { max-width: 1100px; margin: 0 auto; padding: 1.1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-family: var(--ff-disp); font-weight: 600; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+    .nav-brand span { color: var(--signal); }
+    .nav-brand::after { content: '_'; color: var(--coral); }
+    .nav-cta { background: var(--ink); color: #fff; padding: .65rem 1.3rem; border-radius: 99px; font-size: .85rem; font-weight: 600; text-decoration: none; transition: transform .2s var(--ease), background .2s; }
+    .nav-cta:hover { background: var(--signal); transform: translateY(-1px); }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 3.5rem 1.5rem 6rem; }
+    .blog-header { text-align: center; max-width: 640px; margin: 0 auto 3.5rem; }
+    .blog-eyebrow { font-family: var(--ff-mono); font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--signal); margin-bottom: 1rem; }
+    .blog-header h1 { font-family: var(--ff-disp); font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+    .blog-header h1 em { font-style: italic; font-weight: 500; color: var(--signal); }
+    .blog-header p { margin-top: 1.2rem; color: var(--muted); font-size: 1.05rem; }
+
+    .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.6rem; }
+
+    .article-card { display: block; text-decoration: none; color: var(--ink); background: #fff; border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+    .article-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(11,12,16,.08); border-color: var(--signal); }
+
+    .article-cover { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--signal-lt); display: block; }
+    .article-cover-placeholder { width: 100%; aspect-ratio: 16 / 10; background: linear-gradient(135deg, var(--signal-lt), #fff); display: flex; align-items: center; justify-content: center; }
+    .article-cover-placeholder span { font-family: var(--ff-disp); font-size: 1.4rem; color: var(--signal); opacity: .5; }
+
+    .article-body { padding: 1.5rem 1.4rem 1.7rem; }
+    .article-date { font-family: var(--ff-mono); font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .6rem; }
+    .article-title { font-family: var(--ff-disp); font-size: 1.25rem; font-weight: 600; line-height: 1.3; margin-bottom: .6rem; }
+    .article-summary { color: var(--muted); font-size: .92rem; line-height: 1.6; }
+
+    .state-msg { text-align: center; color: var(--muted); padding: 4rem 1rem; font-size: .95rem; }
+
+    .skeleton { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .skeleton .article-cover { background: var(--border); animation: pulse 1.4s ease-in-out infinite; }
+    .skeleton .line { height: 12px; background: var(--border); border-radius: 6px; margin: 1.4rem 1.4rem 0; animation: pulse 1.4s ease-in-out infinite; }
+    .skeleton .line.short { width: 60%; margin-top: .8rem; margin-bottom: 1.4rem; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="/" class="nav-brand">By<span>Emreh</span></a>
+    <a href="/#contact" class="nav-cta">Demander un devis</a>
+  </nav>
+</header>
+
+<main>
+  <div class="blog-header">
+    <div class="blog-eyebrow">Le blog</div>
+    <h1>Coulisses & conseils <em>pour votre présence en ligne</em></h1>
+    <p>Retours d'expérience, bonnes pratiques et actus sur la création de sites pour commerçants et artisans.</p>
+  </div>
+
+  <div class="article-grid" id="articleGrid">
+    <div class="skeleton"><div class="article-cover"></div><div class="line"></div><div class="line short"></div></div>
+    <div class="skeleton"><div class="article-cover"></div><div class="line"></div><div class="line short"></div></div>
+    <div class="skeleton"><div class="article-cover"></div><div class="line"></div><div class="line short"></div></div>
+  </div>
+</main>
+
+<script>
+  const grid = document.getElementById('articleGrid');
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function renderArticles(articles) {
+    if (!articles.length) {
+      grid.innerHTML = '<p class="state-msg">Aucun article publié pour le moment. Reviens bientôt !</p>';
+      return;
+    }
+
+    grid.innerHTML = articles.map(a => `
+      <a class="article-card" href="/blog-article.html?slug=${encodeURIComponent(a.slug)}">
+        ${a.cover
+          ? `<img class="article-cover" src="${a.cover}" alt="${a.title}" loading="lazy" />`
+          : `<div class="article-cover-placeholder"><span>ByEmreh</span></div>`
+        }
+        <div class="article-body">
+          ${a.date ? `<div class="article-date">${formatDate(a.date)}</div>` : ''}
+          <div class="article-title">${a.title}</div>
+          ${a.summary ? `<div class="article-summary">${a.summary}</div>` : ''}
+        </div>
+      </a>
+    `).join('');
+  }
+
+  fetch('/.netlify/functions/blog-list')
+    .then(res => {
+      if (!res.ok) throw new Error('Erreur ' + res.status);
+      return res.json();
+    })
+    .then(renderArticles)
+    .catch(() => {
+      grid.innerHTML = '<p class="state-msg">Impossible de charger les articles pour le moment.</p>';
+    });
+</script>
+
+</body>
+</html>
