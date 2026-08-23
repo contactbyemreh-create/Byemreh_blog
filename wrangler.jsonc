@@ -1,0 +1,10 @@
+{
+  "name": "byemreh-blog",
+  "compatibility_date": "2026-08-01",
+  "main": "worker/index.js",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  }
+}
