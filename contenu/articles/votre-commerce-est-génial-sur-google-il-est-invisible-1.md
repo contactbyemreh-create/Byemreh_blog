@@ -1,7 +1,7 @@
 ---
 title: Votre commerce est génial. Sur Google, il est invisible.
 date: 2026-08-22T21:48:00.000+02:00
-cover: ""
+cover: /images/1000001796.jpg
 summary: Un client sur deux cherche une adresse sur Google avant de pousser la
   porte. Si vous n'avez qu'une fiche Google Maps, voilà exactement ce que vous
   perdez sans le savoir — et ce que ça coûte de le régler.
