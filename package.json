@@ -1,0 +1,15 @@
+{
+  "name": "byemreh-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site ByEmreh - Worker Cloudflare pour le blog",
+  "dependencies": {
+    "marked": "^12.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "scripts": {
+    "deploy": "wrangler deploy"
+  }
+}
