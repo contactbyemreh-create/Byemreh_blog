@@ -3,7 +3,7 @@ backend:
   repo: contactbyemreh-create/Byemreh_blog
   branch: main
 
-media_folder: "images"
+media_folder: "public/images"
 public_folder: "/images"
 
 collections:
