@@ -167,6 +167,7 @@
     .nav-brand span { color: var(--signal); }
     .nav-brand::after { content: '_'; color: var(--coral); animation: blink 1.1s step-end infinite; }
     @keyframes blink { 50% { opacity: 0; } }
+    .nav-actions { display: flex; align-items: center; gap: .7rem; flex-shrink: 0; }
     .nav-cta {
       background: var(--ink);
       color: var(--paper);
@@ -180,31 +181,24 @@
       text-decoration: none;
       transition: background .25s var(--ease), transform .25s var(--ease);
       white-space: nowrap;
+      flex-shrink: 0;
     }
     .nav-cta:hover { background: var(--signal); transform: translateY(-1px); }
-    .nav-left { display: flex; align-items: center; gap: 2rem; }
-    .nav-link {
-      position: relative;
+    .nav-cta-short { display: none; }
+    .nav-blog {
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+      padding: .6rem 1.3rem;
       font-family: var(--ff-body);
-      font-size: .85rem;
+      font-size: .8rem;
       font-weight: 600;
-      color: var(--muted);
+      border-radius: 99px;
       text-decoration: none;
-      padding-bottom: 2px;
-      transition: color .25s var(--ease);
+      transition: border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -2px;
-      height: 1.5px;
-      background: var(--signal);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform .3s var(--ease);
-    }
-    .nav-link:hover { color: var(--ink); }
-    .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-blog:hover { border-color: var(--signal); color: var(--signal); transform: translateY(-1px); }
 
     /* ── HERO ───────────────────────────────── */
     .hero { position: relative; padding: 10rem 2.5rem 6rem; overflow: hidden; }
@@ -634,10 +628,13 @@
 
     /* ── RESPONSIVE ─────── */
     @media (max-width: 768px) {
-      nav { padding: 0.75rem 1rem; }
-      .nav-left { gap: 1rem; }
-      .nav-link { font-size: .78rem; }
-      .nav-cta { padding: .5rem .9rem; font-size: .75rem; max-width: 55%; text-align: center; overflow: hidden; text-overflow: ellipsis; }
+      nav { padding: 0.7rem .9rem; }
+      .nav-brand { font-size: .88rem; }
+      .nav-actions { gap: .5rem; }
+      .nav-cta { padding: .5rem .95rem; font-size: .72rem; }
+      .nav-cta-full { display: none; }
+      .nav-cta-short { display: inline; }
+      .nav-blog { padding: .5rem .8rem; font-size: .72rem; }
       .hero { padding: 7rem 1rem 3.5rem; }
       .hero-badge { font-size: .66rem; padding: .35rem .75rem; margin-bottom: 1.2rem; }
       .hero h1 { font-size: 1.9rem; line-height: 1.2; }
@@ -667,11 +664,11 @@
 
 <header>
   <nav>
-    <div class="nav-left">
-      <a href="https://www.byemreh.fr" class="nav-brand">By<span>Emreh</span></a>
-      <a href="/blog.html" class="nav-link">Blog</a>
+    <a href="https://www.byemreh.fr" class="nav-brand">By<span>Emreh</span></a>
+    <div class="nav-actions">
+      <a href="blog.html" class="nav-blog">Blog</a>
+      <a href="#contact" class="nav-cta"><span class="nav-cta-full">Demander un devis</span><span class="nav-cta-short">Devis gratuit</span></a>
     </div>
-    <a href="#contact" class="nav-cta">Demander un devis</a>
   </nav>
 </header>
 
@@ -1107,7 +1104,6 @@
 <footer>
   <p><strong>ByEmreh</strong> — Partenaire web pour le développement local et la digitalisation des commerces.</p>
   <p style="margin-top:.6rem; font-size:.8rem;">
-    <a href="/blog.html">Blog</a> ·
     <a href="#" onclick="openModal('mentions'); return false;">Mentions Légales</a> ·
     <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a>
   </p>
@@ -1390,7 +1386,7 @@
      de combiner un prix ponctuel et un prix récurrent sur un même Payment Link,
      dans le Dashboard : New payment link > ajouter les 2 line items). */
   const STRIPE_LINK_SEUL = 'https://buy.stripe.com/eVqdR147I4PY3edbpw6Ri01';
-  const STRIPE_LINK_COMBO = 'STRIPE_LINK_COMBO'; // ← à remplacer une fois le lien combo créé dans Stripe
+  const STRIPE_LINK_COMBO = 'https://buy.stripe.com/eVq4gr5bM2HQeWV9ho6Ri05';
 
   function toggleAddon() {
     const checked = document.getElementById('addon-hebergement').checked;
