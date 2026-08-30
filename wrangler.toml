@@ -9,4 +9,4 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "byemreh-blog-db"
-database_id = "REMPLACER_PAR_L_ID_DE_LA_BASE"
+database_id = "3a813cc4-4004-4607-96e4-d6a5737cb22f"
