@@ -138,19 +138,19 @@ app.get('/admin/dashboard', (c) => {
           list.innerHTML = '<p class="empty">Aucun article. Créez-en un !</p>';
           return;
         }
-        list.innerHTML = posts.map(p => `
-          <div class="post-row ${p.status}">
+        list.innerHTML = posts.map(p => \`
+          <div class="post-row \${p.status}">
             <div>
-              <strong>${p.title}</strong>
-              <span class="badge ${p.status}">${p.status === 'published' ? 'Publié' : 'Brouillon'}</span>
-              <small>${new Date(p.created_at).toLocaleDateString('fr-FR')}</small>
+              <strong>\${p.title}</strong>
+              <span class="badge \${p.status}">\${p.status === 'published' ? 'Publié' : 'Brouillon'}</span>
+              <small>\${new Date(p.created_at).toLocaleDateString('fr-FR')}</small>
             </div>
             <div class="actions">
-              <a href="/admin/edit/${p.id}" class="btn-small">Modifier</a>
-              <button onclick="deletePost(${p.id})" class="btn-small btn-danger">Supprimer</button>
+              <a href="/admin/edit/\${p.id}" class="btn-small">Modifier</a>
+              <button onclick="deletePost(\${p.id})" class="btn-small btn-danger">Supprimer</button>
             </div>
           </div>
-        `).join('');
+        \`).join('');
       }
 
       async function deletePost(id) {
@@ -343,3 +343,4 @@ function adminLayout(title, content) {
 }
 
 export default app;
+
