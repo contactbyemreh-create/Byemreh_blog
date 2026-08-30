@@ -1,8 +1,16 @@
-```javascript
 import { Hono } from 'hono';
 import { html } from 'hono/html';
 
 const app = new Hono();
+
+// Servir le site vitrine (public/) pour tout sauf /blog, /admin, /api
+app.get('*', async (c, next) => {
+  const path = new URL(c.req.url).pathname;
+  if (path === '/' || path.startsWith('/blog') || path.startsWith('/admin') || path.startsWith('/api')) {
+    return next();
+  }
+  return c.env.ASSETS.fetch(c.req.raw);
+});
 
 function checkAuth(c, next) {
   const auth = c.req.header('Authorization');
@@ -24,17 +32,17 @@ function slugify(text) {
 app.get('/style.css', (c) => c.env.ASSETS.fetch(c.req.raw));
 app.get('/favicon.ico', (c) => c.env.ASSETS.fetch(c.req.raw));
 
-app.get('/', async (c) => {
+app.get('/blog', async (c) => {
   const posts = await c.env.DB.prepare(
     'SELECT id, title, slug, excerpt, created_at FROM posts WHERE status = ? ORDER BY created_at DESC'
   ).bind('published').all();
 
   const postList = posts.results.map(p => html`
     <article class="post-card">
-      <h2><a href="/article/${p.slug}">${p.title}</a></h2>
+      <h2><a href="/blog/article/${p.slug}">${p.title}</a></h2>
       <time datetime="${p.created_at}">${new Date(p.created_at).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
       ${p.excerpt ? html`<p>${p.excerpt}</p>` : ''}
-      <a href="/article/${p.slug}" class="read-more">Lire l'article →</a>
+      <a href="/blog/article/${p.slug}" class="read-more">Lire l'article →</a>
     </article>
   `);
 
@@ -56,7 +64,7 @@ app.get('/', async (c) => {
   `));
 });
 
-app.get('/article/:slug', async (c) => {
+app.get('/blog/article/:slug', async (c) => {
   const slug = c.req.param('slug');
   const post = await c.env.DB.prepare(
     'SELECT * FROM posts WHERE slug = ? AND status = ?'
@@ -67,11 +75,11 @@ app.get('/article/:slug', async (c) => {
   return c.html(layout(post.title, html`
     <div class="container">
       <article class="article-full">
-        <a href="/" class="back">← Retour au blog</a>
+        <a href="/blog" class="back">← Retour au blog</a>
         <h1>${post.title}</h1>
         <time datetime="${post.created_at}">${new Date(post.created_at).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
         <div class="content">${html([post.content])}</div>
-        <a href="/" class="back" style="display:inline-block;margin-top:2.5rem;">← Retour au blog</a>
+        <a href="/blog" class="back" style="display:inline-block;margin-top:2.5rem;">← Retour au blog</a>
       </article>
     </div>
   `));
@@ -115,7 +123,7 @@ app.get('/admin/dashboard', (c) => {
         <a href="/admin/new" class="btn-primary">+ Nouvel article</a>
       </div>
       <div id="posts-list"><p class="empty">Chargement...</p></div>
-      <a href="/" class="back" style="display:inline-block;margin-top:2rem;">← Voir le blog</a>
+      <a href="/blog" class="back" style="display:inline-block;margin-top:2rem;">← Voir le blog</a>
       <button id="logout" class="btn-logout">Déconnexion</button>
     </div>
     <script>
@@ -271,7 +279,7 @@ function notFound() {
       <div class="not-found">
         <h1>404</h1>
         <p>Page introuvable</p>
-        <a href="/">← Retour à l'accueil</a>
+        <a href="/blog">← Retour à l'accueil</a>
       </div>
     </div>
   `);
@@ -335,4 +343,3 @@ function adminLayout(title, content) {
 }
 
 export default app;
-```
