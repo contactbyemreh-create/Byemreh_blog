@@ -1,15 +1,16 @@
 {
-  "name": "byemreh-site",
+  "name": "byemreh-blog",
   "version": "1.0.0",
   "private": true,
-  "description": "Site ByEmreh - Worker Cloudflare pour le blog",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute byemreh-blog-db --file=./schema.sql"
+  },
   "dependencies": {
-    "marked": "^12.0.0"
+    "hono": "^4.6.0"
   },
   "devDependencies": {
-    "wrangler": "^4.0.0"
-  },
-  "scripts": {
-    "deploy": "wrangler deploy"
+    "wrangler": "^3.85.0"
   }
 }
