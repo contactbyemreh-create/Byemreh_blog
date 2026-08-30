@@ -100,6 +100,7 @@ nav {
 .posts { margin-top: 2rem; }
 .post-card { padding: 1.8rem 0; border-bottom: 1px solid var(--border); transition: padding-left .3s var(--ease); }
 .post-card:hover { padding-left: .5rem; }
+.post-thumb { display: block; width: 100%; max-height: 320px; object-fit: cover; border-radius: 14px; margin-bottom: 1.1rem; }
 .post-card h2 { font-family: var(--ff-disp); font-size: 1.4rem; font-weight: 600; margin-bottom: .3rem; }
 .post-card h2 a { color: var(--ink); transition: color .2s; }
 .post-card h2 a:hover { color: var(--signal); }
@@ -111,6 +112,7 @@ nav {
 .article-full .back { display: inline-block; margin-bottom: 1.5rem; font-size: .85rem; font-family: var(--ff-mono); color: var(--muted); transition: color .2s; }
 .article-full .back:hover { color: var(--signal); }
 .article-full h1 { font-family: var(--ff-disp); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 600; margin-bottom: .5rem; letter-spacing: -.02em; }
+.article-cover { display: block; width: 100%; max-height: 460px; object-fit: cover; border-radius: 16px; margin: 1.2rem 0 1.5rem; }
 .article-full time { color: var(--muted-dk); font-size: .82rem; font-family: var(--ff-mono); display: block; margin-bottom: 2.5rem; }
 .article-full .content { margin-top: 1.5rem; }
 .article-full .content h1 { font-size: 1.6rem; margin: 2rem 0 .5rem; }
