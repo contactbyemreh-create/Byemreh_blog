@@ -1,0 +1,12 @@
+name = "byemreh-blog"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "byemreh-blog-db"
+database_id = "REMPLACER_PAR_L_ID_DE_LA_BASE"
