@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><!-- Script Netlify Identity pour gérer les connexions et mots de passe -->
-<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0B0C10" />
 
   <title>ByEmreh — Création de site vitrine pour commerçants & artisans</title>
   <meta name="description" content="Sites vitrines sur-mesure pour commerçants, artisans et restaurateurs en PACA (Marseille, Aix-en-Provence...). Livrés en 7 jours dès 190€, sans template." />
@@ -29,6 +19,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
   <meta property="og:url" content="https://www.byemreh.fr" />
   <meta property="og:title" content="ByEmreh — Votre présence en ligne professionnelle pour 190€" />
   <meta property="og:description" content="Boostez votre visibilité locale avec un site internet moderne, rapide et optimisé pour Google. Offre clé en main à 190€." />
@@ -40,7 +31,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
   {
@@ -50,6 +41,7 @@
     "image": "https://www.byemreh.fr/logo.png",
     "description": "Création de sites internet vitrines professionnels pour les commerçants locaux, artisans et PME.",
     "priceRange": "190€ - 790€",
+    "areaServed": ["Marseille", "Aix-en-Provence", "Provence-Alpes-Côte d'Azur"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "16 rue de la largade",
@@ -63,6 +55,39 @@
       "priceCurrency": "EUR",
       "description": "Création de site vitrine complet livré en 7 jours"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Pourquoi le prix de création est-il de 190€ au lieu de 790€ ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "C'est une offre commerciale spéciale destinée à construire un solide réseau de commerçants locaux satisfaits. En échange de ce tarif ultra-compétitif, il est simplement demandé de laisser un avis sincère après la mise en ligne." }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment fonctionne le Pack Sérénité à 40€/mois ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le Pack Sérénité inclut l'hébergement, le nom de domaine personnalisé et une petite modification offerte chaque mois (ajout au menu, nouvelle prestation, changement de photo), avec engagement." }
+      },
+      {
+        "@type": "Question",
+        "name": "C'est quoi l'option Hébergement & Domaine à 20€/mois ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "C'est une option facultative rattachée au Pack Lancement, couvrant l'hébergement et le nom de domaine, sans engagement et résiliable à tout moment par email." }
+      },
+      {
+        "@type": "Question",
+        "name": "De quoi ai-je besoin pour commencer ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Il suffit d'envoyer les éléments clés : horaires, tarifs et photos. Le reste est pris en charge." }
+      },
+      {
+        "@type": "Question",
+        "name": "Et si je choisis le Pack Lancement sans abonnement ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Il est possible de louer son propre hébergement (OVH, Hostinger, etc.) et d'acheter son propre nom de domaine ; le site est alors livré en code ou installé directement sur ces accès." }
+      }
+    ]
   }
   </script>
 
@@ -103,8 +128,9 @@
     }
     body::after {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 100%;
       z-index: 999;
       pointer-events: none;
       opacity: .025;
@@ -626,7 +652,28 @@
     }
     .pdf-download-btn:hover { background: #E4DBFF; border-color: var(--signal); }
 
-    /* ── RESPONSIVE ─────── */
+    /* ── ÉTATS FOCUS & TACTILE (accessibilité + sensation premium) ── */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 4px;
+    }
+    .btn-primary:active, .btn-secondary:active, .nav-cta:active, .btn-submit:active, .btn-tarif:active, .whatsapp-btn:active {
+      transform: scale(.97);
+    }
+
+    /* ── BARRE CTA STICKY (mobile) ─────────── */
+    .sticky-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 250; display: none;
+      padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom, 0px));
+      background: rgba(246,244,238,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border); box-shadow: 0 -8px 24px rgba(0,0,0,.08);
+      transform: translateY(110%); transition: transform .35s var(--ease);
+    }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-cta-btn {
+      display: block; text-align: center; background: var(--signal); color: #fff; padding: .9rem;
+      border-radius: 99px; font-weight: 700; font-size: .9rem; text-decoration: none; transition: transform .2s;
+    }
+    @media (max-width: 768px) { .sticky-cta { display: block; } }
     @media (max-width: 768px) {
       nav { padding: 0.7rem .9rem; }
       .nav-brand { font-size: .88rem; }
@@ -660,13 +707,14 @@
 <body>
 
 <div class="scroll-progress" id="scrollProgress"></div>
+<div class="sticky-cta" id="stickyCta"><a href="#tarif" class="sticky-cta-btn">Voir les tarifs →</a></div>
 <div class="cursor-dot" id="cursor"></div>
 
 <header>
   <nav>
     <a href="https://www.byemreh.fr" class="nav-brand">By<span>Emreh</span></a>
     <div class="nav-actions">
-      <a href="blog.html" class="nav-blog">Blog</a>
+      <a href="/blog" class="nav-blog">Blog</a>
       <a href="#contact" class="nav-cta"><span class="nav-cta-full">Demander un devis</span><span class="nav-cta-short">Devis gratuit</span></a>
     </div>
   </nav>
@@ -722,32 +770,32 @@
       <h2 class="section-title reveal">Des prestations haut de gamme,<br><em>pensées pour votre chiffre d'affaires</em></h2>
       <div class="features-grid">
         <div class="feature-card reveal">
-          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
+          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
           <h3>Ergonomie & 100% Mobile</h3>
           <p>Une interface fluide, moderne et rapide. 75% de vos clients consultent vos horaires ou services depuis leur téléphone : votre site sera parfait sur tous les écrans.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6.5l9 6.5 9-6.5"/></svg></div>
+          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6.5l9 6.5 9-6.5"/></svg></div>
           <h3>Formulaire & Réception par email</h3>
           <p>Un formulaire de contact intuitif intégré. Vous recevez chaque demande de devis ou de réservation instantanément, directement dans votre boîte mail.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
           <h3>Livraison Éclair (7 jours)</h3>
           <p>Pas de projet qui traîne pendant des mois. Une fois vos informations transmises, je conçois et mets en ligne votre site web sous une semaine ouvrée.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.5 2"/></svg></div>
+          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.5 2"/></svg></div>
           <h3>Design Sur-Mesure</h3>
           <p>Fini les modèles génériques. J'adapte l'identité visuelle (couleurs, polices, mise en page) pour qu'elle reflète parfaitement le professionnalisme de votre marque.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="21" y2="21"/></svg></div>
+          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="21" y2="21"/></svg></div>
           <h3>Référencement Local Google Maps</h3>
           <p>Structure technique optimisée (balises SEO, mots-clés de votre ville et métier) pour vous aider à remonter dans les recherches locales sur Google.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.66 5.66L4 17l3 3 5.04-5.04a4 4 0 0 1 5.66-5.66z"/></svg></div>
+          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.66 5.66L4 17l3 3 5.04-5.04a4 4 0 0 1 5.66-5.66z"/></svg></div>
           <h3>Support technique 30 Jours</h3>
           <p>Je reste à votre entière disposition pendant 1 mois après la mise en ligne pour veiller au bon fonctionnement de votre site, vous accompagner et réaliser vos petits ajustements.</p>
         </div>
@@ -1182,7 +1230,7 @@
 
       <p style="margin-top: 1rem;">📄 <strong>Charte officielle d'éthique :</strong> Vous pouvez consulter et télécharger l'annexe officielle complète de notre charte au format PDF :</p>
 
-      <a href="charte.pdf" download="charte.pdf" target="_blank" class="pdf-download-btn">
+      <a href="charte.pdf" download="charte.pdf" target="_blank" rel="noopener" class="pdf-download-btn">
         📥 Télécharger la Charte Éthique & CGV (PDF)
       </a>
 
@@ -1214,10 +1262,16 @@
 <script>
   /* ── SCROLL PROGRESS ── */
   const scrollBar = document.getElementById('scrollProgress');
+  let scrollTicking = false;
   window.addEventListener('scroll', () => {
-    const h = document.documentElement;
-    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-    scrollBar.style.width = pct + '%';
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+      scrollBar.style.width = pct + '%';
+      scrollTicking = false;
+    });
   }, { passive: true });
 
   /* ── CUSTOM CURSOR (desktop only) ── */
@@ -1241,14 +1295,19 @@
 
   /* ── SPOTLIGHT + TILT SUR LES CARTES ── */
   if (prefersFinePointer && !prefersReducedMotion) {
+    let spotlightRaf = null;
     document.querySelectorAll('.feature-card').forEach((card) => {
       card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const mxp = ((e.clientX - r.left) / r.width) * 100;
-        const myp = ((e.clientY - r.top) / r.height) * 100;
-        card.style.setProperty('--mx', mxp + '%');
-        card.style.setProperty('--my', myp + '%');
-      });
+        if (spotlightRaf) return;
+        spotlightRaf = requestAnimationFrame(() => {
+          const r = card.getBoundingClientRect();
+          const mxp = ((e.clientX - r.left) / r.width) * 100;
+          const myp = ((e.clientY - r.top) / r.height) * 100;
+          card.style.setProperty('--mx', mxp + '%');
+          card.style.setProperty('--my', myp + '%');
+          spotlightRaf = null;
+        });
+      }, { passive: true });
     });
   }
 
@@ -1294,12 +1353,17 @@
     const btn = document.getElementById('magnet-btn');
     if (!btn || !prefersFinePointer || prefersReducedMotion) return;
     const strength = 0.3;
+    let magnetRaf = null;
     btn.addEventListener('mousemove', (e) => {
-      const box = btn.getBoundingClientRect();
-      const relX = e.clientX - box.left - box.width / 2;
-      const relY = e.clientY - box.top - box.height / 2;
-      btn.style.transform = `translate(${relX * strength}px, ${relY * strength}px)`;
-    });
+      if (magnetRaf) return;
+      magnetRaf = requestAnimationFrame(() => {
+        const box = btn.getBoundingClientRect();
+        const relX = e.clientX - box.left - box.width / 2;
+        const relY = e.clientY - box.top - box.height / 2;
+        btn.style.transform = `translate(${relX * strength}px, ${relY * strength}px)`;
+        magnetRaf = null;
+      });
+    }, { passive: true });
     btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0, 0)'; });
   })();
 
@@ -1308,7 +1372,7 @@
     const canvas = document.getElementById('lab-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    let w, h, particles;
+    let w, h, particles, rafId = null, running = false;
     const COUNT = prefersReducedMotion ? 0 : 90;
 
     function resize() {
@@ -1316,6 +1380,11 @@
       w = canvas.width = section.offsetWidth;
       h = canvas.height = section.offsetHeight;
     }
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    });
     function angleAt(x, y, t) { return Math.sin(x * 0.0025 + t) + Math.cos(y * 0.0025 + t) * 1.5; }
     function spawn() {
       particles = Array.from({ length: COUNT }, () => ({ x: Math.random() * w, y: Math.random() * h, vx: 0, vy: 0 }));
@@ -1329,7 +1398,8 @@
       if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
     }
     function tick(t) {
-      ctx.fillStyle = 'rgba(11,12,16,0.09)';
+      if (!running) return;
+      ctx.fillStyle = 'rgba(5,6,10,0.09)';
       ctx.fillRect(0, 0, w, h);
       for (const p of particles) {
         const angle = angleAt(p.x, p.y, t * 0.00012);
@@ -1337,11 +1407,24 @@
         p.x += p.vx *= 0.94; p.y += p.vy *= 0.94;
         draw(p); wrap(p);
       }
-      requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     }
     resize(); spawn();
-    window.addEventListener('resize', resize);
-    requestAnimationFrame(tick);
+    if (COUNT === 0) return; // reduced motion : rien à animer
+
+    // Ne tourne que pendant que la section est réellement visible à l'écran
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !running) {
+          running = true;
+          rafId = requestAnimationFrame(tick);
+        } else if (!entry.isIntersecting && running) {
+          running = false;
+          if (rafId) cancelAnimationFrame(rafId);
+        }
+      });
+    }, { threshold: .01 });
+    sectionObserver.observe(canvas.parentElement);
   })();
 
   /* ── GESTION DES MODALES JURIDIQUES ── */
@@ -1492,6 +1575,24 @@
         ticking = false;
       });
     }, { passive: true });
+  })();
+
+  /* ── BARRE CTA STICKY (mobile) ── */
+  (function stickyCta() {
+    const bar = document.getElementById('stickyCta');
+    const heroEl = document.querySelector('.hero');
+    const contactEl = document.getElementById('contact');
+    if (!bar || !heroEl) return;
+    let heroVisible = true, contactVisible = false;
+    function update() { bar.classList.toggle('visible', !heroVisible && !contactVisible); }
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => { heroVisible = e.isIntersecting; update(); });
+    }, { threshold: 0 }).observe(heroEl);
+    if (contactEl) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((e) => { contactVisible = e.isIntersecting; update(); });
+      }, { threshold: .1 }).observe(contactEl);
+    }
   })();
 
   /* ── REDIRECTION FORMSPREE GRATUIT (AJAX) ── */
