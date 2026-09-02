@@ -1696,4 +1696,43 @@
   })();
 
   /* ── PRÉ-REMPLISSAGE DU MESSAGE DEPUIS LES OFFRES E-COMMERCE / APPLICATIONS ──
-     Ne casse rien : on réutilise le formulaire existant, on 
+     Ne casse rien : on réutilise le formulaire existant, on ne fait
+     qu'insérer une phrase de contexte dans le champ message si celui-ci est vide. */
+  function prefillMessage(context) {
+    const msg = document.getElementById('message');
+    if (!msg) return;
+    if (!msg.value.trim()) {
+      msg.value = context === 'E-commerce'
+        ? "Bonjour, je suis intéressé(e) par la création d'un site e-commerce."
+        : "Bonjour, je souhaite être informé(e) du lancement de l'offre applications mobiles.";
+    }
+  }
+  window.prefillMessage = prefillMessage;
+
+  /* ── REDIRECTION FORMSPREE GRATUIT (AJAX) ── */
+  const contactForm = document.getElementById("contact-form");
+  const submitBtn = document.getElementById("submit-btn");
+  contactForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    submitBtn.innerText = "Envoi en cours...";
+    submitBtn.disabled = true;
+    const data = new FormData(event.target);
+    try {
+      const response = await fetch(event.target.action, {
+        method: contactForm.method, body: data, headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        window.location.href = "confirmation.html";
+      } else {
+        alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+        submitBtn.innerText = "Envoyer ma demande gratuite →"; submitBtn.disabled = false;
+      }
+    } catch (error) {
+      alert("Erreur de connexion. Veuillez réessayer.");
+      submitBtn.innerText = "Envoyer ma demande gratuite →"; submitBtn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
