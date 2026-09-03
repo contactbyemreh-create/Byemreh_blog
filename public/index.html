@@ -779,6 +779,26 @@
       .modal-card { padding: 1.25rem; max-height: 90vh; }
       .cursor-dot { display: none !important; }
     }
+
+    /* ── VILLES DESSERVIES (maillage interne SEO) ─────── */
+    .cities-section { background: var(--paper); }
+    .cities-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; max-width: 900px; margin: 0 auto; }
+    .cities-grid a {
+      font-family: var(--ff-mono); font-size: .78rem; font-weight: 600; color: var(--ink);
+      background: #fff; border: 1.5px solid var(--border); border-radius: 99px; padding: .6rem 1.2rem;
+      text-decoration: none; transition: border-color .2s, color .2s, transform .2s;
+    }
+    .cities-grid a:hover { border-color: var(--signal); color: var(--signal); transform: translateY(-2px); }
+
+    /* ── PAGE VILLE — hero compact + intro + CTA ──────── */
+    .city-hero { position: relative; padding: 9rem 2.5rem 4rem; overflow: hidden; text-align: center; }
+    .city-hero .hero-mesh { position: absolute; inset: -15% -10%; z-index: 0; pointer-events: none; filter: blur(70px); opacity: .4; }
+    .city-hero .hero-content { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
+    .city-intro { max-width: 68ch; margin: 2rem auto 0; text-align: left; font-size: 1rem; color: var(--muted); line-height: 1.85; }
+    .city-intro p { margin-bottom: 1.2rem; }
+    .city-breadcrumb { font-family: var(--ff-mono); font-size: .72rem; color: var(--muted-dk); margin-bottom: 1.4rem; }
+    .city-breadcrumb a { color: var(--signal); text-decoration: none; }
+    .city-breadcrumb a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -1244,6 +1264,29 @@
           <summary>Et si je choisis le Pack Lancement sans abonnement ?</summary>
           <div class="faq-a">Aucun souci ! Vous êtes totalement libre de louer votre propre serveur (chez OVH, Hostinger, etc.) et d'acheter votre propre nom de domaine. Je vous livrerai alors le code de votre site ou je l'installerai directement sur vos accès. Vous paierez vos abonnements d'hébergement directement à votre fournisseur.</div>
         </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cities-section" id="villes">
+    <div class="section-inner" style="text-align:center;">
+      <div class="section-label reveal">Zone d'intervention</div>
+      <h2 class="section-title reveal">Des sites pour les commerçants,<br>partout <em>en France</em></h2>
+      <p class="offer-text reveal" style="margin:0 auto 2.2rem; text-align:center;">Basé en PACA (Marseille · Aix-en-Provence), j'accompagne aussi des commerçants et artisans dans toute la France, à distance — mêmes délais, même accompagnement.</p>
+      <div class="cities-grid reveal">
+        <a href="/site-internet-marseille.html">Création site internet Marseille</a>
+        <a href="/site-internet-aix-en-provence.html">Création site internet Aix-en-Provence</a>
+        <a href="/site-internet-toulon.html">Création site internet Toulon</a>
+        <a href="/site-internet-nice.html">Création site internet Nice</a>
+        <a href="/site-internet-avignon.html">Création site internet Avignon</a>
+        <a href="/site-internet-paris.html">Création site internet Paris</a>
+        <a href="/site-internet-lyon.html">Création site internet Lyon</a>
+        <a href="/site-internet-toulouse.html">Création site internet Toulouse</a>
+        <a href="/site-internet-nantes.html">Création site internet Nantes</a>
+        <a href="/site-internet-strasbourg.html">Création site internet Strasbourg</a>
+        <a href="/site-internet-montpellier.html">Création site internet Montpellier</a>
+        <a href="/site-internet-bordeaux.html">Création site internet Bordeaux</a>
+        <a href="/site-internet-lille.html">Création site internet Lille</a>
       </div>
     </div>
   </section>
