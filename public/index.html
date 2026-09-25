@@ -487,6 +487,48 @@
     .roi-banner p { font-family: var(--ff-disp); font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight: 500; color: var(--ink); line-height: 1.5; max-width: 780px; margin: 0 auto; }
     .roi-banner p em { font-style: italic; color: var(--signal); font-weight: 600; }
 
+    /* ── SECTION TRANSPARENCE / ÉTHIQUE ──────────── */
+    .trust-stats { display: flex; justify-content: center; gap: 1.4rem; flex-wrap: wrap; margin: 0 auto 1.2rem; }
+    .trust-stat {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 16px;
+      padding: 1.6rem 2.2rem; text-align: center; min-width: 170px;
+    }
+    .trust-stat strong { display: block; font-family: var(--ff-disp); font-size: 2.4rem; font-weight: 700; color: var(--signal); line-height: 1; }
+    .trust-stat--text strong { font-size: 1.3rem; color: var(--ink); }
+    .trust-stat span { display: block; font-family: var(--ff-mono); font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-top: .5rem; }
+    .trust-caption { text-align: center; font-size: .82rem; color: var(--muted-dk); max-width: 520px; margin: 0 auto 2.6rem; }
+    .trust-table-wrap { overflow-x: auto; border: 1.5px solid var(--border); border-radius: 16px; background: #fff; }
+    .trust-table { width: 100%; border-collapse: collapse; font-size: .86rem; min-width: 620px; }
+    .trust-table th { text-align: left; padding: 1rem 1.3rem; background: var(--paper-dim); font-family: var(--ff-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted-dk); }
+    .trust-table th:nth-child(3) { color: var(--signal); }
+    .trust-table td { padding: 1rem 1.3rem; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .trust-table td:first-child { font-weight: 700; white-space: nowrap; }
+    .trust-table td:nth-child(3) { color: var(--ink); font-weight: 500; background: var(--signal-lt); }
+
+    /* < 640px : le tableau devient une pile de cartes, plus lisible qu'un tableau qui déborde */
+    @media (max-width: 640px) {
+      .trust-table-wrap { overflow-x: visible; border: none; background: none; }
+      .trust-table { min-width: 0; }
+      .trust-table thead { display: none; }
+      .trust-table, .trust-table tbody, .trust-table tr, .trust-table td { display: block; width: 100%; }
+      .trust-table tr { border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1rem; }
+      .trust-table td { border-top: none; padding: .8rem 1.1rem; }
+      .trust-table td:first-child { background: var(--ink); color: #fff; font-family: var(--ff-disp); font-weight: 600; font-size: .95rem; white-space: normal; }
+      .trust-table td[data-label]::before { content: attr(data-label); display: block; font-family: var(--ff-mono); font-size: .64rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted-dk); margin-bottom: .3rem; }
+      .trust-table td:nth-child(3) { background: var(--signal-lt); }
+    }
+    @media (max-width: 640px) { .trust-stat { min-width: 140px; padding: 1.2rem 1.4rem; } .trust-stat strong { font-size: 1.9rem; } }
+
+    /* ── MODALE RÉSERVATION (Cal.com) ──────────── */
+    .booking-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(11,12,16,.72); backdrop-filter: blur(4px); padding: 2.5rem 1.2rem; overflow-y: auto; }
+    .booking-overlay.open { display: block; }
+    .booking-panel { position: relative; max-width: 560px; margin: 0 auto; background: var(--paper); border-radius: 18px; padding: 2.2rem 2rem 1.6rem; box-shadow: 0 40px 90px rgba(0,0,0,.4); }
+    .booking-panel h3 { font-family: var(--ff-disp); font-size: 1.4rem; margin-bottom: .3rem; }
+    .booking-panel p { color: var(--muted); font-size: .88rem; margin-bottom: 1.2rem; }
+    .booking-close { position: absolute; top: 1.1rem; right: 1.1rem; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--border); background: #fff; font-size: 1rem; cursor: pointer; color: var(--ink); }
+    .booking-embed { width: 100%; min-height: 520px; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+    @media (max-width: 540px) { .booking-panel { padding: 1.6rem 1.2rem 1.2rem; } }
+
 
     /* ── TARIFS — GRILLE COMPACTE, SÉRÉNITÉ EN AVANT ─────────────── */
     .pricing-section { background: var(--ink); position: relative; overflow: hidden; padding-bottom: 5rem; }
@@ -636,6 +678,39 @@
     .soon-section .btn-secondary { margin-top: 2rem; color: #fff; border-color: rgba(255,255,255,.25); }
     .soon-section .btn-secondary:hover { border-color: var(--coral); color: var(--coral); }
 
+    /* ── SECTION PARTENAIRE (Nuh Frey) ──────────── */
+    .partner-section { background: var(--ink); position: relative; overflow: hidden; text-align: center; }
+    .partner-section::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(600px circle at 50% 0%, rgba(201,162,39,.14), transparent 65%);
+    }
+    .partner-section .section-inner { position: relative; z-index: 1; }
+    .partner-section .section-title { color: #fff; }
+    .partner-badge {
+      display: inline-flex; align-items: center; gap: .5rem; font-family: var(--ff-mono); font-size: .7rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--gold); background: rgba(201,162,39,.12);
+      border: 1px solid rgba(201,162,39,.35); padding: .4rem 1.1rem; border-radius: 99px; margin-bottom: 1.4rem;
+    }
+    .partner-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulseDotSoon 1.6s infinite; }
+    .partner-card {
+      max-width: 480px; margin: 2.4rem auto 0; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px; padding: 2.2rem 2rem; backdrop-filter: blur(6px);
+    }
+    .partner-card-head { margin-bottom: .8rem; }
+    .partner-name { font-family: var(--ff-disp); font-size: 1.4rem; font-weight: 700; color: #fff; }
+    .partner-role { font-family: var(--ff-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); margin-top: .2rem; }
+    .partner-quote { font-family: var(--ff-disp); font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,.75); max-width: 34ch; margin: 1.2rem auto 1.6rem; line-height: 1.5; }
+    .partner-services { display: flex; justify-content: center; gap: 1.4rem; flex-wrap: wrap; margin-bottom: 1.8rem; font-size: .82rem; color: rgba(255,255,255,.65); font-weight: 600; }
+    .partner-service { display: flex; align-items: center; gap: .45rem; }
+    .partner-service-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+    .partner-whatsapp { display: inline-flex; align-items: center; gap: .6rem; background: #25D366; color: #06210f; border: none; }
+    .partner-whatsapp:hover { background: #1ebc59; transform: translateY(-2px); }
+    .partner-alt-links { margin-top: 1.1rem; font-size: .8rem; }
+    .partner-alt-links a { color: rgba(255,255,255,.55); text-decoration: underline; }
+    .partner-alt-links a:hover { color: var(--gold); }
+    .partner-sep { color: rgba(255,255,255,.3); margin: 0 .5rem; }
+    .partner-disclaimer { margin-top: 1.6rem; font-size: .72rem; color: rgba(255,255,255,.4); line-height: 1.6; }
+
     /* ── CONTACT ────────────────────────────── */
     .contact-section { background: var(--paper-dim); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
@@ -667,6 +742,25 @@
     .form-legal-check a { color: var(--signal); text-decoration: underline; }
 
     /* ── FAQ ──────────────────────────────── */
+    /* ── OBJECTIONS (bouton "Toujours pas convaincu ?") ──────────── */
+    .objections-section { padding-top: 1rem; padding-bottom: 1rem; }
+    .objections-trigger {
+      font-family: var(--ff-mono); font-size: .82rem; font-weight: 700; letter-spacing: .03em;
+      color: var(--ink); background: #fff; border: 2px dashed var(--coral); border-radius: 99px;
+      padding: .95rem 1.8rem; display: inline-flex; align-items: center; gap: .7rem; cursor: pointer;
+      transition: background .25s var(--ease), transform .25s var(--ease), border-color .25s var(--ease);
+    }
+    .objections-trigger:hover { background: var(--coral-lt); transform: translateY(-2px); }
+    .objections-trigger-icon { display: inline-block; transition: transform .3s var(--ease); color: var(--coral); font-size: 1rem; }
+    .objections-trigger.is-open .objections-trigger-icon { transform: rotate(180deg); }
+    .objections-panel {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease);
+      margin-top: 0;
+    }
+    .objections-panel.is-open { max-height: 2400px; opacity: 1; margin-top: 2.6rem; }
+    .objections-list { margin-top: 2.2rem; }
+
     .faq-section { background: var(--paper); }
     .faq-list { max-width: 700px; margin: 3rem auto 0; text-align: left; }
     .faq-list details { border-bottom: 1px solid var(--border); padding: 0; }
@@ -790,6 +884,29 @@
     }
     .cities-grid a:hover { border-color: var(--signal); color: var(--signal); transform: translateY(-2px); }
 
+    .cities-extra { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease); margin-top: 0; }
+    .cities-extra.is-open { max-height: 900px; opacity: 1; margin-top: .7rem; }
+    .cities-toggle {
+      display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.6rem; background: none;
+      border: 1.5px dashed var(--border); border-radius: 99px; padding: .7rem 1.4rem; font-family: var(--ff-mono);
+      font-size: .78rem; font-weight: 700; color: var(--muted); cursor: pointer; transition: border-color .25s var(--ease), color .25s var(--ease);
+    }
+    .cities-toggle:hover { border-color: var(--signal); color: var(--signal); }
+    .cities-toggle-icon { transition: transform .3s var(--ease); }
+    .cities-toggle.is-open .cities-toggle-icon { transform: rotate(180deg); }
+
+    /* ── BOUTON WHATSAPP FLOTTANT ──────────── */
+    .wa-float {
+      position: fixed; bottom: 1.6rem; right: 1.6rem; z-index: 500; width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 14px 36px rgba(0,0,0,.32); }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+    .wa-float-ping { position: absolute; inset: 0; border-radius: 50%; background: #25D366; animation: waPing 2.2s ease-out infinite; }
+    @keyframes waPing { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.7); opacity: 0; } }
+    @media (max-width: 640px) { .wa-float { bottom: 1.1rem; right: 1.1rem; width: 52px; height: 52px; } .wa-float svg { width: 26px; height: 26px; } }
+
     /* ── PAGE VILLE — hero compact + intro + CTA ──────── */
     .city-hero { position: relative; padding: 9rem 2.5rem 4rem; overflow: hidden; text-align: center; }
     .city-hero .hero-mesh { position: absolute; inset: -15% -10%; z-index: 0; pointer-events: none; filter: blur(70px); opacity: .4; }
@@ -814,6 +931,7 @@
     <div class="nav-actions">
       <a href="#ecommerce" class="nav-blog nav-ecommerce">E-commerce</a>
       <a href="/blog" class="nav-blog">Blog</a>
+      <a href="#" class="nav-blog" onclick="openBookingModal();return false;">Prendre RDV</a>
       <a href="#contact" class="nav-cta"><span class="nav-cta-full">Demander un devis</span><span class="nav-cta-short">Devis gratuit</span></a>
     </div>
   </nav>
@@ -840,6 +958,7 @@
       <div class="hero-actions">
         <a href="#tarif" class="btn-primary" id="magnet-btn">Je veux mon site →</a>
         <a href="#lab" class="btn-secondary">Voir mon code ↓</a>
+        <a href="#" class="btn-secondary" onclick="openBookingModal();return false;">Réserver un appel gratuit</a>
       </div>
     </div>
   </section>
@@ -898,6 +1017,83 @@
           <h3>Support technique 30 Jours</h3>
           <p>Je reste à votre entière disposition pendant 1 mois après la mise en ligne pour veiller au bon fonctionnement de votre site, vous accompagner et réaliser vos petits ajustements.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-section" id="transparence">
+    <div class="section-inner">
+      <div class="section-label reveal" style="text-align:center">Chez ByEmreh, on préfère la vérité au marketing</div>
+      <h2 class="section-title reveal" style="text-align:center">Des chiffres réels,<br><em>pas des « +1200 projets livrés »</em></h2>
+      <p class="reveal" style="max-width:640px;margin:0 auto 2.6rem;text-align:center;color:var(--muted);">Beaucoup de développeurs affichent des compteurs qui ne veulent rien dire pour paraître installés, alors qu'ils ont livré une poignée de sites, parfois aucun. Je préfère vous montrer où j'en suis vraiment, aujourd'hui, et laisser le travail parler avec le temps.</p>
+
+      <div class="trust-stats reveal">
+        <!-- ⚠️ À mettre à jour à la main à chaque projet livré/lancé — pas de compte automatique, volontairement. -->
+        <div class="trust-stat">
+          <strong id="stat-livres">0</strong>
+          <span>Projets livrés</span>
+        </div>
+        <div class="trust-stat">
+          <strong id="stat-encours">1</strong>
+          <span>Projet en cours</span>
+        </div>
+        <div class="trust-stat trust-stat--text">
+          <strong>Été 2025</strong>
+          <span>Lancement de ByEmreh</span>
+        </div>
+      </div>
+      <p class="trust-caption reveal">Ces chiffres sont mis à jour à la main, pas générés pour impressionner. Ils monteront avec le temps — et resteront toujours honnêtes.</p>
+
+      <p class="trust-caption reveal" style="margin-top:3rem;margin-bottom:1.2rem;">On me demande souvent ce qui est vraiment inclus. Sans enjoliver non plus :</p>
+
+      <div class="trust-table-wrap reveal">
+        <table class="trust-table">
+          <thead>
+            <tr><th></th><th>Beaucoup d'agences / freelances</th><th>ByEmreh</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Design</td>
+              <td data-label="Beaucoup d'agences / freelances">Template retouché</td>
+              <td data-label="ByEmreh">Sur-mesure, codé ligne par ligne</td>
+            </tr>
+            <tr>
+              <td>Blog</td>
+              <td data-label="Beaucoup d'agences / freelances">Souvent en option payante</td>
+              <td data-label="ByEmreh">Inclus si vous en avez besoin, sans supplément</td>
+            </tr>
+            <tr>
+              <td>Nombre de pages</td>
+              <td data-label="Beaucoup d'agences / freelances">Forfait limité, pages en plus facturées à part</td>
+              <td data-label="ByEmreh">Adapté à votre activité, sans compter les pages</td>
+            </tr>
+            <tr>
+              <td>Après la mise en ligne</td>
+              <td data-label="Beaucoup d'agences / freelances">Site figé, chaque modification est facturée</td>
+              <td data-label="ByEmreh">Site pensé pour évoluer ; petites modifs incluses chaque mois avec le Pack Sérénité</td>
+            </tr>
+            <tr>
+              <td>SEO local</td>
+              <td data-label="Beaucoup d'agences / freelances">Souvent en option</td>
+              <td data-label="ByEmreh">Inclus dès le départ</td>
+            </tr>
+            <tr>
+              <td>Hébergement & nom de domaine</td>
+              <td data-label="Beaucoup d'agences / freelances">Contrat séparé, parfois opaque</td>
+              <td data-label="ByEmreh">Option simple à 20€/mois, sans engagement, résiliable par email</td>
+            </tr>
+            <tr>
+              <td>Support après livraison</td>
+              <td data-label="Beaucoup d'agences / freelances">Limité, ou facturé à l'heure</td>
+              <td data-label="ByEmreh">30 jours inclus, avec moi directement</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="roi-banner reveal" style="margin-top:2.6rem;">
+        <div class="roi-tag">Le mot d'ordre chez ByEmreh</div>
+        <p>Gagner de l'argent, oui — mais honnêtement. J'accompagne des entreprises honnêtes, qui proposent des produits ou services que j'estime utiles ou bons, vendus de manière honnête. Je m'écarte de tout commerce illicite, ou qui vend des produits malsains, ou de façon malsaine.</p>
       </div>
     </div>
   </section>
@@ -1184,6 +1380,80 @@
     </div>
   </section>
 
+  <section class="partner-section">
+    <div class="section-inner">
+      <div class="partner-badge reveal"><span class="partner-dot"></span>Offre partenaire</div>
+      <h2 class="section-title reveal">Votre site est en ligne. <em>Et vos réseaux ?</em></h2>
+      <p class="soon-text reveal">Un site qui convertit, c'est la moitié du travail — encore faut-il que vos clients vous trouvent et reviennent vous voir. Je travaille avec <strong>Nuh Frey</strong>, community manager indépendant, pour les commerçants qui veulent aussi être suivis et actifs sur les réseaux sociaux.</p>
+
+      <div class="partner-card reveal">
+        <div class="partner-card-head">
+          <div class="partner-name">Nuh Frey</div>
+          <div class="partner-role">Community Manager</div>
+        </div>
+        <p class="partner-quote">« Arrêtez de publier plus. Commencez à attirer des clients. »</p>
+
+        <div class="partner-services">
+          <div class="partner-service"><span class="partner-service-dot"></span>Création de contenu</div>
+          <div class="partner-service"><span class="partner-service-dot"></span>Gestion des réseaux</div>
+          <div class="partner-service"><span class="partner-service-dot"></span>Veille digitale</div>
+        </div>
+
+        <a class="btn-primary partner-whatsapp" href="https://wa.me/201130855928?text=Bonjour%20Nuh%2C%20ByEmreh%20m%27a%20recommand%C3%A9%20vos%20services%20de%20community%20management." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.2-.6.9-.8 1-.1.2-.3.2-.5.1-1.5-.6-2.6-1.4-3.5-2.9-.1-.2-.1-.4.1-.6l.5-.7c.1-.2.1-.4 0-.5-.1-.2-.6-1.5-.8-2-.2-.5-.3-.4-.5-.4-.1 0-.4 0-.6 0-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .2.2 1.6 2.5 4 3.4 2 .8 2.4.6 2.8.6.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.2-.2-.4-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.5C8.4 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3 .9.9-2.9-.2-.3C3.9 15 3.4 13.5 3.4 12c0-4.7 3.9-8.6 8.6-8.6s8.6 3.9 8.6 8.6-3.9 8.6-8.6 8.6z"/></svg>
+          Contacter Nuh sur WhatsApp
+        </a>
+        <div class="partner-alt-links">
+          <a href="https://instagram.com/nuh.frey" target="_blank" rel="noopener">Instagram @nuh.frey</a>
+          <span class="partner-sep">·</span>
+          <a href="mailto:nuhfrey69@gmail.com">nuhfrey69@gmail.com</a>
+        </div>
+        <p class="partner-disclaimer">Nuh Frey est un professionnel indépendant, partenaire recommandé par ByEmreh — pas un service ByEmreh.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="objections-section">
+    <div class="section-inner" style="text-align:center">
+      <button type="button" class="objections-trigger reveal" id="objectionsTrigger" onclick="toggleObjections()">
+        <span class="objections-trigger-text">Toujours pas convaincu&nbsp;? 🤔</span>
+        <span class="objections-trigger-icon" aria-hidden="true">↓</span>
+      </button>
+
+      <div class="objections-panel" id="objectionsPanel">
+        <div class="section-label reveal">On me pose souvent ces questions, en toute franchise</div>
+        <h2 class="section-title reveal">Vos objections, <em>mes vraies réponses</em></h2>
+
+        <div class="faq-list objections-list">
+          <details class="faq-item reveal">
+            <summary>Une agence me dit avoir livré des centaines de sites, pourquoi vous choisir plutôt ?</summary>
+            <div class="faq-a">Parce que ces chiffres ne changent rien à votre expérience : derrière, c'est souvent un commercial qui vous vend, puis un sous-traitant anonyme qui exécute, et un interlocuteur qui change à chaque appel. Ici, c'est moi du premier message jusqu'à la mise en ligne — et vous pouvez vérifier mon travail en direct dans la section "Voir mon code" plus haut sur cette page.</div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Vous débutez, comment être sûr du résultat ?</summary>
+            <div class="faq-a">Je ne vous le cache pas : je suis honnête sur où j'en suis, justement parce que je préfère ça à un faux compteur "+1200 projets". Concrètement, ça change peu pour vous : le tarif de lancement reste bas, le processus est cadré étape par étape, et vous gardez un contact direct avec moi à chaque instant — pas un ticket de support anonyme.</div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Pourquoi pas Wix, Canva ou un autre outil no-code, moins cher ?</summary>
+            <div class="faq-a">Ces outils sont gratuits ou presque, mais votre temps ne l'est pas : des soirées entières sur un éditeur générique, pour un rendu que Google référence mal. Un site codé sur-mesure charge plus vite, se distingue visuellement de vos concurrents, et est structuré pour le SEO local dès le départ.</div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Comment être sûr que vous n'allez pas abandonner en cours de route ?</summary>
+            <div class="faq-a">Le tarif de lancement reste volontairement accessible pour que ce ne soit pas un pari financier pour vous. Et contrairement à une agence où vous attendez un email pendant des jours, vous avez un accès direct à moi (WhatsApp inclus) pendant toute la création, puis 30 jours de support après la mise en ligne.</div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Est-ce qu'il y a des frais cachés qui arrivent après ?</summary>
+            <div class="faq-a">Non. Le prix de lancement, le Pack Sérénité et l'option Hébergement & Domaine sont détaillés plus haut, avant toute commande — vous savez exactement ce que vous payez et pourquoi. Aucun palier caché, aucune surprise à la facturation.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="contact-section" id="contact">
     <div class="section-inner">
       <div class="section-label reveal">Devis gratuit</div>
@@ -1209,7 +1479,7 @@
             <label for="activite">Votre secteur d'activité</label>
             <select id="activite" name="activite" required>
               <option value="" disabled selected>Choisir une option...</option>
-              <option>Restaurant / Café / Bar</option>
+              <option>Restaurant / Café</option>
               <option>Coiffeur / Institut de beauté</option>
               <option>Artisan / Bâtiment (Plombier, Électricien...)</option>
               <option>Boutique / Commerce local</option>
@@ -1283,37 +1553,45 @@
         <a href="/site-internet-lyon.html">Création site internet Lyon</a>
         <a href="/site-internet-toulouse.html">Création site internet Toulouse</a>
         <a href="/site-internet-nantes.html">Création site internet Nantes</a>
-        <a href="/site-internet-strasbourg.html">Création site internet Strasbourg</a>
-        <a href="/site-internet-montpellier.html">Création site internet Montpellier</a>
-        <a href="/site-internet-bordeaux.html">Création site internet Bordeaux</a>
-        <a href="/site-internet-lille.html">Création site internet Lille</a>
-        <a href="/site-internet-cannes.html">Création site internet Cannes</a>
-        <a href="/site-internet-antibes.html">Création site internet Antibes</a>
-        <a href="/site-internet-salon-de-provence.html">Création site internet Salon-de-Provence</a>
-        <a href="/site-internet-arles.html">Création site internet Arles</a>
-        <a href="/site-internet-aubagne.html">Création site internet Aubagne</a>
-        <a href="/site-internet-frejus.html">Création site internet Fréjus</a>
-        <a href="/site-internet-rennes.html">Création site internet Rennes</a>
-        <a href="/site-internet-grenoble.html">Création site internet Grenoble</a>
-        <a href="/site-internet-reims.html">Création site internet Reims</a>
-        <a href="/site-internet-nimes.html">Création site internet Nîmes</a>
-        <a href="/site-internet-angers.html">Création site internet Angers</a>
-        <a href="/site-internet-saint-etienne.html">Création site internet Saint-Étienne</a>
-        <a href="/site-internet-martigues.html">Création site internet Martigues</a>
-        <a href="/site-internet-istres.html">Création site internet Istres</a>
-        <a href="/site-internet-manosque.html">Création site internet Manosque</a>
-        <a href="/site-internet-draguignan.html">Création site internet Draguignan</a>
-        <a href="/site-internet-hyeres.html">Création site internet Hyères</a>
-        <a href="/site-internet-la-ciotat.html">Création site internet La Ciotat</a>
-        <a href="/site-internet-orange.html">Création site internet Orange</a>
-        <a href="/site-internet-dijon.html">Création site internet Dijon</a>
-        <a href="/site-internet-clermont-ferrand.html">Création site internet Clermont-Ferrand</a>
-        <a href="/site-internet-le-mans.html">Création site internet Le Mans</a>
-        <a href="/site-internet-tours.html">Création site internet Tours</a>
-        <a href="/site-internet-perpignan.html">Création site internet Perpignan</a>
-        <a href="/site-internet-metz.html">Création site internet Metz</a>
-        <a href="/site-internet-rouen.html">Création site internet Rouen</a>
       </div>
+
+      <div class="cities-extra" id="citiesExtra">
+        <div class="cities-grid">
+          <a href="/site-internet-strasbourg.html">Création site internet Strasbourg</a>
+          <a href="/site-internet-montpellier.html">Création site internet Montpellier</a>
+          <a href="/site-internet-bordeaux.html">Création site internet Bordeaux</a>
+          <a href="/site-internet-lille.html">Création site internet Lille</a>
+          <a href="/site-internet-cannes.html">Création site internet Cannes</a>
+          <a href="/site-internet-antibes.html">Création site internet Antibes</a>
+          <a href="/site-internet-salon-de-provence.html">Création site internet Salon-de-Provence</a>
+          <a href="/site-internet-arles.html">Création site internet Arles</a>
+          <a href="/site-internet-aubagne.html">Création site internet Aubagne</a>
+          <a href="/site-internet-frejus.html">Création site internet Fréjus</a>
+          <a href="/site-internet-rennes.html">Création site internet Rennes</a>
+          <a href="/site-internet-grenoble.html">Création site internet Grenoble</a>
+          <a href="/site-internet-reims.html">Création site internet Reims</a>
+          <a href="/site-internet-nimes.html">Création site internet Nîmes</a>
+          <a href="/site-internet-angers.html">Création site internet Angers</a>
+          <a href="/site-internet-saint-etienne.html">Création site internet Saint-Étienne</a>
+          <a href="/site-internet-martigues.html">Création site internet Martigues</a>
+          <a href="/site-internet-istres.html">Création site internet Istres</a>
+          <a href="/site-internet-manosque.html">Création site internet Manosque</a>
+          <a href="/site-internet-draguignan.html">Création site internet Draguignan</a>
+          <a href="/site-internet-hyeres.html">Création site internet Hyères</a>
+          <a href="/site-internet-la-ciotat.html">Création site internet La Ciotat</a>
+          <a href="/site-internet-orange.html">Création site internet Orange</a>
+          <a href="/site-internet-dijon.html">Création site internet Dijon</a>
+          <a href="/site-internet-clermont-ferrand.html">Création site internet Clermont-Ferrand</a>
+          <a href="/site-internet-le-mans.html">Création site internet Le Mans</a>
+          <a href="/site-internet-tours.html">Création site internet Tours</a>
+          <a href="/site-internet-perpignan.html">Création site internet Perpignan</a>
+          <a href="/site-internet-metz.html">Création site internet Metz</a>
+          <a href="/site-internet-rouen.html">Création site internet Rouen</a>
+        </div>
+      </div>
+      <button type="button" class="cities-toggle" id="citiesToggle" onclick="toggleCities()">
+        <span>Voir les 30 autres villes</span> <span class="cities-toggle-icon">↓</span>
+      </button>
     </div>
   </section>
 </main>
@@ -1427,6 +1705,21 @@
     </div>
   </div>
 </div>
+
+<!-- ══════════════ MODALE RÉSERVATION (Cal.com) ══════════════ -->
+<div id="bookingOverlay" class="booking-overlay">
+  <div class="booking-panel">
+    <button class="booking-close" onclick="closeBookingModal()" aria-label="Fermer">✕</button>
+    <h3>Réserver un appel gratuit</h3>
+    <p>15 minutes pour parler de votre projet, sans engagement.</p>
+    <div id="cal-appel-conseil" class="booking-embed"></div>
+  </div>
+</div>
+
+<a class="wa-float" href="https://wa.me/33783452992" target="_blank" rel="noopener" aria-label="Contactez-moi sur WhatsApp">
+  <span class="wa-float-ping"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.2-.6.9-.8 1-.1.2-.3.2-.5.1-1.5-.6-2.6-1.4-3.5-2.9-.1-.2-.1-.4.1-.6l.5-.7c.1-.2.1-.4 0-.5-.1-.2-.6-1.5-.8-2-.2-.5-.3-.4-.5-.4-.1 0-.4 0-.6 0-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .2.2 1.6 2.5 4 3.4 2 .8 2.4.6 2.8.6.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.2-.2-.4-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.5C8.4 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3 .9.9-2.9-.2-.3C3.9 15 3.4 13.5 3.4 12c0-4.7 3.9-8.6 8.6-8.6s8.6 3.9 8.6 8.6-3.9 8.6-8.6 8.6z"/></svg>
+</a>
 
 <script>
   /* ── SCROLL PROGRESS ── */
@@ -1778,7 +2071,69 @@
   }
   window.prefillMessage = prefillMessage;
 
-  /* ── REDIRECTION FORMSPREE GRATUIT (AJAX) ── */
+  function toggleObjections() {
+    const panel = document.getElementById('objectionsPanel');
+    const trigger = document.getElementById('objectionsTrigger');
+    const label = trigger.querySelector('.objections-trigger-text');
+    const willOpen = !panel.classList.contains('is-open');
+    panel.classList.toggle('is-open', willOpen);
+    trigger.classList.toggle('is-open', willOpen);
+    label.textContent = willOpen ? 'Masquer les réponses' : 'Toujours pas convaincu ? 🤔';
+    if (willOpen) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  window.toggleObjections = toggleObjections;
+
+  function toggleCities() {
+    const panel = document.getElementById('citiesExtra');
+    const btn = document.getElementById('citiesToggle');
+    const label = btn.querySelector('span:first-child');
+    const willOpen = !panel.classList.contains('is-open');
+    panel.classList.toggle('is-open', willOpen);
+    btn.classList.toggle('is-open', willOpen);
+    label.textContent = willOpen ? 'Masquer les autres villes' : 'Voir les 30 autres villes';
+  }
+  window.toggleCities = toggleCities;
+
+  /* ── RÉSERVATION D'APPEL (Cal.com) ──
+     ⚠️ Remplace "TON-COMPTE-CALCOM" par ton nom d'utilisateur Cal.com (gratuit, cal.com),
+     et crée un event type avec l'identifiant "appel-conseil" (ex: 15 min, visio ou téléphone). */
+  const CAL_USERNAME = "byemreh";
+
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal; let ar = arguments;
+      if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+        else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  let calBookingInited = false;
+  function openBookingModal() {
+    document.getElementById('bookingOverlay').classList.add('open');
+    if (!calBookingInited) {
+      calBookingInited = true;
+      Cal("init", "appel-conseil", { origin: "https://cal.com" });
+      Cal.ns["appel-conseil"]("inline", {
+        elementOrSelector: "#cal-appel-conseil",
+        calLink: CAL_USERNAME + "/appel-conseil",
+        layout: "month_view"
+      });
+    }
+  }
+  window.openBookingModal = openBookingModal;
+  function closeBookingModal() { document.getElementById('bookingOverlay').classList.remove('open'); }
+  window.closeBookingModal = closeBookingModal;
+
   const contactForm = document.getElementById("contact-form");
   const submitBtn = document.getElementById("submit-btn");
   contactForm.addEventListener("submit", async function (event) {
