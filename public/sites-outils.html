@@ -306,10 +306,12 @@
     }
     .nav-dropdown.is-open .nav-dropdown-item { opacity: 1; transform: translateX(0); }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(2) { transition-delay: .03s; }
-    .nav-dropdown.is-open .nav-dropdown-item:nth-child(3) { transition-delay: .07s; }
-    .nav-dropdown.is-open .nav-dropdown-item:nth-child(4) { transition-delay: .11s; }
-    .nav-dropdown.is-open .nav-dropdown-item:nth-child(6) { transition-delay: .16s; }
-    .nav-dropdown.is-open .nav-dropdown-item:nth-child(7) { transition-delay: .2s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(3) { transition-delay: .06s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(4) { transition-delay: .09s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(6) { transition-delay: .13s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(7) { transition-delay: .16s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(8) { transition-delay: .19s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(9) { transition-delay: .22s; }
     .nav-dropdown-item:hover { background: rgba(255,255,255,.7); }
 
     /* ── HERO ───────────────────────────────── */
@@ -333,7 +335,7 @@
     }
     .hero-badge::before { content: '◆'; font-size: .6rem; }
 
-    .hero h1 {
+    .hero h1, .city-hero h1, .tech-hero h1 {
       font-family: var(--ff-disp);
       font-size: clamp(2.1rem, 5.6vw, 4.4rem);
       font-weight: 600;
@@ -341,7 +343,7 @@
       letter-spacing: -.02em;
       word-break: break-word;
     }
-    .hero h1 em { font-style: italic; font-weight: 500; color: var(--signal); }
+    .hero h1 em, .city-hero h1 em, .tech-hero h1 em { font-style: italic; font-weight: 500; color: var(--signal); }
 
     .hero-sub { margin: 1.7rem auto 0; font-size: 1.1rem; color: var(--muted); max-width: 52ch; line-height: 1.75; }
 
@@ -446,6 +448,26 @@
     .solution-card p { font-size: .86rem; color: var(--muted); line-height: 1.6; min-height: 4.6em; }
     .solution-price { font-family: var(--ff-disp); font-weight: 700; color: var(--signal); font-size: 1.05rem; margin: 1rem 0 1.2rem; }
     .solution-cta { width: 100%; justify-content: center; }
+
+    /* ── RÉALISATIONS (cartes projets) ──────────────── */
+    .realisation-filters { display: flex; justify-content: center; gap: .6rem; flex-wrap: wrap; margin-bottom: 2.4rem; }
+    .realisation-filter { background: #fff; border: 1.5px solid var(--border); border-radius: 99px; padding: .55rem 1.2rem; font-size: .8rem; font-weight: 700; color: var(--muted); cursor: pointer; transition: all .2s var(--ease); }
+    .realisation-filter.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .realisation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .realisation-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 1.8rem; text-align: left; transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease); }
+    .realisation-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.08); border-color: var(--signal); }
+    .realisation-tag { display: inline-block; font-family: var(--ff-mono); font-size: .62rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: .25rem .7rem; border-radius: 99px; margin-bottom: .9rem; }
+    .realisation-tag--client { background: rgba(14,124,102,.1); color: var(--signal); }
+    .realisation-tag--demo { background: rgba(201,162,39,.12); color: var(--gold); }
+    .realisation-card h3 { font-family: var(--ff-disp); font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .realisation-sector { font-size: .74rem; color: var(--muted-dk); font-weight: 600; margin-bottom: .7rem; }
+    .realisation-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .realisation-link { font-size: .82rem; font-weight: 700; color: var(--signal); text-decoration: none; }
+    .realisation-link:hover { text-decoration: underline; }
+
+    /* ── ACCORDÉON "POUR QUI ?" (réutilise le style FAQ) ──────────── */
+    .audience-section { background: var(--paper-dim); }
+    .audience-intro { max-width: 620px; margin: 0 auto 1rem; text-align: center; color: var(--muted); }
 
     /* ── COMMENT ÇA MARCHE ──────────────────── */
     .steps-section { background: var(--ink); }
@@ -918,7 +940,7 @@
       .nav-ecommerce { display: none; }
       .hero { padding: 7rem 1rem 3.5rem; }
       .hero-badge { font-size: .66rem; padding: .35rem .75rem; margin-bottom: 1.2rem; }
-      .hero h1 { font-size: 1.9rem; line-height: 1.2; }
+      .hero h1, .city-hero h1, .tech-hero h1 { font-size: 1.9rem; line-height: 1.2; }
       .hero-sub { font-size: .95rem; margin-top: 1rem; }
       .hero-actions { flex-direction: column; width: 100%; }
       .btn-primary, .btn-secondary { width: 100%; text-align: center; }
@@ -976,9 +998,15 @@
     .city-hero .hero-content { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
     .city-intro { max-width: 68ch; margin: 2rem auto 0; text-align: left; font-size: 1rem; color: var(--muted); line-height: 1.85; }
     .city-intro p { margin-bottom: 1.2rem; }
-    .city-breadcrumb { font-family: var(--ff-mono); font-size: .72rem; color: var(--muted-dk); margin-bottom: 1.4rem; }
-    .city-breadcrumb a { color: var(--signal); text-decoration: none; }
-    .city-breadcrumb a:hover { text-decoration: underline; }
+    .city-breadcrumb {
+      display: inline-flex; align-items: center; gap: .5rem; font-family: var(--ff-mono); font-size: .72rem;
+      font-weight: 600; color: var(--signal); background: var(--signal-lt); border: 1px solid #DED4FF;
+      padding: .4rem 1rem; border-radius: 99px; margin-bottom: 1.6rem;
+    }
+    .city-breadcrumb::before { content: '◆'; font-size: .6rem; }
+    .city-breadcrumb a { color: inherit; opacity: .75; }
+    .city-breadcrumb a:hover { opacity: 1; text-decoration: underline; }
+    .tech-hero .city-breadcrumb { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.85); }
   </style>
 </head>
 <body>
@@ -996,6 +1024,8 @@
           <a href="/sites-outils.html" class="nav-dropdown-item">⚙️ Sites + outils</a>
           <a href="/e-commerce.html" class="nav-dropdown-item">🛒 E-commerce</a>
           <div class="nav-dropdown-sep"></div>
+          <a href="/mes-realisations.html" class="nav-dropdown-item">📁 Mes réalisations</a>
+          <a href="/partenaires.html" class="nav-dropdown-item">🤝 Offre partenaire</a>
           <a href="/blog" class="nav-dropdown-item">Blog</a>
           <a href="#" class="nav-dropdown-item" onclick="closeNavMenu();openBookingModal();return false;">Réserver un rendez-vous</a>
         </div>
@@ -1053,6 +1083,29 @@
       </div>
     </div>
   </section>
+  <section class="steps-section">
+    <div class="section-inner">
+      <div class="section-label reveal">Comment ça se passe</div>
+      <h2 class="section-title reveal">Une solution pensée pour vous</h2>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <span class="step-mark">01 · diagnostic</span>
+          <h3>On identifie vos besoins réels</h3>
+          <p>Un appel pour comprendre ce qui vous fait perdre du temps aujourd'hui : demandes, rendez-vous, suivi client...</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-mark">02 · construction</span>
+          <h3>Le site et l'outil se construisent ensemble</h3>
+          <p>Votre back-office est pensé en même temps que votre site, pour qu'ils fonctionnent l'un avec l'autre dès le premier jour.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-mark">03 · autonomie</span>
+          <h3>Vous devenez autonome</h3>
+          <p>Une prise en main pour que vous puissiez gérer votre contenu, vos prestations et vos demandes sans dépendre de moi au quotidien.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section>
     <div class="section-inner" style="text-align:center;">
@@ -1074,13 +1127,40 @@
       <a href="#" class="btn-primary reveal" style="margin-top:1.6rem;" onclick="openBookingModal();return false;">Réserver un appel gratuit</a>
     </div>
   </section>
+  <section class="audience-section">
+    <div class="section-inner">
+      <div class="section-label reveal" style="text-align:center">Pour qui ?</div>
+      <h2 class="section-title reveal" style="text-align:center">Cette offre est faite pour vous si...</h2>
+      <p class="audience-intro reveal">Cliquez sur votre situation pour voir concrètement ce que ça change.</p>
+      <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>Vous croulez sous les demandes par téléphone ou message</summary>
+            <div class="faq-a">Vos clients remplissent un formulaire ou un devis en ligne, et vous recevez tout au même endroit, avec l'historique complet.</div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Vous gérez vos rendez-vous sur un carnet ou dans votre tête</summary>
+            <div class="faq-a">Un espace de gestion centralisé pour vos rendez-vous, sans jongler entre plusieurs outils ou applications.</div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Vous avez plusieurs prestations ou produits à présenter, qui changent régulièrement</summary>
+            <div class="faq-a">Vous ajoutez, modifiez ou retirez vos prestations vous-même depuis votre espace, sans jamais recontacter un développeur.</div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Vous voulez savoir si votre site travaille vraiment pour vous</summary>
+            <div class="faq-a">Des statistiques claires et un graphique de suivi pour voir combien de demandes arrivent, et quand.</div>
+          </details>
+      </div>
+    </div>
+  </section>
+
 
   <section style="padding:2.5rem 0;">
     <div class="section-inner" style="text-align:center;">
       <p style="font-size:.85rem;color:var(--muted);">Voir aussi :
         <a href="/sites-vitrines.html">Sites vitrines</a> ·
         <a href="/sites-outils.html">Sites + outils</a> ·
-        <a href="/e-commerce.html">E-commerce</a>
+        <a href="/e-commerce.html">E-commerce</a> ·
+        <a href="/mes-realisations.html">Mes réalisations</a>
       </p>
     </div>
   </section>
@@ -1657,26 +1737,28 @@
 
   const contactForm = document.getElementById("contact-form");
   const submitBtn = document.getElementById("submit-btn");
-  contactForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-    submitBtn.innerText = "Envoi en cours...";
-    submitBtn.disabled = true;
-    const data = new FormData(event.target);
-    try {
-      const response = await fetch(event.target.action, {
-        method: contactForm.method, body: data, headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        window.location.href = "confirmation.html";
-      } else {
-        alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+  if (contactForm && submitBtn) {
+    contactForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      submitBtn.innerText = "Envoi en cours...";
+      submitBtn.disabled = true;
+      const data = new FormData(event.target);
+      try {
+        const response = await fetch(event.target.action, {
+          method: contactForm.method, body: data, headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          window.location.href = "confirmation.html";
+        } else {
+          alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+          submitBtn.innerText = "Envoyer ma demande gratuite →"; submitBtn.disabled = false;
+        }
+      } catch (error) {
+        alert("Erreur de connexion. Veuillez réessayer.");
         submitBtn.innerText = "Envoyer ma demande gratuite →"; submitBtn.disabled = false;
       }
-    } catch (error) {
-      alert("Erreur de connexion. Veuillez réessayer.");
-      submitBtn.innerText = "Envoyer ma demande gratuite →"; submitBtn.disabled = false;
-    }
-  });
+    });
+  }
 </script>
 
 </body>
