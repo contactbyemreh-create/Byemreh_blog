@@ -6,11 +6,11 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0B0C10" />
 
-  <title>ByEmreh — Création de site vitrine pour commerçants & artisans</title>
-  <meta name="description" content="Sites vitrines sur-mesure pour commerçants, artisans et restaurateurs en PACA (Marseille, Aix-en-Provence...). Livrés en 7 jours dès 190€, sans template." />
-  <meta name="keywords" content="création site vitrine, site internet pas cher, site web commerçant, site internet artisan, developpeur web freelance, site vitrine 190 euros, byemreh, seo local, création site internet" />
+  <title>Preuve par le code — ByEmreh</title>
+  <meta name="description" content="Des extraits de code authentiques (React, JavaScript, Python) qui tournent réellement sur ce site — la preuve d'un développement sur-mesure, sans no-code." />
+  <meta name="keywords" content="développeur web freelance, code sur-mesure, pas de no-code, byemreh" />
   <meta name="author" content="Aydin Emreh - ByEmreh" />
-  <link rel="canonical" href="https://www.byemreh.fr" />
+  <link rel="canonical" href="https://www.byemreh.fr/preuve-par-le-code.html" />
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -982,12 +982,6 @@
   </style>
 </head>
 <body>
-  <div class="nav-glow-bg" aria-hidden="true"></div>
-
-<div class="scroll-progress" id="scrollProgress"></div>
-<div class="sticky-cta" id="stickyCta"><a href="#tarif" class="sticky-cta-btn">Voir les tarifs →</a></div>
-<div class="cursor-dot" id="cursor"></div>
-
 <header>
   <nav>
     <a href="https://www.byemreh.fr" class="nav-brand">By<span>Emreh</span></a>
@@ -1012,522 +1006,126 @@
 </header>
 
 <main>
-  <section class="hero">
+  <section class="city-hero">
     <div class="hero-mesh"><span></span><span></span><span></span></div>
     <div class="hero-content">
-      <div class="hero-badge">Développeur freelance — Marseille · Aix-en-Provence</div>
-      <h1>Des sites internet sur-mesure,<br>pensés pour <em>les commerçants et artisans locaux</em>.</h1>
-      <p class="hero-sub">Sites vitrines et e-commerce sur-mesure pour commerçants, artisans et restaurateurs. Conçus à la main, ligne par ligne — pas de template, pas de générateur.</p>
-      <p class="hero-signature" id="typed-line"></p>
-
-      <div class="promo-block">
-        <div class="promo-label">Prix de lancement clé en main</div>
-        <div class="promo-prices">
-          <div class="price-old">790€</div>
-          <div class="price-new"><sup>€</sup>190</div>
-        </div>
-        <div class="promo-caption">Site vitrine complet avec <strong>formulaire de contact, design premium et SEO inclus</strong></div>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#tarif" class="btn-primary" id="magnet-btn">Je veux mon site →</a>
-        <a href="/preuve-par-le-code.html" class="btn-secondary">Voir mon code ↓</a>
-        <a href="#" class="btn-secondary" onclick="openBookingModal();return false;">Réserver un appel gratuit</a>
-      </div>
+      <div class="city-breadcrumb"><a href="/">Accueil</a> → Preuve par le code</div>
+      <h1>Preuve par le code</h1>
+      <p class="hero-sub">On me demande souvent si mes sites sont faits avec un outil no-code. Voici la réponse, en direct.</p>
     </div>
   </section>
 
-  <div class="proof-bar">
-    <p>Sites clés en main et optimisés Google pour :</p>
-    <div class="proof-types">
-      <span>🍽️ Restaurants & Bistros</span>
-      <span>💇 Salons de Coiffure & Spas</span>
-      <span>🔧 Artisans, Plombiers & Électriciens</span>
-      <span>🏪 Boutiques de Quartier</span>
-      <span>💅 Instituts de Beauté</span>
-      <span>🚗 Garages & Services</span>
-    </div>
-  </div>
-
-  <div class="marquee">
-    <div class="marquee-track">
-      <span>HTML5 & CSS3</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Python</span><span>PostgreSQL</span><span>Stripe</span><span>SEO Technique</span><span>Git</span><span>Figma</span>
-      <span>HTML5 & CSS3</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Python</span><span>PostgreSQL</span><span>Stripe</span><span>SEO Technique</span><span>Git</span><span>Figma</span>
-    </div>
-  </div>
-
-  <section id="services">
+  <section class="lab-section" id="lab">
+    <canvas id="lab-canvas"></canvas>
     <div class="section-inner">
-      <div class="section-label reveal">Ce qui est inclus</div>
-      <h2 class="section-title reveal">Des prestations haut de gamme,<br><em>pensées pour votre chiffre d'affaires</em></h2>
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
-          <h3>Ergonomie & 100% Mobile</h3>
-          <p>Une interface fluide, moderne et rapide. 75% de vos clients consultent vos horaires ou services depuis leur téléphone : votre site sera parfait sur tous les écrans.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6.5l9 6.5 9-6.5"/></svg></div>
-          <h3>Formulaire & Réception par email</h3>
-          <p>Un formulaire de contact intuitif intégré. Vous recevez chaque demande de devis ou de réservation instantanément, directement dans votre boîte mail.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-          <h3>Livraison Éclair (7 jours)</h3>
-          <p>Pas de projet qui traîne pendant des mois. Une fois vos informations transmises, je conçois et mets en ligne votre site web sous une semaine ouvrée.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.5 2"/></svg></div>
-          <h3>Design Sur-Mesure</h3>
-          <p>Fini les modèles génériques. J'adapte l'identité visuelle (couleurs, polices, mise en page) pour qu'elle reflète parfaitement le professionnalisme de votre marque.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="21" y2="21"/></svg></div>
-          <h3>Référencement Local Google Maps</h3>
-          <p>Structure technique optimisée (balises SEO, mots-clés de votre ville et métier) pour vous aider à remonter dans les recherches locales sur Google.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.66 5.66L4 17l3 3 5.04-5.04a4 4 0 0 1 5.66-5.66z"/></svg></div>
-          <h3>Support technique 30 Jours</h3>
-          <p>Je reste à votre entière disposition pendant 1 mois après la mise en ligne pour veiller au bon fonctionnement de votre site, vous accompagner et réaliser vos petits ajustements.</p>
+      <div class="section-label reveal">Preuve par le code</div>
+      <h2 class="section-title reveal">On me demande souvent si mes sites<br>sont faits avec un outil no-code. <em>Voici la réponse.</em></h2>
+      <p class="lab-intro reveal">Trois extraits authentiques, trois langages, une seule signature : du code propre, pensé, qui tourne vraiment. Le bouton magnétique en haut de page ? Écrit avec le premier onglet. L'animation en fond, juste ici ? C'est le deuxième, en train de s'exécuter, là, maintenant.</p>
+
+      <div class="ide-frame reveal">
+        <div class="ide">
+          <div class="ide-topbar">
+            <div class="ide-dots"><span></span><span></span><span></span></div>
+            <div class="ide-tabs">
+              <button class="ide-tab active" data-lang="jsx" onclick="showCode(0)"><span class="dot"></span>MagnetButton.jsx</button>
+              <button class="ide-tab" data-lang="js" onclick="showCode(1)"><span class="dot"></span>flowField.js</button>
+              <button class="ide-tab" data-lang="py" onclick="showCode(2)"><span class="dot"></span>audit_seo.py</button>
+            </div>
+            <div class="ide-status">
+              <span class="branch">main</span>
+              <span id="ide-linecount">20 lignes</span>
+              <span>UTF-8</span>
+            </div>
+          </div>
+
+          <div class="ide-body active" id="code-0" data-lines="20">
+            <div class="ide-code"><div class="ide-lines"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span></div><pre><code><span class="tok-kw">import</span> { useRef, useState } <span class="tok-kw">from</span> <span class="tok-str">"react"</span>;
+
+<span class="tok-kw">export default function</span> <span class="tok-fn">MagnetButton</span>({ children, strength = <span class="tok-num">0.35</span> }) {
+  <span class="tok-kw">const</span> ref = <span class="tok-fn">useRef</span>(<span class="tok-kw">null</span>);
+  <span class="tok-kw">const</span> [pos, setPos] = <span class="tok-fn">useState</span>({ x: <span class="tok-num">0</span>, y: <span class="tok-num">0</span> });
+
+  <span class="tok-kw">function</span> <span class="tok-fn">handleMove</span>(e) {
+    <span class="tok-kw">const</span> box = ref.current.<span class="tok-fn">getBoundingClientRect</span>();
+    <span class="tok-kw">const</span> relX = e.clientX - box.left - box.width / <span class="tok-num">2</span>;
+    <span class="tok-kw">const</span> relY = e.clientY - box.top - box.height / <span class="tok-num">2</span>;
+    <span class="tok-fn">setPos</span>({ x: relX * strength, y: relY * strength });
+  }
+
+  <span class="tok-kw">return</span> (
+    <span class="tok-punc">&lt;</span><span class="tok-tag">button</span>
+      <span class="tok-attr">ref</span>={ref}
+      <span class="tok-attr">onMouseMove</span>={handleMove}
+      <span class="tok-attr">onMouseLeave</span>={() =&gt; <span class="tok-fn">setPos</span>({ x: <span class="tok-num">0</span>, y: <span class="tok-num">0</span> })}
+      <span class="tok-attr">style</span>={{ transform: <span class="tok-str">`translate(${pos.x}px, ${pos.y}px)`</span> }}
+    <span class="tok-punc">&gt;</span>
+      {children}
+    <span class="tok-punc">&lt;/</span><span class="tok-tag">button</span><span class="tok-punc">&gt;</span>
+  );
+}<span class="ide-cursor"></span></code></pre></div>
+            <div class="ide-footer"><strong>Live sur cette page →</strong> même logique appliquée en vanilla JS sur le bouton "Je veux mon site" pour la perf. Bougez la souris dessus.</div>
+          </div>
+
+          <div class="ide-body" id="code-1" data-lines="17">
+            <div class="ide-code"><div class="ide-lines"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span></div><pre><code><span class="tok-kw">const</span> field = <span class="tok-fn">createFlowField</span>(canvas, { cell: <span class="tok-num">24</span> });
+<span class="tok-kw">const</span> particles = <span class="tok-fn">spawn</span>(<span class="tok-num">90</span>, field.bounds);
+
+<span class="tok-kw">function</span> <span class="tok-fn">tick</span>(t) {
+  ctx.fillStyle = <span class="tok-str">"rgba(11,12,16,0.08)"</span>;
+  ctx.<span class="tok-fn">fillRect</span>(<span class="tok-num">0</span>, <span class="tok-num">0</span>, canvas.width, canvas.height);
+
+  <span class="tok-kw">for</span> (<span class="tok-kw">const</span> p <span class="tok-kw">of</span> particles) {
+    <span class="tok-kw">const</span> angle = field.<span class="tok-fn">angleAt</span>(p.x, p.y, t * <span class="tok-num">0.00012</span>);
+    p.vx += Math.<span class="tok-fn">cos</span>(angle) * <span class="tok-num">0.05</span>;
+    p.vy += Math.<span class="tok-fn">sin</span>(angle) * <span class="tok-num">0.05</span>;
+    p.x += p.vx *= <span class="tok-num">0.94</span>;
+    p.y += p.vy *= <span class="tok-num">0.94</span>;
+    <span class="tok-fn">draw</span>(p, ctx); <span class="tok-fn">wrap</span>(p, canvas);
+  }
+  <span class="tok-fn">requestAnimationFrame</span>(tick);
+}
+<span class="tok-fn">requestAnimationFrame</span>(tick);<span class="ide-cursor"></span></code></pre></div>
+            <div class="ide-footer"><strong>Live juste ici →</strong> c'est exactement ce champ de particules qui dérive en fond de cette section, en ce moment même.</div>
+          </div>
+
+          <div class="ide-body" id="code-2" data-lines="18">
+            <div class="ide-code"><div class="ide-lines"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span></div><pre><code><span class="tok-kw">import</span> requests
+<span class="tok-kw">from</span> bs4 <span class="tok-kw">import</span> BeautifulSoup
+
+<span class="tok-kw">def</span> <span class="tok-fn">audit</span>(url: <span class="tok-kw">str</span>) -&gt; <span class="tok-kw">dict</span>:
+    html = requests.<span class="tok-fn">get</span>(url, timeout=<span class="tok-num">8</span>).text
+    soup = <span class="tok-fn">BeautifulSoup</span>(html, <span class="tok-str">"html.parser"</span>)
+
+    title = soup.title.string <span class="tok-kw">if</span> soup.title <span class="tok-kw">else</span> <span class="tok-str">""</span>
+    meta = soup.<span class="tok-fn">find</span>(<span class="tok-str">"meta"</span>, attrs={<span class="tok-str">"name"</span>: <span class="tok-str">"description"</span>})
+    images = soup.<span class="tok-fn">find_all</span>(<span class="tok-str">"img"</span>)
+    missing_alt = [i <span class="tok-kw">for</span> i <span class="tok-kw">in</span> images <span class="tok-kw">if not</span> i.<span class="tok-fn">get</span>(<span class="tok-str">"alt"</span>)]
+
+    <span class="tok-kw">return</span> {
+        <span class="tok-str">"title_len"</span>: <span class="tok-fn">len</span>(title <span class="tok-kw">or</span> <span class="tok-str">""</span>),
+        <span class="tok-str">"has_meta_description"</span>: <span class="tok-fn">bool</span>(meta),
+        <span class="tok-str">"images_missing_alt"</span>: <span class="tok-fn">len</span>(missing_alt),
+        <span class="tok-str">"score"</span>: <span class="tok-num">100</span> - <span class="tok-fn">len</span>(missing_alt) * <span class="tok-num">5</span>,
+    }<span class="ide-cursor"></span></code></pre></div>
+            <div class="ide-footer terminal"><span class="p">$</span> python audit_seo.py --url client-site.fr<br>{'title_len': 54, 'has_meta_description': True, 'images_missing_alt': 0, 'score': 100}</div>
+          </div>
         </div>
       </div>
+      <p class="lab-intro reveal" style="margin-top:1.4rem; font-size:.85rem; font-family: var(--ff-mono); color:#6B6A78;">Ce script d'audit SEO fait partie des outils que j'utilise pour vérifier chaque site livré avant mise en ligne.</p>
     </div>
   </section>
 
-  <section id="solutions" class="solutions-section">
-    <div class="section-inner">
-      <div class="section-label reveal" style="text-align:center">Trois façons de travailler ensemble</div>
-      <h2 class="section-title reveal" style="text-align:center">Quelle solution pour <em>votre activité</em> ?</h2>
 
-      <div class="solutions-grid">
-        <div class="solution-card reveal">
-          <div class="solution-icon">🌐</div>
-          <h3>Sites vitrines</h3>
-          <p>Pour présenter votre activité professionnellement, avec un design sur-mesure et le SEO local inclus.</p>
-          <div class="solution-price">Dès 190€</div>
-          <a href="/sites-vitrines.html" class="btn-secondary solution-cta">Découvrir →</a>
-        </div>
-        <div class="solution-card solution-card--reco reveal">
-          <div class="solution-badge">Nouveau</div>
-          <div class="solution-icon">⚙️</div>
-          <h3>Sites + outils</h3>
-          <p>Un site professionnel accompagné d'un vrai espace de gestion : devis, rendez-vous, clients, produits — selon votre activité.</p>
-          <div class="solution-price">Dès 49,95€/mois</div>
-          <a href="/sites-outils.html" class="btn-secondary solution-cta">Découvrir →</a>
-        </div>
-        <div class="solution-card reveal">
-          <div class="solution-icon">🛒</div>
-          <h3>E-commerce</h3>
-          <p>Pour vendre vos produits en ligne : catalogue, panier, paiement et gestion des commandes.</p>
-          <div class="solution-price">Dès 1290€</div>
-          <a href="/e-commerce.html" class="btn-secondary solution-cta">Découvrir →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="trust-section" id="transparence">
-    <div class="section-inner">
-      <div class="section-label reveal" style="text-align:center">Chez ByEmreh, on préfère la vérité au marketing</div>
-      <h2 class="section-title reveal" style="text-align:center">Des chiffres réels,<br><em>pas des « +1200 projets livrés »</em></h2>
-      <p class="reveal" style="max-width:640px;margin:0 auto 2.6rem;text-align:center;color:var(--muted);">Beaucoup de développeurs affichent des compteurs qui ne veulent rien dire pour paraître installés, alors qu'ils ont livré une poignée de sites, parfois aucun. Je préfère vous montrer où j'en suis vraiment, aujourd'hui, et laisser le travail parler avec le temps.</p>
-
-      <div class="trust-stats reveal">
-        <!-- ⚠️ À mettre à jour à la main à chaque projet livré/lancé — pas de compte automatique, volontairement. -->
-        <div class="trust-stat">
-          <strong id="stat-livres">0</strong>
-          <span>Projets livrés</span>
-        </div>
-        <div class="trust-stat">
-          <strong id="stat-encours">1</strong>
-          <span>Projet en cours</span>
-        </div>
-        <div class="trust-stat trust-stat--text">
-          <strong>Été 2026</strong>
-          <span>Lancement de ByEmreh</span>
-        </div>
-      </div>
-      <p class="trust-caption reveal">Ces chiffres sont mis à jour à la main, pas générés pour impressionner. Ils monteront avec le temps — et resteront toujours honnêtes.</p>
-
-      <p class="trust-caption reveal" style="margin-top:3rem;margin-bottom:1.2rem;">On me demande souvent ce qui est vraiment inclus. Sans enjoliver non plus :</p>
-
-      <div class="trust-table-wrap reveal">
-        <table class="trust-table">
-          <thead>
-            <tr><th></th><th>Beaucoup d'agences / freelances</th><th>ByEmreh</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Design</td>
-              <td data-label="Beaucoup d'agences / freelances">Template retouché</td>
-              <td data-label="ByEmreh">Sur-mesure, codé ligne par ligne</td>
-            </tr>
-            <tr>
-              <td>Blog</td>
-              <td data-label="Beaucoup d'agences / freelances">Souvent en option payante</td>
-              <td data-label="ByEmreh">Inclus si vous en avez besoin, sans supplément</td>
-            </tr>
-            <tr>
-              <td>Nombre de pages</td>
-              <td data-label="Beaucoup d'agences / freelances">Forfait limité, pages en plus facturées à part</td>
-              <td data-label="ByEmreh">Adapté à votre activité, sans compter les pages</td>
-            </tr>
-            <tr>
-              <td>Après la mise en ligne</td>
-              <td data-label="Beaucoup d'agences / freelances">Site figé, chaque modification est facturée</td>
-              <td data-label="ByEmreh">Site pensé pour évoluer ; petites modifs incluses chaque mois avec le Pack Sérénité</td>
-            </tr>
-            <tr>
-              <td>SEO local</td>
-              <td data-label="Beaucoup d'agences / freelances">Souvent en option</td>
-              <td data-label="ByEmreh">Inclus dès le départ</td>
-            </tr>
-            <tr>
-              <td>Hébergement & nom de domaine</td>
-              <td data-label="Beaucoup d'agences / freelances">Contrat séparé, parfois opaque</td>
-              <td data-label="ByEmreh">Option simple à 20€/mois, sans engagement, résiliable par email</td>
-            </tr>
-            <tr>
-              <td>Support après livraison</td>
-              <td data-label="Beaucoup d'agences / freelances">Limité, ou facturé à l'heure</td>
-              <td data-label="ByEmreh">30 jours inclus, avec moi directement</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="roi-banner reveal" style="margin-top:2.6rem;">
-        <div class="roi-tag">Le mot d'ordre chez ByEmreh</div>
-        <p>Gagner de l'argent, oui — mais honnêtement. J'accompagne des entreprises honnêtes, qui proposent des produits ou services que j'estime utiles ou bons, vendus de manière honnête. Je m'écarte de tout commerce illicite, ou qui vend des produits malsains, ou de façon malsaine.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="steps-section">
-    <div class="section-inner">
-      <div class="section-label reveal">Le processus</div>
-      <h2 class="section-title reveal">Simple, fluide et <em style="color:var(--coral)">sans stress</em></h2>
-      <div class="steps-grid">
-        <div class="step reveal">
-          <span class="step-mark">01 · échange</span>
-          <h3>On échange sur votre projet</h3>
-          <p>Un appel rapide pour cibler vos besoins fondamentaux, votre identité et vos envies graphiques. Sans jargon compliqué.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-mark">02 · conception</span>
-          <h3>Conception & Réglages</h3>
-          <p>Je m'occupe de concevoir l'ergonomie, la rédaction SEO et l'intégration. Vous validez l'aperçu complet avant publication.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-mark">03 · mise en ligne</span>
-          <h3>Mise en ligne mondiale</h3>
-          <p>En une semaine chrono, votre enseigne rayonne sur internet. Je vous configure vos accès en toute transparence.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="compare-section" id="pourquoi">
-    <div class="section-inner" style="text-align:center">
-      <div class="section-label reveal">On me pose souvent la question</div>
-      <h2 class="section-title reveal">Pourquoi pas Wix,<br><em>une agence, ou le cousin ?</em></h2>
-
-      <div class="compare-grid">
-        <div class="compare-card reveal">
-          <div class="compare-tag">Option 01</div>
-          <h3>Le faire soi-même</h3>
-          <p>Des soirées entières sur un outil no-code, un rendu générique que Google peine à référencer. Votre temps de commerçant vaut plus cher qu'un abonnement Wix.</p>
-        </div>
-        <div class="compare-card reveal">
-          <div class="compare-tag">Option 02</div>
-          <h3>L'agence classique</h3>
-          <p>2 500 à 6 000€, des semaines de délai, et un interlocuteur qui change à chaque appel. Une bonne part du prix paie leurs locaux, pas votre site.</p>
-        </div>
-        <div class="compare-card reveal">
-          <div class="compare-tag">Option 03</div>
-          <h3>Le cousin qui s'y connaît</h3>
-          <p>Gratuit, jusqu'au jour où il n'a plus le temps. Et personne pour répondre quand le site tombe ou que Google change ses règles.</p>
-        </div>
-        <div class="compare-card compare-card--win reveal">
-          <div class="compare-tag">Votre choix</div>
-          <h3>ByEmreh</h3>
-          <p>Un développeur, pas un revendeur de template. Du code sur-mesure écrit ligne par ligne, un interlocuteur unique du premier appel à la mise en ligne, et un tarif de lancement à 190€.</p>
-        </div>
-      </div>
-
-      <div class="roi-banner reveal">
-        <div class="roi-tag">Investissement, pas dépense</div>
-        <p>Un site qui ne vous ramène aucun appel n'est pas « pas cher », il est <em>inutile</em>. Un site pensé pour convertir se rembourse avec le premier ou le deuxième client qu'il vous apporte — tout le reste, c'est du chiffre d'affaires en plus, chaque mois, sans effort supplémentaire de votre part.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="pricing-section" id="tarif">
-    <div class="pricing-mesh"><span></span><span></span><span></span></div>
-    <div class="section-inner" style="text-align:center; position:relative; z-index:1;">
-      <div class="section-label reveal">Tarifs clairs & sans surprise</div>
-      <h2 class="section-title reveal">Choisissez la formule<br><em>qui vous correspond</em></h2>
-
-      <div class="pricing-grid">
-
-        <!-- PACK LANCEMENT — secondaire -->
-        <div class="price-card reveal-left" id="card-lancement">
-          <div class="price-card-name">Pack Lancement</div>
-          <div class="price-card-num">
-            <span class="old">790€</span>
-            <span class="new" id="lancement-total">190€</span>
-          </div>
-          <p class="price-card-caption" id="lancement-desc">Prix de lancement · paiement unique</p>
-
-          <ul class="price-card-includes">
-            <li>Design sur-mesure & optimisé mobile</li>
-            <li>Optimisation SEO locale (Google)</li>
-            <li>Livraison rapide en 7 jours</li>
-            <li id="li-domaine" class="dim">Nom de domaine non inclus</li>
-            <li id="li-hebergement" class="dim">Hébergement non inclus</li>
-          </ul>
-
-          <label class="price-toggle-row">
-            <input type="checkbox" id="addon-hebergement" onchange="toggleAddon()" />
-            <span>Ajouter hébergement + domaine <strong>+20€/mois</strong> · sans engagement</span>
-          </label>
-
-          <div class="price-card-legal">
-            <label class="form-legal-check">
-              <input type="checkbox" id="cgv-lancement" required />
-              <span>J'accepte les <a href="#" onclick="openModal('cgv'); return false;">CGV</a></span>
-            </label>
-            <label class="form-legal-check">
-              <input type="checkbox" id="privacy-lancement" required />
-              <span>J'accepte la politique de confidentialité</span>
-            </label>
-          </div>
-
-          <div id="stripe-container-lancement" class="price-cta-wrap">
-            <a href="https://buy.stripe.com/eVqdR147I4PY3edbpw6Ri01" id="lancement-cta" class="btn-price btn-price-secondary">Choisir le Pack Lancement</a>
-          </div>
-        </div>
-
-        <!-- PACK SÉRÉNITÉ — recommandée -->
-        <div class="price-card price-card--reco reveal-right" id="card-serenite">
-          <div class="reco-badge">Recommandé</div>
-          <div class="price-card-name">Pack Sérénité</div>
-          <div class="price-card-num">
-            <span class="new">150€</span>
-            <span class="recurrent">+ 40€<span>/mois</span></span>
-          </div>
-          <p class="price-card-caption">190€ à la commande (150€ + 1er mois) · puis 40€/mois · engagement 12 mois</p>
-
-          <ul class="price-card-includes">
-            <li><strong>Tout le Pack Lancement</strong></li>
-            <li><strong>Nom de domaine</strong> personnalisé (.fr ou .com)</li>
-            <li><strong>Hébergement</strong> sécurisé inclus</li>
-            <li><strong>1 modification offerte</strong> chaque mois</li>
-            <li>Tranquillité totale — <strong>je gère tout pour vous</strong></li>
-          </ul>
-
-          <div class="price-card-legal">
-            <label class="form-legal-check">
-              <input type="checkbox" id="cgv-serenite" required />
-              <span>J'accepte les <a href="#" onclick="openModal('cgv'); return false;">CGV</a></span>
-            </label>
-            <label class="form-legal-check">
-              <input type="checkbox" id="privacy-serenite" required />
-              <span>J'accepte la politique de confidentialité</span>
-            </label>
-          </div>
-
-          <div id="stripe-container-serenite" class="price-cta-wrap">
-            <a href="https://buy.stripe.com/7sY6oz0Vw4PYbKJgJQ6Ri02" class="btn-price btn-price-primary">Choisir le Pack Sérénité</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="objections-section">
-    <div class="section-inner" style="text-align:center">
-      <button type="button" class="objections-trigger reveal" id="objectionsTrigger" onclick="toggleObjections()">
-        <span class="objections-trigger-text">Toujours pas convaincu&nbsp;? 🤔</span>
-        <span class="objections-trigger-icon" aria-hidden="true">↓</span>
-      </button>
-
-      <div class="objections-panel" id="objectionsPanel">
-        <div class="section-label reveal">On me pose souvent ces questions, en toute franchise</div>
-        <h2 class="section-title reveal">Vos objections, <em>mes vraies réponses</em></h2>
-
-        <div class="faq-list objections-list">
-          <details class="faq-item reveal">
-            <summary>Une agence me dit avoir livré des centaines de sites, pourquoi vous choisir plutôt ?</summary>
-            <div class="faq-a">Parce que ces chiffres ne changent rien à votre expérience : derrière, c'est souvent un commercial qui vous vend, puis un sous-traitant anonyme qui exécute, et un interlocuteur qui change à chaque appel. Ici, c'est moi du premier message jusqu'à la mise en ligne — et vous pouvez vérifier mon travail en direct dans la section "Voir mon code" plus haut sur cette page.</div>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>Vous débutez, comment être sûr du résultat ?</summary>
-            <div class="faq-a">Je ne vous le cache pas : je suis honnête sur où j'en suis, justement parce que je préfère ça à un faux compteur "+1200 projets". Concrètement, ça change peu pour vous : le tarif de lancement reste bas, le processus est cadré étape par étape, et vous gardez un contact direct avec moi à chaque instant — pas un ticket de support anonyme.</div>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>Pourquoi pas Wix, Canva ou un autre outil no-code, moins cher ?</summary>
-            <div class="faq-a">Ces outils sont gratuits ou presque, mais votre temps ne l'est pas : des soirées entières sur un éditeur générique, pour un rendu que Google référence mal. Un site codé sur-mesure charge plus vite, se distingue visuellement de vos concurrents, et est structuré pour le SEO local dès le départ.</div>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>Comment être sûr que vous n'allez pas abandonner en cours de route ?</summary>
-            <div class="faq-a">Le tarif de lancement reste volontairement accessible pour que ce ne soit pas un pari financier pour vous. Et contrairement à une agence où vous attendez un email pendant des jours, vous avez un accès direct à moi (WhatsApp inclus) pendant toute la création, puis 30 jours de support après la mise en ligne.</div>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>Est-ce qu'il y a des frais cachés qui arrivent après ?</summary>
-            <div class="faq-a">Non. Le prix de lancement, le Pack Sérénité et l'option Hébergement & Domaine sont détaillés plus haut, avant toute commande — vous savez exactement ce que vous payez et pourquoi. Aucun palier caché, aucune surprise à la facturation.</div>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-section" id="contact">
-    <div class="section-inner">
-      <div class="section-label reveal">Devis gratuit</div>
-      <h2 class="section-title reveal">Prêt à transformer<br><em>votre visibilité ?</em></h2>
-      <div class="contact-grid">
-        <div class="contact-info reveal">
-          <p>Un doute ? Une question sur votre référencement Google ? Écrivez-moi directement, je prendrai le temps de vous conseiller gratuitement.</p>
-          <p>La proposition commerciale est <strong>100% sans engagement</strong>.</p>
-          <a href="https://wa.me/qr/FGIFWGH75V6CJ1" class="whatsapp-btn" target="_blank" rel="noopener">
-            💬 Discuter directement sur WhatsApp
-          </a>
-        </div>
-        <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/xqerabre" method="POST">
-          <div>
-            <label for="nom">Votre nom</label>
-            <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required />
-          </div>
-          <div>
-            <label for="email">Votre adresse email</label>
-            <input type="email" id="email" name="email" placeholder="jean@moncommerce.fr" required />
-          </div>
-          <div>
-            <label for="activite">Votre secteur d'activité</label>
-            <select id="activite" name="activite" required>
-              <option value="" disabled selected>Choisir une option...</option>
-              <option>Restaurant / Café</option>
-              <option>Coiffeur / Institut de beauté</option>
-              <option>Artisan / Bâtiment (Plombier, Électricien...)</option>
-              <option>Boutique / Commerce local</option>
-              <option>Autre activité</option>
-            </select>
-          </div>
-          <div>
-            <label for="message">Parlez-moi de votre besoin</label>
-            <textarea id="message" name="message" placeholder="Dites-moi en quelques mots ce que vous aimeriez mettre en valeur sur votre site..."></textarea>
-          </div>
-
-          <div>
-            <label class="form-legal-check">
-              <input type="checkbox" id="legal-check" required />
-              <span>J'ai lu et j'accepte les <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a> et la politique de confidentialité.</span>
-            </label>
-          </div>
-
-          <button type="submit" id="submit-btn" class="btn-submit">Envoyer ma demande gratuite →</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section class="faq-section">
-    <div class="section-inner">
-      <div class="section-label reveal" style="text-align:center">Des réponses à vos questions</div>
-      <h2 class="section-title reveal" style="text-align:center">Foire Aux <em>Questions</em></h2>
-
-      <div class="faq-list">
-        <details class="faq-item reveal">
-          <summary>Pourquoi le prix de création est-il de 190€ au lieu de 790€ ?</summary>
-          <div class="faq-a">C'est une offre commerciale spéciale destinée à construire un solide réseau de commerçants locaux satisfaits. En échange de ce tarif ultra-compétitif, je vous demande simplement de me laisser un avis sincère après la mise en ligne pour m'aider à développer ma réputation.</div>
-        </details>
-
-        <details class="faq-item reveal">
-          <summary>Comment fonctionne le Pack Sérénité à 40€/mois ?</summary>
-          <div class="faq-a">Un site internet a obligatoirement besoin d'un hébergement (pour exister en ligne) et d'un nom de domaine personnalisé (ex : moncommerce.fr). À la commande, vous réglez 190€ (150€ de création + le premier mois à 40€), puis 40€/mois pendant 12 mois. Cette formule inclut ces abonnements ainsi qu'<strong>une petite modification offerte chaque mois</strong> : un ajout au menu, une nouvelle prestation, un changement de photo... Je m'occupe de tout, vous n'avez aucune démarche technique de votre côté.</div>
-        </details>
-
-        <details class="faq-item reveal">
-          <summary>C'est quoi l'option Hébergement & Domaine à 20€/mois ?</summary>
-          <div class="faq-a">C'est une option qui s'ajoute au Pack Lancement, pour ceux qui ne veulent pas s'embêter à trouver et configurer eux-mêmes un hébergeur et un nom de domaine. Je m'occupe de tout pour 20€/mois, sans aucun engagement : vous pouvez l'arrêter par simple email quand vous le souhaitez. Elle n'inclut pas de modification mensuelle offerte — pour ça, il y a le Pack Sérénité.</div>
-        </details>
-
-        <details class="faq-item reveal">
-          <summary>De quoi ai-je besoin pour commencer ?</summary>
-          <div class="faq-a">De presque rien ! Il vous suffit de m'envoyer les éléments clés (vos horaires, vos tarifs, vos tarifs, vos photos). Je m'occupe du reste.</div>
-        </details>
-
-        <details class="faq-item reveal">
-          <summary>Et si je choisis le Pack Lancement sans abonnement ?</summary>
-          <div class="faq-a">Aucun souci ! Vous êtes totalement libre de louer votre propre serveur (chez OVH, Hostinger, etc.) et d'acheter votre propre nom de domaine. Je vous livrerai alors le code de votre site ou je l'installerai directement sur vos accès. Vous paierez vos abonnements d'hébergement directement à votre fournisseur.</div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="cities-section" id="villes">
+  <section style="padding:2.5rem 0;">
     <div class="section-inner" style="text-align:center;">
-      <div class="section-label reveal">Zone d'intervention</div>
-      <h2 class="section-title reveal">Des sites pour les commerçants,<br>partout <em>en France</em></h2>
-      <p class="offer-text reveal" style="margin:0 auto 2.2rem; text-align:center;">Basé en PACA (Marseille · Aix-en-Provence), j'accompagne aussi des commerçants et artisans dans toute la France, à distance — mêmes délais, même accompagnement.</p>
-      <div class="cities-grid reveal">
-        <a href="/site-internet-marseille.html">Création site internet Marseille</a>
-        <a href="/site-internet-aix-en-provence.html">Création site internet Aix-en-Provence</a>
-        <a href="/site-internet-toulon.html">Création site internet Toulon</a>
-        <a href="/site-internet-nice.html">Création site internet Nice</a>
-        <a href="/site-internet-avignon.html">Création site internet Avignon</a>
-        <a href="/site-internet-paris.html">Création site internet Paris</a>
-        <a href="/site-internet-lyon.html">Création site internet Lyon</a>
-        <a href="/site-internet-toulouse.html">Création site internet Toulouse</a>
-        <a href="/site-internet-nantes.html">Création site internet Nantes</a>
-      </div>
-
-      <div class="cities-extra" id="citiesExtra">
-        <div class="cities-grid">
-          <a href="/site-internet-strasbourg.html">Création site internet Strasbourg</a>
-          <a href="/site-internet-montpellier.html">Création site internet Montpellier</a>
-          <a href="/site-internet-bordeaux.html">Création site internet Bordeaux</a>
-          <a href="/site-internet-lille.html">Création site internet Lille</a>
-          <a href="/site-internet-cannes.html">Création site internet Cannes</a>
-          <a href="/site-internet-antibes.html">Création site internet Antibes</a>
-          <a href="/site-internet-salon-de-provence.html">Création site internet Salon-de-Provence</a>
-          <a href="/site-internet-arles.html">Création site internet Arles</a>
-          <a href="/site-internet-aubagne.html">Création site internet Aubagne</a>
-          <a href="/site-internet-frejus.html">Création site internet Fréjus</a>
-          <a href="/site-internet-rennes.html">Création site internet Rennes</a>
-          <a href="/site-internet-grenoble.html">Création site internet Grenoble</a>
-          <a href="/site-internet-reims.html">Création site internet Reims</a>
-          <a href="/site-internet-nimes.html">Création site internet Nîmes</a>
-          <a href="/site-internet-angers.html">Création site internet Angers</a>
-          <a href="/site-internet-saint-etienne.html">Création site internet Saint-Étienne</a>
-          <a href="/site-internet-martigues.html">Création site internet Martigues</a>
-          <a href="/site-internet-istres.html">Création site internet Istres</a>
-          <a href="/site-internet-manosque.html">Création site internet Manosque</a>
-          <a href="/site-internet-draguignan.html">Création site internet Draguignan</a>
-          <a href="/site-internet-hyeres.html">Création site internet Hyères</a>
-          <a href="/site-internet-la-ciotat.html">Création site internet La Ciotat</a>
-          <a href="/site-internet-orange.html">Création site internet Orange</a>
-          <a href="/site-internet-dijon.html">Création site internet Dijon</a>
-          <a href="/site-internet-clermont-ferrand.html">Création site internet Clermont-Ferrand</a>
-          <a href="/site-internet-le-mans.html">Création site internet Le Mans</a>
-          <a href="/site-internet-tours.html">Création site internet Tours</a>
-          <a href="/site-internet-perpignan.html">Création site internet Perpignan</a>
-          <a href="/site-internet-metz.html">Création site internet Metz</a>
-          <a href="/site-internet-rouen.html">Création site internet Rouen</a>
-        </div>
-      </div>
-      <button type="button" class="cities-toggle" id="citiesToggle" onclick="toggleCities()">
-        <span>Voir les 30 autres villes</span> <span class="cities-toggle-icon">↓</span>
-      </button>
+      <p style="font-size:.85rem;color:var(--muted);">Voir aussi :
+        <a href="/sites-vitrines.html">Sites vitrines</a> ·
+        <a href="/sites-outils.html">Sites + outils</a> ·
+        <a href="/e-commerce.html">E-commerce</a>
+      </p>
     </div>
   </section>
+
 </main>
 
 <footer>
