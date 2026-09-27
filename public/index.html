@@ -286,18 +286,18 @@
     .nav-dropdown {
       position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-10px) scale(.94);
       min-width: 230px; padding: .6rem;
-      background: rgba(255,255,255,.5);
-      backdrop-filter: blur(22px) saturate(220%); -webkit-backdrop-filter: blur(22px) saturate(220%);
-      border: 1px solid rgba(255,255,255,.7);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+      border: 1px solid rgba(20,18,35,.08);
       border-radius: 22px;
-      box-shadow: 0 24px 60px rgba(20,18,35,.22), inset 0 1px 1px rgba(255,255,255,.9);
+      box-shadow: 0 24px 60px rgba(20,18,35,.28), inset 0 1px 1px rgba(255,255,255,1);
       display: flex; flex-direction: column; gap: .15rem;
       opacity: 0; pointer-events: none; z-index: 300;
       transition: opacity .35s cubic-bezier(.34,1.56,.64,1), transform .35s cubic-bezier(.34,1.56,.64,1);
     }
     .nav-dropdown.is-open { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); pointer-events: auto; }
     .nav-dropdown-label { font-family: var(--ff-mono); font-size: .64rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6B6A78; padding: .5rem .8rem .3rem; }
-    .nav-dropdown-sep { height: 1px; background: rgba(20,18,35,.08); margin: .4rem .5rem; }
+    .nav-dropdown-sep { height: 1px; background: rgba(20,18,35,.1); margin: .4rem .5rem; }
     .nav-dropdown-item {
       display: block; padding: .7rem .9rem; border-radius: 14px; color: var(--ink);
       font-family: var(--ff-body); font-size: .87rem; font-weight: 600; text-decoration: none;
@@ -312,7 +312,7 @@
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(7) { transition-delay: .16s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(8) { transition-delay: .19s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(9) { transition-delay: .22s; }
-    .nav-dropdown-item:hover { background: rgba(255,255,255,.7); }
+    .nav-dropdown-item:hover { background: var(--signal-lt); color: var(--signal); }
 
     /* ── HERO ───────────────────────────────── */
     .hero { position: relative; padding: 10rem 2.5rem 6rem; overflow: hidden; }
@@ -464,6 +464,16 @@
     .realisation-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
     .realisation-link { font-size: .82rem; font-weight: 700; color: var(--signal); text-decoration: none; }
     .realisation-link:hover { text-decoration: underline; }
+
+    /* ── LOGO "YASIR by ByEmreh" (carte réalisation) ──────────── */
+    .yasir-logo { display: flex; flex-direction: column; gap: .25rem; margin-bottom: 1.1rem; }
+    .yasir-logo-name { font-family: var(--ff-disp); font-weight: 700; font-size: 1.7rem; letter-spacing: -.01em; color: var(--ink); line-height: 1; }
+    .yasir-logo-by {
+      font-family: var(--ff-mono); font-weight: 700; font-size: .72rem; letter-spacing: -.01em; color: var(--ink);
+      position: relative; z-index: 1;
+    }
+    .yasir-logo-by span { color: var(--signal); }
+    .yasir-logo-by::after { content: '_'; color: var(--coral); animation: blink 1.1s step-end infinite; }
 
     /* ── ACCORDÉON "POUR QUI ?" (réutilise le style FAQ) ──────────── */
     .audience-section { background: var(--paper-dim); }
@@ -839,11 +849,11 @@
     .objections-trigger-icon { display: inline-block; transition: transform .3s var(--ease); color: var(--coral); font-size: 1rem; }
     .objections-trigger.is-open .objections-trigger-icon { transform: rotate(180deg); }
     .objections-panel {
-      max-height: 0; overflow: hidden; opacity: 0;
-      transition: max-height .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease);
-      margin-top: 0;
+      display: grid; grid-template-rows: 0fr; opacity: 0; margin-top: 0;
+      transition: grid-template-rows .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease);
     }
-    .objections-panel.is-open { max-height: 2400px; opacity: 1; margin-top: 2.6rem; }
+    .objections-panel-inner { overflow: hidden; min-height: 0; }
+    .objections-panel.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: 2.6rem; }
     .objections-list { margin-top: 2.2rem; }
 
     .faq-section { background: var(--paper); }
@@ -969,8 +979,12 @@
     }
     .cities-grid a:hover { border-color: var(--signal); color: var(--signal); transform: translateY(-2px); }
 
-    .cities-extra { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease); margin-top: 0; }
-    .cities-extra.is-open { max-height: 900px; opacity: 1; margin-top: .7rem; }
+    .cities-extra {
+      display: grid; grid-template-rows: 0fr; opacity: 0; margin-top: 0;
+      transition: grid-template-rows .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease);
+    }
+    .cities-extra > .cities-grid { overflow: hidden; min-height: 0; }
+    .cities-extra.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: .7rem; }
     .cities-toggle {
       display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.6rem; background: none;
       border: 1.5px dashed var(--border); border-radius: 99px; padding: .7rem 1.4rem; font-family: var(--ff-mono);
@@ -1366,6 +1380,7 @@
       </button>
 
       <div class="objections-panel" id="objectionsPanel">
+        <div class="objections-panel-inner">
         <div class="section-label reveal">On me pose souvent ces questions, en toute franchise</div>
         <h2 class="section-title reveal">Vos objections, <em>mes vraies réponses</em></h2>
 
@@ -1394,6 +1409,7 @@
             <summary>Est-ce qu'il y a des frais cachés qui arrivent après ?</summary>
             <div class="faq-a">Non. Le prix de lancement, le Pack Sérénité et l'option Hébergement & Domaine sont détaillés plus haut, avant toute commande — vous savez exactement ce que vous payez et pourquoi. Aucun palier caché, aucune surprise à la facturation.</div>
           </details>
+        </div>
         </div>
       </div>
     </div>
