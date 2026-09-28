@@ -6,11 +6,11 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0B0C10" />
 
-  <title>Sites + outils professionnels | ByEmreh</title>
-  <meta name="description" content="Un site professionnel accompagné d'un espace de gestion adapté à votre activité (demandes, devis, rendez-vous, clients, contenus). Abonnement dès 49,95€/mois." />
-  <meta name="keywords" content="site professionnel, espace de gestion, back-office, devis en ligne, abonnement site internet, byemreh" />
+  <title>Trouver mon offre | ByEmreh</title>
+  <meta name="description" content="Répondez à quelques questions pour découvrir l'offre ByEmreh adaptée à votre projet : site vitrine, site + outils ou e-commerce." />
+  <meta name="keywords" content="choisir site internet, offre site vitrine, site + outils, e-commerce, byemreh" />
   <meta name="author" content="Aydin Emreh - ByEmreh" />
-  <link rel="canonical" href="https://www.byemreh.fr/sites-outils.html" />
+  <link rel="canonical" href="https://www.byemreh.fr/trouver-mon-offre.html" />
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -1024,6 +1024,33 @@
     .tech-hero .city-breadcrumb { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.85); }
   </style>
 </head>
+<style>
+.quiz-section { padding-top: 2rem; }
+.quiz-card { max-width: 640px; margin: 0 auto; background: #fff; border: 1.5px solid var(--border); border-radius: 18px; padding: 2rem 1.8rem 2.2rem; box-shadow: 0 20px 50px -25px rgba(0,0,0,.15); text-align: left; }
+.quiz-progress { height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 1.6rem; }
+.quiz-progress-fill { height: 100%; width: 0; background: var(--signal); border-radius: 99px; transition: width .4s var(--ease); }
+.quiz-step-count { font-family: var(--ff-mono); font-size: .68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted-dk); margin-bottom: .6rem; }
+.quiz-q { font-family: var(--ff-disp); font-size: 1.25rem; font-weight: 600; line-height: 1.3; margin-bottom: .5rem; }
+.quiz-hint { font-size: .84rem; color: var(--muted); margin-bottom: 1.2rem; }
+.quiz-options { display: flex; flex-direction: column; gap: .6rem; margin: 1.2rem 0 1.6rem; }
+.quiz-options.chips { flex-direction: row; flex-wrap: wrap; }
+.quiz-opt { text-align: left; background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: .85rem 1.1rem; font-family: var(--ff-body); font-size: .9rem; font-weight: 600; color: var(--ink); cursor: pointer; transition: border-color .2s var(--ease), background .2s var(--ease); }
+.quiz-options.chips .quiz-opt { border-radius: 99px; padding: .55rem 1rem; font-size: .82rem; }
+.quiz-opt:hover { border-color: var(--signal); }
+.quiz-opt.selected { border-color: var(--signal); background: var(--signal-lt); color: var(--signal); }
+.quiz-nav { display: flex; justify-content: space-between; gap: .8rem; }
+.quiz-nav button:disabled { opacity: .4; cursor: not-allowed; }
+.quiz-result h2 { font-family: var(--ff-disp); font-size: 1.5rem; margin-bottom: .8rem; }
+.quiz-result p { color: var(--muted); font-size: .92rem; line-height: 1.7; margin-bottom: 1rem; }
+.quiz-offer { border: 1.5px solid var(--signal); background: var(--signal-lt); border-radius: 14px; padding: 1.2rem 1.3rem; margin: 1.2rem 0; }
+.quiz-offer strong { display: block; font-family: var(--ff-disp); font-size: 1.05rem; margin-bottom: .2rem; }
+.quiz-offer span { display: block; color: var(--signal); font-weight: 700; font-size: .85rem; margin-bottom: .5rem; }
+.quiz-offer p { margin: 0; font-size: .86rem; }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.2rem; }
+.quiz-note { font-size: .75rem; color: var(--muted-dk); margin-top: 1.4rem; line-height: 1.6; }
+.quiz-note a { color: var(--signal); text-decoration: underline; }
+
+</style>
 <body>
 <header>
   <nav>
@@ -1055,120 +1082,15 @@
   <section class="city-hero">
     <div class="hero-mesh"><span></span><span></span><span></span></div>
     <div class="hero-content">
-      <div class="city-breadcrumb"><a href="/">Accueil</a> → Sites + outils</div>
-      <h1>Un site professionnel accompagné d'outils adaptés à votre activité</h1>
-      <p class="hero-sub">Ce n'est pas un simple site vitrine, et ce n'est pas un logiciel générique. C'est une solution web développée pour votre activité : un site, et l'outil de gestion qui va avec — accessible pendant toute la durée de votre abonnement.</p>
+      <div class="city-breadcrumb"><a href="/">Accueil</a> → Trouver mon offre</div>
+      <h1>Trouvez l'offre adaptée à votre projet</h1>
+      <p class="hero-sub">Quelques questions rapides pour savoir quelle solution correspond à votre activité — et si je peux vous accompagner.</p>
     </div>
   </section>
 
-
-  <section>
-    <div class="section-inner" style="text-align:center;">
-      <div class="section-label reveal">Au-delà du site</div>
-      <h2 class="section-title reveal">Plus qu'un site internet : <em>votre espace de gestion</em></h2>
-      <p class="reveal" style="max-width:640px;margin:1rem auto 0;color:var(--muted);">Selon votre activité, votre site peut intégrer des outils permettant de centraliser certaines tâches du quotidien : demandes, devis, rendez-vous, clients, produits, commandes ou contenus.</p>
-      <p class="reveal" style="max-width:640px;margin:1rem auto 0;color:var(--muted);font-size:.88rem;"><strong>Les fonctionnalités sont définies selon votre projet et votre activité.</strong></p>
-    </div>
-  </section>
-
-  <section class="pricing-section">
-    <div class="section-inner" style="text-align:center; position:relative; z-index:1;">
-      <div class="section-label reveal">Un abonnement, deux formules</div>
-      <h2 class="section-title reveal">Choisissez votre <em>engagement</em></h2>
-
-      <div class="pricing-grid">
-        <div class="price-card reveal-left">
-          <div class="price-card-name">Engagement 12 mois</div>
-          <div class="price-card-num"><span class="new">49,95€</span><span class="recurrent"><span>/mois</span></span></div>
-          <p class="price-card-caption">Tarif préférentiel avec engagement de 12 mois</p>
-          <ul class="price-card-includes">
-            <li>Site professionnel sur-mesure</li>
-            <li>Back-office adapté à votre activité</li>
-            <li>Fonctionnalités métier selon votre projet</li>
-            <li>Évolutions incluses selon l'offre</li>
-          </ul>
-          <div class="price-cta-wrap">
-            <a href="/#contact" class="btn-price btn-price-secondary">Choisir cette offre</a>
-          </div>
-        </div>
-
-        <div class="price-card price-card--reco reveal-right">
-          <div class="reco-badge">Sans engagement</div>
-          <div class="price-card-name">Liberté totale</div>
-          <div class="price-card-num"><span class="new">89,95€</span><span class="recurrent"><span>/mois</span></span></div>
-          <p class="price-card-caption">Sans engagement de durée — résiliable selon les conditions prévues au contrat</p>
-          <ul class="price-card-includes">
-            <li><strong>Tout ce qui est inclus dans la formule 12 mois</strong></li>
-            <li>Sans engagement de durée</li>
-            <li>Flexibilité totale pour tester la solution</li>
-          </ul>
-          <div class="price-cta-wrap">
-            <a href="/#contact" class="btn-price btn-price-primary">Choisir cette offre</a>
-          </div>
-        </div>
-      </div>
-
-      <p class="reveal" style="margin-top:1.6rem;font-size:.85rem;"><a href="#" onclick="openModal('cgv'); return false;" style="color:var(--signal);text-decoration:underline;">Voir les conditions de l'offre</a></p>
-    </div>
-  </section>
-{process2}
-  <section>
-    <div class="section-inner" style="text-align:center;">
-      <div class="section-label reveal">Selon votre activité</div>
-      <h2 class="section-title reveal">Ce que votre outil peut inclure</h2>
-      <p class="reveal" style="max-width:640px;margin:1rem auto 2.4rem;color:var(--muted);">Chaque projet est différent : votre back-office est construit autour des fonctionnalités qui comptent vraiment pour votre activité, parmi (selon votre projet) :</p>
-      <div class="features-grid">
-        <div class="feature-card reveal"><h3>Gestion de demandes</h3><p>Centralisez les demandes de vos clients dans un espace dédié.</p></div>
-        <div class="feature-card reveal"><h3>Devis</h3><p>Générez et suivez vos devis directement depuis votre back-office.</p></div>
-        <div class="feature-card reveal"><h3>Rendez-vous</h3><p>Gérez vos disponibilités et vos réservations en un seul endroit.</p></div>
-        <div class="feature-card reveal"><h3>Formulaires</h3><p>Des formulaires sur-mesure adaptés à ce que vous devez recueillir.</p></div>
-        <div class="feature-card reveal"><h3>Gestion de clients</h3><p>Retrouvez l'historique et les informations de chaque client.</p></div>
-        <div class="feature-card reveal"><h3>Gestion de contenus</h3><p>Mettez à jour vos textes, images et pages sans toucher au code.</p></div>
-        <div class="feature-card reveal"><h3>Gestion de produits</h3><p>Ajoutez, modifiez ou retirez vos produits ou prestations.</p></div>
-        <div class="feature-card reveal"><h3>Gestion de commandes</h3><p>Suivez chaque commande de sa création à sa livraison.</p></div>
-        <div class="feature-card reveal"><h3>Statistiques</h3><p>Visualisez l'activité de votre site avec des graphiques clairs.</p></div>
-      </div>
-      <p class="reveal" style="max-width:640px;margin:2rem auto 0;color:var(--muted);font-size:.85rem;">Et d'autres fonctionnalités personnalisées, selon les besoins spécifiques de votre activité. Discutons de votre projet pour définir ensemble ce qui est pertinent pour vous.</p>
-      <a href="#" class="btn-primary reveal" style="margin-top:1.6rem;" onclick="openBookingModal();return false;">Réserver un appel gratuit</a>
-    </div>
-  </section>
-  <section class="audience-section">
+  <section class="quiz-section">
     <div class="section-inner">
-      <div class="section-label reveal" style="text-align:center">Pour qui ?</div>
-      <h2 class="section-title reveal" style="text-align:center">Cette offre est faite pour vous si...</h2>
-      <p class="audience-intro reveal">Cliquez sur votre situation pour voir concrètement ce que ça change.</p>
-      <div class="faq-list">
-          <details class="faq-item reveal">
-            <summary>Vous croulez sous les demandes par téléphone ou message</summary>
-            <div class="faq-a">Vos clients remplissent un formulaire ou un devis en ligne, et vous recevez tout au même endroit, avec l'historique complet.</div>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Vous gérez vos rendez-vous sur un carnet ou dans votre tête</summary>
-            <div class="faq-a">Un espace de gestion centralisé pour vos rendez-vous, sans jongler entre plusieurs outils ou applications.</div>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Vous avez plusieurs prestations ou produits à présenter, qui changent régulièrement</summary>
-            <div class="faq-a">Vous ajoutez, modifiez ou retirez vos prestations vous-même depuis votre espace, sans jamais recontacter un développeur.</div>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Vous voulez savoir si votre site travaille vraiment pour vous</summary>
-            <div class="faq-a">Des statistiques claires et un graphique de suivi pour voir combien de demandes arrivent, et quand.</div>
-          </details>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="audience-section">
-    <div class="section-inner">
-      <div class="section-label reveal" style="text-align:center">Questions fréquentes</div>
-      <h2 class="section-title reveal" style="text-align:center">Avant de vous engager</h2>
-      <div class="faq-list">
-        <details class="faq-item reveal">
-          <summary>Que se passe-t-il si j'arrête mon abonnement ?</summary>
-          <div class="faq-a">L'accès aux fonctionnalités hébergées et au back-office dépend de l'abonnement en cours. Les modalités de fin de contrat — y compris les éventuelles données exportables et leurs conditions de récupération — sont définies dans les conditions de l'offre, que vous pouvez consulter avant toute souscription.</div>
-        </details>
-      </div>
+      <div class="quiz-card" id="quizRoot"></div>
     </div>
   </section>
 
@@ -1786,5 +1708,142 @@
   }
 </script>
 
-</body>
-</html>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+var A={},I=0,R=document.getElementById('quizRoot');
+var HARD=['alcohol','drug','pork','nonhalal','riba','interest','speculation','gambling','adult','occult','tobacco','vape','weapons','violence','fraud','counterfeit','pyramid'];
+var OFF={vitrine:{name:'Site vitrine',url:'/sites-vitrines.html',price:'Dès 190€',text:'Pour présenter votre activité professionnellement.'},outils:{name:'Site + outils',url:'/sites-outils.html',price:'Dès 49,95€/mois',text:'Un site professionnel accompagné d’un espace de gestion adapté à votre activité.'},ecommerce:{name:'E-commerce',url:'/e-commerce.html',price:'À partir de 1 290€',text:'Une boutique en ligne avec catalogue, panier, paiement et gestion des commandes.'}};
+function arr(k){return Array.isArray(A[k])?A[k]:[]}
+function has(k,v){return arr(k).indexOf(v)>-1}
+function blocked(){return Object.keys(A).some(function(k){var v=A[k];return Array.isArray(v)?v.some(function(x){return HARD.indexOf(x)>-1}):HARD.indexOf(v)>-1})}
+function review(){return A.review||false}
+function types(t){return has('types',t)}
+var S=[
+{key:'types',type:'multi',title:'Que proposez-vous à vos clients ?',hint:'Sélectionnez tout ce qui correspond réellement à votre activité.',opt:[['physical','Produits physiques'],['digital','Produits digitaux / numériques'],['service','Prestations / services'],['content','Contenus, abonnements ou accès numériques']]},
+{key:'online',type:'single',show:function(){return types('physical')||types('digital')||types('content')},title:'Comment vos produits ou contenus sont-ils proposés ?',opt:[['yes','Vente ou abonnement directement en ligne'],['catalog','Catalogue en ligne, sans paiement en ligne'],['no','Présentation uniquement, sans vente en ligne']]},
+{key:'physical',type:'multi',show:function(){return types('physical')},title:'Que sont vos produits physiques ?',hint:'On affine uniquement les catégories qui concernent votre activité.',opt:[['food','Alimentation / boissons'],['clothing','Vêtements / lingerie / accessoires'],['cosmetics','Cosmétiques / beauté'],['general','Boutique généraliste / produits variés'],['tobacco','Tabac / vapotage'],['weapons','Armes / matériel destiné à la violence'],['adult','Produits pour adultes'],['other','Autre produit physique']]},
+{key:'food',type:'multi',show:function(){return has('physical','food')},title:'Concernant l’alimentation ou les boissons, que vendez-vous ?',opt:[['alcohol','Alcool'],['pork','Porc ou produits à base de porc'],['nonhalal','Viandes / aliments non conformes à votre charte'],['drug','Stupéfiants'],['foodok','Uniquement des produits conformes'],['foodunknown','Je ne sais pas / à vérifier']]},
+{key:'clothing',type:'multi',show:function(){return has('physical','clothing')},title:'Comment les vêtements sont-ils présentés sur le site ?',hint:'Le fait de vendre des vêtements hommes et femmes ne constitue pas à lui seul un motif de refus.',opt:[['flat','Produits seuls / à plat / sans mannequin'],['modest','Mannequins ou modèles avec présentation sobre'],['revealing','Photos suggestives ou dévoilant largement le corps'],['lingerie','Lingerie portée par des modèles'],['unknown','Je ne sais pas encore']]},
+{key:'cosmetics',type:'single',show:function(){return has('physical','cosmetics')},title:'Comment vos produits cosmétiques sont-ils présentés ?',opt:[['product','Produits / emballages uniquement'],['neutral','Modèles avec présentation sobre'],['suggestive','Photos corporelles ou présentation suggestive'],['unknown','Je ne sais pas encore']]},
+{key:'service',type:'multi',show:function(){return types('service')},title:'Quel type de prestation proposez-vous ?',hint:'Sélectionnez les prestations réellement vendues.',opt:[['hair','Coiffure / barbier'],['beauty','Beauté / esthétique'],['finance','Finance / crédit / investissement'],['gambling','Jeux / paris'],['occult','Voyance / occultisme / pratiques occultes'],['adult','Services à caractère sexuel ou adulte'],['entertainment','Divertissement / spectacle'],['photo','Photographie / vidéo / événementiel'],['marketing','Marketing / publicité / communication'],['other','Autre prestation']]},
+{key:'hair',type:'multi',show:function(){return has('service','hair')},title:'Quelles prestations de coiffure / barbier réalisez-vous ?',hint:'On regarde les prestations concrètes, pas simplement le métier.',opt:[['home','Coiffure à domicile'],['salon','Coiffure en salon'],['fade','Dégradés / fades'],['beardshave','Rasage de barbe'],['beardtrim','Taille / entretien de barbe'],['otherhair','Autres coupes ou soins capillaires']]},
+{key:'servicecontent',type:'single',show:function(){return types('service')&&(has('service','beauty')||has('service','entertainment')||has('service','photo'))},title:'Quel type de contenu sera publié pour présenter ces prestations ?',opt:[['neutral','Photos / contenus sobres et professionnels'],['modest','Personnes présentées de manière sobre'],['suggestive','Contenu ou images suggestives'],['unknown','Je ne sais pas encore']]},
+{key:'digital',type:'multi',show:function(){return types('digital')||types('content')},title:'Que proposez-vous sous forme numérique ?',opt:[['software','Logiciel / outil numérique'],['course','Formation / cours'],['media','Média / vidéos / contenus'],['finance','Finance / crédit / investissement'],['gambling','Jeux / paris'],['occult','Voyance / occultisme'],['adult','Contenu pour adultes'],['otherdigital','Autre produit numérique']]},
+{key:'digitalcontent',type:'single',show:function(){return has('digital','media')||has('digital','course')||has('digital','otherdigital')},title:'Quel type de contenu sera vendu ou publié ?',opt:[['education','Éducatif / professionnel / informatif'],['neutral','Contenu général sans élément sensible'],['suggestive','Contenu suggestif / sexualisé'],['unknown','Je ne sais pas encore']]},
+{key:'purpose',type:'multi',title:'Que devra faire concrètement votre site ?',hint:'Cette question porte sur la prestation que vous demandez à ByEmreh.',opt:[['present','Présenter mon activité'],['catalog','Présenter un catalogue'],['sell','Vendre / prendre des commandes'],['booking','Prendre des rendez-vous / réservations'],['quote','Recevoir des demandes de devis'],['payments','Encaisser des paiements'],['management','Gérer clients, commandes ou activité'],['promotion','Faire de la publicité / promotion']]},
+{key:'payment',type:'multi',show:function(){return has('purpose','payments')||has('purpose','sell')},title:'Quels moyens de paiement souhaitez-vous proposer ?',opt:[['cash','Paiement comptant / carte bancaire'],['paypal','PayPal ou équivalent'],['installments','Paiement fractionné / différé'],['interest','Crédit avec intérêts'],['unknown','Je ne sais pas encore']]},
+{key:'management',type:'single',show:function(){return has('purpose','management')||has('purpose','booking')||has('purpose','quote')},title:'Avez-vous besoin d’un espace de gestion ?',hint:'Pour gérer vous-même des éléments de votre activité depuis un espace dédié.',opt:[['yes','Oui, je veux gérer ces éléments depuis un espace dédié'],['no','Non, un site sans espace de gestion me suffit']]} ,
+{key:'updates',type:'single',show:function(){return types('physical')||types('digital')||types('content')||has('purpose','catalog')},title:'Après la mise en ligne, comment souhaitez-vous faire évoluer le site ?',hint:'Cette question aide à départager un site vitrine d’un site avec outils.',opt:[['rare','Je veux surtout que le site soit créé puis rester sur cette base'],['regular','Je veux pouvoir ajouter ou modifier régulièrement des produits, prestations, contenus ou éléments de mon activité'],['many','Je veux faire évoluer régulièrement le catalogue ou la gestion de mon activité']]}
+];
+function visible(){return S.filter(function(s){return !s.show||s.show()})}
+function answered(s){var v=A[s.key];return s.type==='multi'?Array.isArray(v)&&v.length>0:!!v}
+function check(k){
+ if(k==='physical'&&arr('physical').some(function(x){return ['tobacco','weapons','adult'].indexOf(x)>-1}))return'refus';
+ if(k==='food'&&arr('food').some(function(x){return HARD.indexOf(x)>-1}))return'refus';
+ if(k==='clothing'&&arr('clothing').some(function(x){return ['revealing','lingerie'].indexOf(x)>-1}))return'refus';
+ if(k==='cosmetics'&&A.cosmetics==='suggestive')return'refus';
+ if(k==='service'&&arr('service').some(function(x){return ['finance','gambling','occult','adult'].indexOf(x)>-1}))return'refus';
+ if(k==='hair'&&arr('hair').some(function(x){return ['fade','beardshave'].indexOf(x)>-1}))return'refus';
+ if(k==='servicecontent'&&A.servicecontent==='suggestive')return'refus';
+ if(k==='digital'&&arr('digital').some(function(x){return ['finance','gambling','occult','adult'].indexOf(x)>-1}))return'refus';
+ if(k==='digitalcontent'&&A.digitalcontent==='suggestive')return'refus';
+ if(k==='payment'&&has('payment','interest'))return'refus';
+ if(k==='payment'&&has('payment','installments'))return'etude';
+ if(k==='food'&&has('food','foodunknown'))return'etude';
+ if(k==='clothing'&&has('clothing','unknown'))return'etude';
+ if((k==='cosmetics'||k==='servicecontent'||k==='digitalcontent')&&A[k]==='unknown')return'etude';
+ return null;
+}
+function recommendations(){
+  var list=[];
+  var sells=has('purpose','sell') || A.online==='yes';
+  var catalog=has('purpose','catalog') || A.online==='catalog';
+  var hasProducts=types('physical')||types('digital')||types('content');
+  var needsTools=A.management==='yes' || has('purpose','management') || has('purpose','booking') || has('purpose','quote');
+  var evolves=A.updates==='regular'||A.updates==='many';
+  var wantsSimple=A.updates==='rare' && !needsTools && !sells;
+  var trueEcommerce=sells && hasProducts && (A.online==='yes' || has('purpose','payments') || has('purpose','sell'));
+
+  if(trueEcommerce){
+    list.push({id:'ecommerce',score:100,why:'Vous souhaitez vendre directement en ligne avec des produits ou contenus, des commandes et/ou des paiements.'});
+  }
+  if(needsTools || evolves || (sells && !trueEcommerce)){
+    list.push({id:'outils',score:needsTools?96:(evolves?90:84),why:needsTools?'Vous avez besoin de fonctionnalités de gestion, de réservation, de devis ou de suivi de votre activité.':evolves?'Vous souhaitez pouvoir faire évoluer régulièrement vos produits, prestations ou contenus depuis le site.':'Vous souhaitez vendre ou prendre des demandes en ligne sans avoir besoin d’une boutique e-commerce complète.'});
+  }
+  if(wantsSimple || (!needsTools && !evolves && !trueEcommerce)){
+    list.push({id:'vitrine',score:wantsSimple?100:82,why:'Vous souhaitez surtout présenter votre activité et laisser le site sur une base simple, sans gestion avancée.'});
+  } else if(catalog && !trueEcommerce && !needsTools && !evolves){
+    list.push({id:'vitrine',score:88,why:'Vous souhaitez présenter un catalogue sans paiement ni gestion avancée.'});
+  }
+
+  var seen={};
+  list=list.filter(function(x){if(seen[x.id])return false;seen[x.id]=true;return true});
+  list.sort(function(a,b){return b.score-a.score});
+  return list;
+}
+function render(){var v=visible();if(I>=v.length)return result(blocked()?'refus':review()?'etude':'compatible');var s=v[I],h='<div class="quiz-progress"><div class="quiz-progress-fill" style="width:'+Math.round(I/v.length*100)+'%"></div></div><div class="quiz-step-count">Question '+(I+1)+' sur '+v.length+'</div><h2 class="quiz-q">'+s.title+'</h2>'+(s.hint?'<p class="quiz-hint">'+s.hint+'</p>':'')+'<div class="quiz-options">';
+s.opt.forEach(function(o){var sel=s.type==='multi'?has(s.key,o[0]):A[s.key]===o[0];h+='<button type="button" class="quiz-opt'+(sel?' selected':'')+'" data-v="'+o[0]+'" aria-pressed="'+sel+'">'+o[1]+'</button>'});
+h+='</div><div class="quiz-nav"><button type="button" class="btn-secondary" id="quizBack"'+(I===0?' disabled':'')+'>← Retour</button><button type="button" class="btn-primary" id="quizNext"'+(answered(s)?'':' disabled')+'>Continuer →</button></div><p class="quiz-note">Vos réponses restent dans votre navigateur : rien n’est envoyé ni enregistré.</p>';R.innerHTML=h;
+R.querySelectorAll('.quiz-opt').forEach(function(b){b.onclick=function(){var x=b.dataset.v;if(s.type==='multi'){var c=arr(s.key);A[s.key]=c.indexOf(x)>-1?c.filter(function(z){return z!==x}):c.concat(x);var q=check(s.key);if(q==='refus')return result('refus');render()}else{A[s.key]=x;var q=check(s.key);if(q)return result(q);render()}}});
+document.getElementById('quizBack').onclick=function(){if(I>0){I--;render()}};document.getElementById('quizNext').onclick=function(){if(!answered(s))return;var q=check(s.key);if(q)return result(q);I++;render()};}
+
+function answerSummary(){
+  var lines=[];
+  S.forEach(function(s){
+    var v=A[s.key];
+    if(s.type==='multi'){
+      if(!Array.isArray(v)||!v.length)return;
+      var labels=v.map(function(x){
+        var found=s.opt.find(function(o){return o[0]===x});
+        return found?found[1]:x;
+      });
+      lines.push('• '+s.title.replace(/<[^>]*>/g,'')+' : '+labels.join(', '));
+    }else if(v){
+      var found=s.opt.find(function(o){return o[0]===v});
+      lines.push('• '+s.title.replace(/<[^>]*>/g,'')+' : '+(found?found[1]:v));
+    }
+  });
+  return lines.join('\n');
+}
+function refusalWhatsAppUrl(){
+  var message='Bonjour, je viens de remplir le questionnaire « Trouver mon offre » et je souhaite comprendre la décision concernant mon projet.\n\nVoici mes réponses :\n'+answerSummary()+'\n\nPouvez-vous m’expliquer le point qui pose problème et me dire s’il est possible d’approfondir ma situation ?';
+  return 'https://wa.me/33783452992?text='+encodeURIComponent(message);
+}
+function result(o){
+  if(blocked())o='refus';
+  var h='<div class="quiz-progress"><div class="quiz-progress-fill" style="width:100%"></div></div><div class="quiz-result">';
+  if(o==='compatible'){
+    var recs=recommendations();
+    var primary=recs[0];
+    h+='<h2>Voici les offres qui correspondent à votre projet</h2>';
+    h+='<p>D’après vos réponses, '+(recs.length>1?'plusieurs offres peuvent convenir. Voici comment les départager :':'voici l’offre la plus cohérente avec votre besoin.')+'</p>';
+    if(primary){
+      var pf=OFF[primary.id];
+      h+='<div class="quiz-offer"><strong>'+pf.name+'</strong><span>'+pf.price+'</span><p>'+primary.why+'</p><div class="quiz-actions"><a class="btn-primary" href="'+pf.url+'">Découvrir cette offre</a></div></div>';
+    }
+    if(recs.length>1){
+      h+='<h3 style="margin-top:1.5rem">Vous hésitez entre plusieurs formules ?</h3>';
+      recs.slice(1).forEach(function(r){
+        var f=OFF[r.id];
+        var explanation='';
+        if(r.id==='vitrine' && primary.id!=='vitrine') explanation='Choisissez cette formule si vous voulez principalement présenter votre activité et que vous ne prévoyez pas de gérer régulièrement un catalogue ou des données depuis le site.';
+        else if(r.id==='outils') explanation='Choisissez cette formule si vous voulez pouvoir faire évoluer régulièrement votre site ou disposer d’une gestion dédiée, sans avoir besoin d’une boutique e-commerce complète.';
+        else if(r.id==='ecommerce') explanation='Choisissez cette formule si vous voulez vendre en ligne avec catalogue, panier, paiement et gestion des commandes.';
+        h+='<div class="quiz-offer"><strong>'+f.name+'</strong><span>'+f.price+'</span><p>'+explanation+'</p><div class="quiz-actions"><a class="btn-secondary" href="'+f.url+'">Voir cette formule</a></div></div>';
+      });
+      h+='<p class="quiz-note"><strong>En résumé :</strong> si vous voulez simplement présenter ce que vous faites et vous arrêter là, privilégiez le site vitrine. Si vous pensez ajouter régulièrement de nouveaux produits, prestations ou contenus et les gérer depuis le site, le site + outils devient plus pertinent. Si votre objectif est réellement de vendre en ligne avec panier, paiement et commandes, choisissez l’e-commerce.</p>';
+    }
+    h+='<div class="quiz-actions"><a class="btn-secondary" href="/#contact">Démarrer mon projet</a></div><p class="quiz-note">Sous réserve de validation de votre demande.</p>';
+  }else if(o==='etude'){
+    h+='<h2>Votre projet nécessite une vérification</h2><p>Certaines réponses nécessitent un examen avant qu’une offre puisse être recommandée.</p><div class="quiz-actions"><a class="btn-primary" href="#" onclick="openBookingModal();return false;">Réserver 15 min</a><a class="btn-secondary" href="/#contact">M’écrire</a></div>';
+  }else{
+    h+='<h2>Ce projet ne correspond pas à ma charte</h2><p>Les réponses indiquent que le projet comporte un produit, une prestation, un contenu ou un moyen de paiement que je n’accompagne pas.</p>';
+    h+='<div class="quiz-offer" style="margin-top:1.2rem"><strong>Vous ne comprenez pas cette décision ?</strong><p>Vous pouvez me contacter directement. Vos réponses au questionnaire seront automatiquement ajoutées au message WhatsApp afin que je puisse regarder votre situation plus précisément avec vous.</p><div class="quiz-actions"><a class="btn-primary" target="_blank" rel="noopener" href="'+refusalWhatsAppUrl()+'">💬 Je ne comprends pas la décision</a><a class="btn-secondary" href="/">Retour à l’accueil</a></div></div>';
+  }
+  h+='</div><div class="quiz-actions"><button type="button" class="btn-secondary" id="quizRestart">↺ Recommencer</button></div>';
+  R.innerHTML=h;
+  document.getElementById('quizRestart').onclick=function(){A={};I=0;render()}
+}
+render();
+});
+</script>

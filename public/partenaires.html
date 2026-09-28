@@ -40,7 +40,7 @@
     "name": "ByEmreh",
     "image": "https://www.byemreh.fr/logo.png",
     "description": "Création de sites internet vitrines professionnels pour les commerçants locaux, artisans et PME.",
-    "priceRange": "190€ - 790€",
+    "priceRange": "190€ - 1290€",
     "areaServed": ["Marseille", "Aix-en-Provence", "Provence-Alpes-Côte d'Azur"],
     "address": {
       "@type": "PostalAddress",
@@ -64,8 +64,8 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Pourquoi le prix de création est-il de 190€ au lieu de 790€ ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "C'est une offre commerciale spéciale destinée à construire un solide réseau de commerçants locaux satisfaits. En échange de ce tarif ultra-compétitif, il est simplement demandé de laisser un avis sincère après la mise en ligne." }
+        "name": "Pourquoi le tarif de lancement est-il aussi accessible ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ByEmreh est actuellement en phase de développement de son portefeuille de réalisations. Ce tarif de lancement reflète cette phase de démarrage, sans ancien prix artificiellement gonflé ni obligation de votre part." }
       },
       {
         "@type": "Question",
@@ -286,18 +286,18 @@
     .nav-dropdown {
       position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-10px) scale(.94);
       min-width: 230px; padding: .6rem;
-      background: rgba(255,255,255,.5);
-      backdrop-filter: blur(22px) saturate(220%); -webkit-backdrop-filter: blur(22px) saturate(220%);
-      border: 1px solid rgba(255,255,255,.7);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+      border: 1px solid rgba(20,18,35,.08);
       border-radius: 22px;
-      box-shadow: 0 24px 60px rgba(20,18,35,.22), inset 0 1px 1px rgba(255,255,255,.9);
+      box-shadow: 0 24px 60px rgba(20,18,35,.28), inset 0 1px 1px rgba(255,255,255,1);
       display: flex; flex-direction: column; gap: .15rem;
       opacity: 0; pointer-events: none; z-index: 300;
       transition: opacity .35s cubic-bezier(.34,1.56,.64,1), transform .35s cubic-bezier(.34,1.56,.64,1);
     }
     .nav-dropdown.is-open { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); pointer-events: auto; }
     .nav-dropdown-label { font-family: var(--ff-mono); font-size: .64rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6B6A78; padding: .5rem .8rem .3rem; }
-    .nav-dropdown-sep { height: 1px; background: rgba(20,18,35,.08); margin: .4rem .5rem; }
+    .nav-dropdown-sep { height: 1px; background: rgba(20,18,35,.1); margin: .4rem .5rem; }
     .nav-dropdown-item {
       display: block; padding: .7rem .9rem; border-radius: 14px; color: var(--ink);
       font-family: var(--ff-body); font-size: .87rem; font-weight: 600; text-decoration: none;
@@ -308,11 +308,12 @@
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(2) { transition-delay: .03s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(3) { transition-delay: .06s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(4) { transition-delay: .09s; }
-    .nav-dropdown.is-open .nav-dropdown-item:nth-child(6) { transition-delay: .13s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(5) { transition-delay: .12s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(7) { transition-delay: .16s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(8) { transition-delay: .19s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(9) { transition-delay: .22s; }
-    .nav-dropdown-item:hover { background: rgba(255,255,255,.7); }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(10) { transition-delay: .25s; }
+    .nav-dropdown-item:hover { background: var(--signal-lt); color: var(--signal); }
 
     /* ── HERO ───────────────────────────────── */
     .hero { position: relative; padding: 10rem 2.5rem 6rem; overflow: hidden; }
@@ -464,6 +465,16 @@
     .realisation-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
     .realisation-link { font-size: .82rem; font-weight: 700; color: var(--signal); text-decoration: none; }
     .realisation-link:hover { text-decoration: underline; }
+
+    /* ── LOGO "YASIR by ByEmreh" (carte réalisation) ──────────── */
+    .yasir-logo { display: flex; flex-direction: column; gap: .25rem; margin-bottom: 1.1rem; }
+    .yasir-logo-name { font-family: var(--ff-disp); font-weight: 700; font-size: 1.7rem; letter-spacing: -.01em; color: var(--ink); line-height: 1; }
+    .yasir-logo-by {
+      font-family: var(--ff-mono); font-weight: 700; font-size: .72rem; letter-spacing: -.01em; color: var(--ink);
+      position: relative; z-index: 1;
+    }
+    .yasir-logo-by span { color: var(--signal); }
+    .yasir-logo-by::after { content: '_'; color: var(--coral); animation: blink 1.1s step-end infinite; }
 
     /* ── ACCORDÉON "POUR QUI ?" (réutilise le style FAQ) ──────────── */
     .audience-section { background: var(--paper-dim); }
@@ -839,11 +850,11 @@
     .objections-trigger-icon { display: inline-block; transition: transform .3s var(--ease); color: var(--coral); font-size: 1rem; }
     .objections-trigger.is-open .objections-trigger-icon { transform: rotate(180deg); }
     .objections-panel {
-      max-height: 0; overflow: hidden; opacity: 0;
-      transition: max-height .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease);
-      margin-top: 0;
+      display: grid; grid-template-rows: 0fr; opacity: 0; margin-top: 0;
+      transition: grid-template-rows .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease);
     }
-    .objections-panel.is-open { max-height: 2400px; opacity: 1; margin-top: 2.6rem; }
+    .objections-panel-inner { overflow: hidden; min-height: 0; }
+    .objections-panel.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: 2.6rem; }
     .objections-list { margin-top: 2.2rem; }
 
     .faq-section { background: var(--paper); }
@@ -969,8 +980,12 @@
     }
     .cities-grid a:hover { border-color: var(--signal); color: var(--signal); transform: translateY(-2px); }
 
-    .cities-extra { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease); margin-top: 0; }
-    .cities-extra.is-open { max-height: 900px; opacity: 1; margin-top: .7rem; }
+    .cities-extra {
+      display: grid; grid-template-rows: 0fr; opacity: 0; margin-top: 0;
+      transition: grid-template-rows .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease);
+    }
+    .cities-extra > .cities-grid { overflow: hidden; min-height: 0; }
+    .cities-extra.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: .7rem; }
     .cities-toggle {
       display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.6rem; background: none;
       border: 1.5px dashed var(--border); border-radius: 99px; padding: .7rem 1.4rem; font-family: var(--ff-mono);
@@ -1023,6 +1038,7 @@
           <a href="/sites-vitrines.html" class="nav-dropdown-item">🌐 Sites vitrines</a>
           <a href="/sites-outils.html" class="nav-dropdown-item">⚙️ Sites + outils</a>
           <a href="/e-commerce.html" class="nav-dropdown-item">🛒 E-commerce</a>
+          <a href="/trouver-mon-offre.html" class="nav-dropdown-item">🧭 Trouver mon offre</a>
           <div class="nav-dropdown-sep"></div>
           <a href="/mes-realisations.html" class="nav-dropdown-item">📁 Mes réalisations</a>
           <a href="/partenaires.html" class="nav-dropdown-item">🤝 Offre partenaire</a>
@@ -1030,7 +1046,7 @@
           <a href="#" class="nav-dropdown-item" onclick="closeNavMenu();openBookingModal();return false;">Réserver un rendez-vous</a>
         </div>
       </div>
-      <a href="#contact" class="nav-cta"><span class="nav-cta-full">Demander un devis</span><span class="nav-cta-short">Devis gratuit</span></a>
+      <a href="#contact" class="nav-cta"><span class="nav-cta-full">Démarrer mon projet</span><span class="nav-cta-short">Devis gratuit</span></a>
     </div>
   </nav>
 </header>
@@ -1167,16 +1183,21 @@
 <footer>
   <p><strong>ByEmreh</strong> — Partenaire web pour le développement local et la digitalisation des commerces.</p>
   <p style="margin-top:1rem; font-size:.82rem;">
+    <a href="/">Accueil</a> ·
     <a href="/sites-vitrines.html">Sites vitrines</a> ·
     <a href="/sites-outils.html">Sites + outils</a> ·
     <a href="/e-commerce.html">E-commerce</a> ·
+    <a href="/trouver-mon-offre.html">Trouver mon offre</a> ·
+    <a href="/mes-realisations.html">Réalisations</a> ·
     <a href="/preuve-par-le-code.html">Preuve par le code</a> ·
     <a href="/partenaires.html">Partenaires</a> ·
-    <a href="/blog">Blog</a>
+    <a href="/blog">Blog</a> ·
+    <a href="/#contact">Contact</a>
   </p>
   <p style="margin-top:.6rem; font-size:.8rem;">
     <a href="#" onclick="openModal('mentions'); return false;">Mentions Légales</a> ·
-    <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a>
+    <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a> ·
+    <a href="/politique-confidentialite.html">Politique de confidentialité</a>
   </p>
   <p style="margin-top:.4rem">© 2026 · Tous droits réservés · Développé avec rigueur et passion 🤍</p>
 </footer>
@@ -1232,6 +1253,8 @@
         <li><strong>Pack Lancement (190€) :</strong> Tarif fixe unique pour la création technique et graphique du site vitrine sous réserve de transmission complète des éléments par le client.</li>
         <li><strong>Option Hébergement & Domaine (20€/mois) :</strong> Option facultative rattachée au Pack Lancement, couvrant l'hébergement web et le nom de domaine, sans modification mensuelle incluse, sans engagement et résiliable à tout moment par simple email.</li>
         <li><strong>Pack Sérénité (150€ + 40€/mois) :</strong> Création du site vitrine accompagnée d'un abonnement d'infrastructure (hébergement web et nom de domaine inclus) et d'une modification mensuelle offerte. À la commande, le client règle 190€ (150€ de création + le premier mois d'abonnement à 40€), puis 40€/mois, avec un engagement de 12 mois.</li>
+        <li><strong>Offre Sites + Outils (49,95€/mois avec engagement de 12 mois, ou 89,95€/mois sans engagement) :</strong> Création d'un site professionnel accompagné d'un espace de gestion (back-office) dont les fonctionnalités précises sont définies avec le client selon son activité et son projet. L'accès aux fonctionnalités hébergées et au back-office est conditionné au paiement de l'abonnement en cours. <em>Les modalités détaillées de reconduction, de résiliation et de récupération des données à l'issue du contrat font l'objet de conditions spécifiques à cette offre, en cours de finalisation — à consulter avant toute souscription.</em></li>
+        <li><strong>Offre E-commerce (à partir de 1 290€) :</strong> Création d'une boutique en ligne sur mesure (catalogue, panier, paiement, gestion des commandes), sur devis établi selon le projet du client.</li>
       </ul>
 
       <h3>3. Politiques d'Éthique & Refus de Vente (Charte d'Éthique)</h3>

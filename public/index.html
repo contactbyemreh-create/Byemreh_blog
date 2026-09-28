@@ -40,7 +40,7 @@
     "name": "ByEmreh",
     "image": "https://www.byemreh.fr/logo.png",
     "description": "Création de sites internet vitrines professionnels pour les commerçants locaux, artisans et PME.",
-    "priceRange": "190€ - 790€",
+    "priceRange": "190€ - 1290€",
     "areaServed": ["Marseille", "Aix-en-Provence", "Provence-Alpes-Côte d'Azur"],
     "address": {
       "@type": "PostalAddress",
@@ -64,8 +64,8 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Pourquoi le prix de création est-il de 190€ au lieu de 790€ ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "C'est une offre commerciale spéciale destinée à construire un solide réseau de commerçants locaux satisfaits. En échange de ce tarif ultra-compétitif, il est simplement demandé de laisser un avis sincère après la mise en ligne." }
+        "name": "Pourquoi le tarif de lancement est-il aussi accessible ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ByEmreh est actuellement en phase de développement de son portefeuille de réalisations. Ce tarif de lancement reflète cette phase de démarrage, sans ancien prix artificiellement gonflé ni obligation de votre part." }
       },
       {
         "@type": "Question",
@@ -308,10 +308,11 @@
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(2) { transition-delay: .03s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(3) { transition-delay: .06s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(4) { transition-delay: .09s; }
-    .nav-dropdown.is-open .nav-dropdown-item:nth-child(6) { transition-delay: .13s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(5) { transition-delay: .12s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(7) { transition-delay: .16s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(8) { transition-delay: .19s; }
     .nav-dropdown.is-open .nav-dropdown-item:nth-child(9) { transition-delay: .22s; }
+    .nav-dropdown.is-open .nav-dropdown-item:nth-child(10) { transition-delay: .25s; }
     .nav-dropdown-item:hover { background: var(--signal-lt); color: var(--signal); }
 
     /* ── HERO ───────────────────────────────── */
@@ -1043,6 +1044,7 @@
           <a href="/sites-vitrines.html" class="nav-dropdown-item">🌐 Sites vitrines</a>
           <a href="/sites-outils.html" class="nav-dropdown-item">⚙️ Sites + outils</a>
           <a href="/e-commerce.html" class="nav-dropdown-item">🛒 E-commerce</a>
+          <a href="/trouver-mon-offre.html" class="nav-dropdown-item">🧭 Trouver mon offre</a>
           <div class="nav-dropdown-sep"></div>
           <a href="/mes-realisations.html" class="nav-dropdown-item">📁 Mes réalisations</a>
           <a href="/partenaires.html" class="nav-dropdown-item">🤝 Offre partenaire</a>
@@ -1050,7 +1052,7 @@
           <a href="#" class="nav-dropdown-item" onclick="closeNavMenu();openBookingModal();return false;">Réserver un rendez-vous</a>
         </div>
       </div>
-      <a href="#contact" class="nav-cta"><span class="nav-cta-full">Demander un devis</span><span class="nav-cta-short">Devis gratuit</span></a>
+      <a href="#contact" class="nav-cta"><span class="nav-cta-full">Démarrer mon projet</span><span class="nav-cta-short">Devis gratuit</span></a>
     </div>
   </nav>
 </header>
@@ -1065,18 +1067,17 @@
       <p class="hero-signature" id="typed-line"></p>
 
       <div class="promo-block">
-        <div class="promo-label">Prix de lancement clé en main</div>
+        <div class="promo-label">Offre de lancement actuellement proposée</div>
         <div class="promo-prices">
-          <div class="price-old">790€</div>
           <div class="price-new"><sup>€</sup>190</div>
         </div>
-        <div class="promo-caption">Site vitrine complet avec <strong>formulaire de contact, design premium et SEO inclus</strong></div>
+        <div class="promo-caption">Site vitrine sur mesure avec <strong>formulaire de contact, design premium et SEO inclus</strong></div>
       </div>
 
       <div class="hero-actions">
-        <a href="#tarif" class="btn-primary" id="magnet-btn">Je veux mon site →</a>
+        <a href="#tarif" class="btn-primary" id="magnet-btn">Démarrer mon projet →</a>
         <a href="/preuve-par-le-code.html" class="btn-secondary">Voir mon code ↓</a>
-        <a href="#" class="btn-secondary" onclick="openBookingModal();return false;">Réserver un appel gratuit</a>
+        <a href="#" class="btn-secondary" onclick="openBookingModal();return false;">Réserver 15 min</a>
       </div>
     </div>
   </section>
@@ -1117,8 +1118,8 @@
         </div>
         <div class="feature-card reveal">
           <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-          <h3>Livraison Éclair (7 jours)</h3>
-          <p>Pas de projet qui traîne pendant des mois. Une fois vos informations transmises, je conçois et mets en ligne votre site web sous une semaine ouvrée.</p>
+          <h3>Livraison sous 7 jours ouvrés</h3>
+          <p>Pas de projet qui traîne pendant des mois. Dès réception de tous les éléments nécessaires au projet, je conçois et mets en ligne votre site web sous 7 jours ouvrés.</p>
         </div>
         <div class="feature-card reveal">
           <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.5 2"/></svg></div>
@@ -1168,13 +1169,15 @@
           <a href="/e-commerce.html" class="btn-secondary solution-cta">Découvrir →</a>
         </div>
       </div>
+      <p class="reveal" style="text-align:center;margin-top:2.2rem;"><a href="/trouver-mon-offre.html" class="btn-secondary">Pas sûr ? Trouvez l'offre adaptée →</a></p>
     </div>
   </section>
 
   <section class="trust-section" id="transparence">
     <div class="section-inner">
-      <div class="section-label reveal" style="text-align:center">Sans enjoliver</div>
+      <div class="section-label reveal" style="text-align:center">ByEmreh est actuellement en phase de lancement</div>
       <h2 class="section-title reveal" style="text-align:center">Ce qui est <em>vraiment inclus</em></h2>
+      <p class="reveal" style="max-width:640px;margin:0 auto 1.2rem;text-align:center;color:var(--muted);">Je développe actuellement les premières réalisations ByEmreh, avec des conditions de lancement. L'objectif : construire des solutions web réellement adaptées aux besoins des professionnels, sans promesses artificielles ni chiffres gonflés.</p>
       <p class="reveal" style="max-width:640px;margin:0 auto 2.6rem;text-align:center;color:var(--muted);">On me demande souvent ce qui change concrètement par rapport à une agence classique. Voici, sans enjoliver :</p>
 
       <div class="trust-table-wrap reveal">
@@ -1308,7 +1311,7 @@
           <ul class="price-card-includes">
             <li>Design sur-mesure & optimisé mobile</li>
             <li>Optimisation SEO locale (Google)</li>
-            <li>Livraison rapide en 7 jours</li>
+            <li>Livraison sous 7 jours ouvrés, à compter de la réception de tous les éléments nécessaires</li>
             <li id="li-domaine" class="dim">Nom de domaine non inclus</li>
             <li id="li-hebergement" class="dim">Hébergement non inclus</li>
           </ul>
@@ -1325,7 +1328,7 @@
             </label>
             <label class="form-legal-check">
               <input type="checkbox" id="privacy-lancement" required />
-              <span>J'accepte la politique de confidentialité</span>
+              <span>J'accepte la <a href="/politique-confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a></span>
             </label>
           </div>
 
@@ -1359,7 +1362,7 @@
             </label>
             <label class="form-legal-check">
               <input type="checkbox" id="privacy-serenite" required />
-              <span>J'accepte la politique de confidentialité</span>
+              <span>J'accepte la <a href="/politique-confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a></span>
             </label>
           </div>
 
@@ -1455,7 +1458,11 @@
           <div>
             <label class="form-legal-check">
               <input type="checkbox" id="legal-check" required />
-              <span>J'ai lu et j'accepte les <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a> et la politique de confidentialité.</span>
+              <span>J'ai lu et j'accepte les <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a>.</span>
+            </label>
+            <label class="form-legal-check">
+              <input type="checkbox" id="privacy-check" required />
+              <span>J'ai pris connaissance de la <a href="/politique-confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</span>
             </label>
           </div>
 
@@ -1472,8 +1479,8 @@
 
       <div class="faq-list">
         <details class="faq-item reveal">
-          <summary>Pourquoi le prix de création est-il de 190€ au lieu de 790€ ?</summary>
-          <div class="faq-a">C'est une offre commerciale spéciale destinée à construire un solide réseau de commerçants locaux satisfaits. En échange de ce tarif ultra-compétitif, je vous demande simplement de me laisser un avis sincère après la mise en ligne pour m'aider à développer ma réputation.</div>
+          <summary>Pourquoi le tarif de lancement est-il aussi accessible ?</summary>
+          <div class="faq-a">ByEmreh est actuellement en phase de développement de son portefeuille de réalisations. Ce tarif de lancement reflète cette phase de démarrage — sans ancien prix artificiellement gonflé, et sans aucune obligation de votre part.</div>
         </details>
 
         <details class="faq-item reveal">
@@ -1560,16 +1567,21 @@
 <footer>
   <p><strong>ByEmreh</strong> — Partenaire web pour le développement local et la digitalisation des commerces.</p>
   <p style="margin-top:1rem; font-size:.82rem;">
+    <a href="/">Accueil</a> ·
     <a href="/sites-vitrines.html">Sites vitrines</a> ·
     <a href="/sites-outils.html">Sites + outils</a> ·
     <a href="/e-commerce.html">E-commerce</a> ·
+    <a href="/trouver-mon-offre.html">Trouver mon offre</a> ·
+    <a href="/mes-realisations.html">Réalisations</a> ·
     <a href="/preuve-par-le-code.html">Preuve par le code</a> ·
     <a href="/partenaires.html">Partenaires</a> ·
-    <a href="/blog">Blog</a>
+    <a href="/blog">Blog</a> ·
+    <a href="/#contact">Contact</a>
   </p>
   <p style="margin-top:.6rem; font-size:.8rem;">
     <a href="#" onclick="openModal('mentions'); return false;">Mentions Légales</a> ·
-    <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a>
+    <a href="#" onclick="openModal('cgv'); return false;">Conditions Générales de Vente (CGV)</a> ·
+    <a href="/politique-confidentialite.html">Politique de confidentialité</a>
   </p>
   <p style="margin-top:.4rem">© 2026 · Tous droits réservés · Développé avec rigueur et passion 🤍</p>
 </footer>
@@ -1625,6 +1637,8 @@
         <li><strong>Pack Lancement (190€) :</strong> Tarif fixe unique pour la création technique et graphique du site vitrine sous réserve de transmission complète des éléments par le client.</li>
         <li><strong>Option Hébergement & Domaine (20€/mois) :</strong> Option facultative rattachée au Pack Lancement, couvrant l'hébergement web et le nom de domaine, sans modification mensuelle incluse, sans engagement et résiliable à tout moment par simple email.</li>
         <li><strong>Pack Sérénité (150€ + 40€/mois) :</strong> Création du site vitrine accompagnée d'un abonnement d'infrastructure (hébergement web et nom de domaine inclus) et d'une modification mensuelle offerte. À la commande, le client règle 190€ (150€ de création + le premier mois d'abonnement à 40€), puis 40€/mois, avec un engagement de 12 mois.</li>
+        <li><strong>Offre Sites + Outils (49,95€/mois avec engagement de 12 mois, ou 89,95€/mois sans engagement) :</strong> Création d'un site professionnel accompagné d'un espace de gestion (back-office) dont les fonctionnalités précises sont définies avec le client selon son activité et son projet. L'accès aux fonctionnalités hébergées et au back-office est conditionné au paiement de l'abonnement en cours. <em>Les modalités détaillées de reconduction, de résiliation et de récupération des données à l'issue du contrat font l'objet de conditions spécifiques à cette offre, en cours de finalisation — à consulter avant toute souscription.</em></li>
+        <li><strong>Offre E-commerce (à partir de 1 290€) :</strong> Création d'une boutique en ligne sur mesure (catalogue, panier, paiement, gestion des commandes), sur devis établi selon le projet du client.</li>
       </ul>
 
       <h3>3. Politiques d'Éthique & Refus de Vente (Charte d'Éthique)</h3>
