@@ -394,13 +394,13 @@
     .proof-types span { font-size: .88rem; font-weight: 600; color: #33323C; }
 
     /* ── MARQUEE STACK ──────────────────────── */
-    .marquee { background: var(--ink); overflow: hidden; padding: 1rem 0; border-bottom: 1px solid var(--ink-line); }
-    .marquee-track { display: flex; gap: 3rem; width: max-content; animation: marquee 30s linear infinite; }
-    .marquee-track span {
-      font-family: var(--ff-mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
-      color: #6B6A78; display: flex; align-items: center; gap: .8rem; white-space: nowrap;
+    .marquee { background: var(--ink); overflow: hidden; padding: 1.3rem 0; border-bottom: 1px solid var(--ink-line); }
+    .marquee-track { display: flex; gap: 3.2rem; width: max-content; animation: marquee 26s linear infinite; align-items: center; }
+    .marquee-track .logo-chip {
+      display: flex; align-items: center; gap: .6rem; white-space: nowrap;
+      font-family: var(--ff-mono); font-size: .74rem; letter-spacing: .04em; color: #9C9AA8;
     }
-    .marquee-track span::before { content: '◆'; color: var(--coral); font-size: .55rem; }
+    .marquee-track .logo-chip img { height: 22px; width: 22px; object-fit: contain; flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ── SECTIONS GÉNÉRIQUES ─────────────────── */
@@ -1095,10 +1095,7 @@
   </div>
 
   <div class="marquee">
-    <div class="marquee-track">
-      <span>HTML5 & CSS3</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Python</span><span>PostgreSQL</span><span>Stripe</span><span>SEO Technique</span><span>Git</span><span>Figma</span>
-      <span>HTML5 & CSS3</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Python</span><span>PostgreSQL</span><span>Stripe</span><span>SEO Technique</span><span>Git</span><span>Figma</span>
-    </div>
+    <div class="marquee-track" id="techMarquee"></div>
   </div>
 
   <section id="services">
@@ -1755,6 +1752,28 @@
       }, { passive: true });
     });
   }
+
+  /* ── BANDEAU LOGOS TECH ── */
+  (function () {
+    var TECH = [
+      { slug: 'html5', color: 'E34F26', name: 'HTML5' },
+      { slug: 'css3', color: '1572B6', name: 'CSS3' },
+      { slug: 'javascript', color: 'F7DF1E', name: 'JavaScript' },
+      { slug: 'react', color: '61DAFB', name: 'React' },
+      { slug: 'nodedotjs', color: '5FA04E', name: 'Node.js' },
+      { slug: 'python', color: '3776AB', name: 'Python' },
+      { slug: 'postgresql', color: '4169E1', name: 'PostgreSQL' },
+      { slug: 'stripe', color: '635BFF', name: 'Stripe' },
+      { slug: 'git', color: 'F05032', name: 'Git' },
+      { slug: 'figma', color: 'F24E1E', name: 'Figma' }
+    ];
+    var track = document.getElementById('techMarquee');
+    if (!track) return;
+    var chips = TECH.map(function (t) {
+      return '<div class="logo-chip"><img src="https://cdn.simpleicons.org/' + t.slug + '/' + t.color + '" alt="' + t.name + '" loading="lazy"/>' + t.name + '</div>';
+    }).join('');
+    track.innerHTML = chips + chips;
+  })();
 
   /* ── REVEAL AU SCROLL ── */
   const groups = document.querySelectorAll('.features-grid, .steps-grid, .compare-grid, .faq-list');
