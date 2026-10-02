@@ -1,7 +1,19 @@
 import { Hono } from 'hono';
 import { html } from 'hono/html';
+import engine from './engine.js';
 
 const app = new Hono();
+
+// ── Moteur ByEmreh : contact par email (Resend), suivi des visites, newsletter, API de l'espace /pro ──
+// Tout ce qui commence par /api/ est géré par engine.js, SAUF /api/posts (le blog, plus bas).
+// /images/ n'est géré que si le bucket R2 « IMAGES » est branché (facultatif).
+app.use('*', async (c, next) => {
+  const p = new URL(c.req.url).pathname;
+  if (p === '/pro' || p === '/pro/') return c.env.ASSETS.fetch(new Request(new URL('/pro.html', c.req.url), c.req.raw));
+  const isEngine = (p.startsWith('/api/') && !p.startsWith('/api/posts')) || (p.startsWith('/images/') && !!c.env.IMAGES);
+  if (isEngine) return engine.fetch(c.req.raw, c.env, c.executionCtx);
+  return next();
+});
 
 // Servir le site vitrine (public/) pour tout sauf /blog, /admin, /api
 app.get('*', async (c, next) => {
