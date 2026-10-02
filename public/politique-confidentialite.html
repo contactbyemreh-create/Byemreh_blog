@@ -1069,22 +1069,26 @@
       <h2 class="section-title reveal" style="text-align:left;margin-top:2.2rem;">2. Données collectées et finalités</h2>
       <p class="reveal" style="color:var(--muted);">Selon le formulaire utilisé, les données suivantes peuvent être collectées : nom, adresse email, numéro de téléphone, nom de votre activité, et le contenu de votre message. Ces données sont utilisées uniquement pour répondre à votre demande (devis, rendez-vous, partenariat) et assurer le suivi de la relation commerciale.</p>
 
+      <p class="reveal" style="color:var(--muted);">Si vous vous inscrivez à la lettre d'information, seule votre adresse email est enregistrée, avec la date de votre consentement. Elle sert uniquement à vous envoyer mes actualités et conseils. Chaque email contient un lien de désinscription en un clic.</p>
+
       <h2 class="section-title reveal" style="text-align:left;margin-top:2.2rem;">3. Base juridique</h2>
-      <p class="reveal" style="color:var(--muted);">Le traitement repose sur votre consentement (envoi volontaire d'un formulaire) et, le cas échéant, sur l'exécution de mesures précontractuelles ou contractuelles (devis, prestation).</p>
+      <p class="reveal" style="color:var(--muted);">Le traitement repose sur votre consentement (envoi volontaire d'un formulaire, ou inscription à la lettre d'information) et, le cas échéant, sur l'exécution de mesures précontractuelles ou contractuelles (devis, prestation).</p>
 
       <h2 class="section-title reveal" style="text-align:left;margin-top:2.2rem;">4. Outils utilisés (sous-traitants)</h2>
       <p class="reveal" style="color:var(--muted);">Ce site utilise les services tiers suivants, chacun pouvant traiter une partie de vos données dans le cadre de sa propre fonction :</p>
       <ul class="reveal" style="color:var(--muted);line-height:1.9;">
-        <li><strong>Formspree</strong> — réception des formulaires de contact et de partenariat.</li>
+        <li><strong>Formspree</strong> — réception des formulaires de contact et de partenariat (service de secours en cas d'indisponibilité de mon propre serveur).</li>
+        <li><strong>Resend</strong> — envoi des emails : notification de votre message, confirmation de réception, et lettre d'information si vous vous y inscrivez.</li>
+        <li><strong>Cloudflare</strong> — hébergement du site, du serveur et de la base de données où sont enregistrés vos messages.</li>
         <li><strong>Stripe</strong> — traitement des paiements liés aux offres Sites vitrines.</li>
         <li><strong>Cal.com</strong> — prise de rendez-vous en ligne.</li>
         <li><strong>WhatsApp (Meta)</strong> — mise en relation directe via le bouton WhatsApp ; aucune donnée n'est collectée par ByEmreh à cette occasion.</li>
         <li><strong>Google Fonts</strong> — chargement des polices d'écriture du site, susceptible d'impliquer une requête technique vers les serveurs Google.</li>
       </ul>
-      <p class="reveal" style="color:var(--muted);">Aucun outil de mesure d'audience (analytics) ni cookie de suivi publicitaire n'est utilisé sur ce site à ce jour.</p>
+      <p class="reveal" style="color:var(--muted);">Ce site utilise une mesure d'audience anonyme, intégrée à mon propre serveur : elle compte les visites, les pages consultées, le site d'où vous venez et certains clics (paiement, WhatsApp, téléphone, prise de rendez-vous). Elle ne dépose <strong>aucun cookie</strong>, n'enregistre ni votre adresse IP ni aucun identifiant personnel, et ne sert aucune publicité. Aucun cookie de suivi publicitaire n'est utilisé sur ce site.</p>
 
       <h2 class="section-title reveal" style="text-align:left;margin-top:2.2rem;">5. Durée de conservation</h2>
-      <p class="reveal" style="color:var(--muted);">Les données issues des formulaires sont conservées le temps nécessaire au traitement de votre demande, puis archivées ou supprimées dans un délai raisonnable en l'absence de relation contractuelle.</p>
+      <p class="reveal" style="color:var(--muted);">Les données issues des formulaires sont conservées le temps nécessaire au traitement de votre demande, puis archivées ou supprimées dans un délai raisonnable en l'absence de relation contractuelle. Les adresses de la lettre d'information sont conservées jusqu'à votre désinscription.</p>
 
       <h2 class="section-title reveal" style="text-align:left;margin-top:2.2rem;">6. Vos droits</h2>
       <p class="reveal" style="color:var(--muted);">Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition concernant vos données. Pour exercer ces droits, contactez-moi directement via le formulaire de contact ou par email.</p>
@@ -1255,7 +1259,7 @@
   const prefersFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const cursor = document.getElementById('cursor');
-  if (prefersFinePointer && !prefersReducedMotion) {
+  if (cursor && prefersFinePointer && !prefersReducedMotion) {
     cursor.style.display = 'block';
     let mx = 0, my = 0, cx = 0, cy = 0;
     window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
@@ -1697,5 +1701,6 @@
   }
 </script>
 
+<script src="/byemreh.js" defer></script>
 </body>
 </html>

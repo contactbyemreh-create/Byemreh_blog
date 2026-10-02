@@ -1720,7 +1720,7 @@
   const prefersFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const cursor = document.getElementById('cursor');
-  if (prefersFinePointer && !prefersReducedMotion) {
+  if (cursor && prefersFinePointer && !prefersReducedMotion) {
     cursor.style.display = 'block';
     let mx = 0, my = 0, cx = 0, cy = 0;
     window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
@@ -2184,5 +2184,6 @@
   }
 </script>
 
+<script src="/byemreh.js" defer></script>
 </body>
 </html>

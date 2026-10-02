@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Espace pro · ByEmreh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="pro-config.js"></script>
+<style>
+  :root{
+    --accent:#FF5A2B; --on-accent:#fff;
+    --bg:#F4F5F7; --card:#fff; --line:#E5E7EB; --ink:#14161B; --muted:#667085; --muted2:#98A2B3;
+    --ok:#15803D; --ok-bg:#ECFDF3; --warn:#B45309; --warn-bg:#FFF6E5; --err:#C0392B; --err-bg:#FEF0EE; --blue:#2563EB; --blue-bg:#EFF4FF;
+    --ff:'Inter',system-ui,sans-serif; --ff-d:'Space Grotesk','Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--ff);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit;}
+  button{cursor:pointer;}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:6px;}
+  .hidden{display:none !important;}
+  svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+  /* ── Connexion ── */
+  .login{min-height:100vh;display:grid;place-items:center;padding:1.2rem;}
+  .login-card{width:100%;max-width:380px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:2rem 1.8rem;box-shadow:0 20px 50px -25px rgba(0,0,0,.2);}
+  .login-card h1{font-family:var(--ff-d);font-size:1.4rem;margin-bottom:.3rem;}
+  .login-card p{color:var(--muted);margin-bottom:1.3rem;}
+
+  /* ── Coquille ── */
+  #app{display:grid;grid-template-columns:250px 1fr;min-height:100vh;}
+  aside{position:sticky;top:0;height:100vh;background:#fff;border-right:1px solid var(--line);padding:1.1rem .8rem;display:flex;flex-direction:column;gap:.15rem;overflow-y:auto;}
+  .side-brand{display:flex;align-items:center;gap:.65rem;padding:.3rem .5rem 1.1rem;font-family:var(--ff-d);font-weight:700;font-size:1.05rem;}
+  .side-brand img{width:32px;height:32px;border-radius:8px;object-fit:cover;}
+  .side-brand .dot{width:32px;height:32px;border-radius:8px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700;}
+  .nav-btn{display:flex;align-items:center;gap:.7rem;width:100%;padding:.62rem .8rem;border:0;background:none;border-radius:10px;font-weight:600;color:var(--muted);text-align:left;transition:background .15s,color .15s;}
+  .nav-btn:hover{background:var(--bg);color:var(--ink);}
+  .nav-btn.active{background:color-mix(in srgb,var(--accent) 10%,#fff);color:var(--accent);}
+  .nav-btn .n{margin-left:auto;background:var(--accent);color:var(--on-accent);border-radius:99px;font-size:.7rem;font-weight:700;padding:.05rem .48rem;min-width:20px;text-align:center;}
+  .side-sep{height:1px;background:var(--line);margin:.7rem .4rem;}
+  .side-foot{margin-top:auto;}
+  .main{min-width:0;}
+  .topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:.8rem;padding:.85rem 1.4rem;background:rgba(244,245,247,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .topbar h2{font-family:var(--ff-d);font-size:1.15rem;flex:1;}
+  .burger{display:none;width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:10px;place-items:center;}
+  .view{padding:1.4rem;max-width:1120px;}
+  .scrim{display:none;}
+  @media(max-width:900px){
+    #app{grid-template-columns:1fr;}
+    aside{position:fixed;z-index:70;left:0;top:0;width:270px;transform:translateX(-102%);transition:transform .25s;}
+    body.drawer aside{transform:none;box-shadow:0 0 60px rgba(0,0,0,.25);}
+    body.drawer .scrim{display:block;position:fixed;inset:0;background:rgba(16,20,28,.45);z-index:60;}
+    .burger{display:grid;} .view{padding:1rem;} .topbar{padding:.75rem 1rem;}
+  }
+
+  /* ── Composants ── */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.2rem 1.3rem;}
+  .card h3{font-family:var(--ff-d);font-size:1rem;margin-bottom:.9rem;}
+  .card-head{display:flex;justify-content:space-between;align-items:center;gap:.8rem;margin-bottom:.9rem;flex-wrap:wrap;}
+  .card-head h3{margin:0;}
+  .grid{display:grid;gap:1rem;}
+  .g-kpi{grid-template-columns:repeat(auto-fit,minmax(165px,1fr));margin-bottom:1rem;}
+  .g-2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr));margin-top:1rem;}
+  .kpi{padding:1rem 1.1rem;}
+  .kpi small{color:var(--muted);font-weight:500;display:block;}
+  .kpi b{display:block;font-family:var(--ff-d);font-size:1.9rem;line-height:1.2;margin:.15rem 0;}
+  .delta{font-size:.76rem;font-weight:600;color:var(--muted);}
+  .delta.up{color:var(--ok);} .delta.down{color:var(--err);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem 1.05rem;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:600;transition:border-color .15s,background .15s,filter .15s;}
+  .btn:hover{border-color:var(--accent);color:var(--accent);}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);}
+  .btn.primary:hover{filter:brightness(.93);color:var(--on-accent);}
+  .btn.danger{color:var(--err);} .btn.danger:hover{border-color:var(--err);color:var(--err);background:var(--err-bg);}
+  .btn.sm{padding:.4rem .75rem;font-size:.82rem;}
+  .btn[disabled]{opacity:.55;cursor:wait;}
+  .pill{display:inline-block;padding:.12rem .6rem;border-radius:99px;font-size:.74rem;font-weight:600;white-space:nowrap;}
+  .p-nouveau{background:var(--blue-bg);color:var(--blue);} .p-en_cours{background:var(--warn-bg);color:var(--warn);}
+  .p-gagne,.p-traite,.p-confirme,.p-envoye{background:var(--ok-bg);color:var(--ok);} .p-perdu,.p-annule{background:#F2F4F7;color:var(--muted);}
+  .p-echec{background:var(--err-bg);color:var(--err);} .p-ghost{background:#F2F4F7;color:var(--muted);}
+  .empty{text-align:center;color:var(--muted);padding:2.2rem 1rem;}
+  .empty b{display:block;color:var(--ink);font-family:var(--ff-d);font-size:1rem;margin-bottom:.3rem;}
+  .muted{color:var(--muted);} .small{font-size:.8rem;}
+  .alert{display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;border-radius:12px;margin-bottom:1rem;border:1px solid;}
+  .alert.err{background:var(--err-bg);border-color:#F6C9C3;color:#8F2A1F;} .alert.info{background:var(--blue-bg);border-color:#C9DAFB;color:#1E3A8A;} .alert.ok{background:var(--ok-bg);border-color:#BFE6CD;color:#166534;}
+  .alert .btn{margin-left:auto;}
+
+  /* Mise en route */
+  .steps{display:flex;flex-direction:column;gap:.15rem;}
+  .step{display:flex;align-items:center;gap:.8rem;padding:.6rem .3rem;border-top:1px solid var(--line);}
+  .step:first-child{border-top:0;}
+  .step .ck{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex-shrink:0;color:#fff;}
+  .step.done .ck{background:var(--ok);border-color:var(--ok);}
+  .step .ck svg{width:13px;height:13px;stroke-width:3;}
+  .step .t{flex:1;min-width:0;} .step .t b{display:block;font-weight:600;} .step .t span{color:var(--muted);font-size:.8rem;}
+  .bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:.6rem;} .bar i{display:block;height:100%;background:var(--accent);border-radius:99px;}
+
+  /* Graphique & entonnoir */
+  .chart-box{position:relative;height:290px;}
+  .funnel{display:flex;flex-direction:column;gap:.75rem;}
+  .fn b{display:flex;justify-content:space-between;font-weight:600;margin-bottom:.25rem;} .fn b span{color:var(--muted);font-weight:500;}
+  .fn .trk{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;} .fn .trk i{display:block;height:100%;background:var(--accent);border-radius:99px;min-width:3px;}
+  .li{display:flex;align-items:center;gap:.7rem;padding:.6rem 0;border-top:1px solid var(--line);width:100%;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;}
+  .li:first-child{border-top:0;} .li .t{flex:1;min-width:0;} .li .t b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} .li .t span{color:var(--muted);font-size:.8rem;}
+  .seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:10px;padding:3px;}
+  .seg button{border:0;background:none;padding:.3rem .8rem;border-radius:8px;font-weight:600;color:var(--muted);} .seg button.on{background:var(--accent);color:var(--on-accent);}
+
+  /* Listes (devis / messages / rdv) */
+  .toolbar{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;}
+  .search{flex:1;min-width:190px;max-width:340px;padding:.6rem .9rem;border:1px solid var(--line);border-radius:10px;background:#fff;}
+  .chips{display:flex;gap:.4rem;flex-wrap:wrap;}
+  .chip{border:1px solid var(--line);background:#fff;padding:.38rem .8rem;border-radius:99px;font-weight:600;color:var(--muted);font-size:.82rem;}
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff;} .chip em{font-style:normal;opacity:.65;margin-left:.3rem;}
+  .table{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .tr{display:grid;grid-template-columns:2.1fr 1.7fr 1.2fr 1fr .9fr;gap:.8rem;align-items:center;width:100%;padding:.8rem 1.1rem;border:0;border-top:1px solid var(--line);background:#fff;text-align:left;transition:background .12s;}
+  .tr:first-child{border-top:0;} .tr:hover{background:#FAFAFB;}
+  .tr.head{background:#FAFAFB;font-size:.74rem;color:var(--muted);font-weight:600;cursor:default;} .tr.head:hover{background:#FAFAFB;}
+  .tr.c4{grid-template-columns:2.2fr 2fr 1fr .9fr;}
+  .tr b{font-weight:600;display:block;} .tr small{color:var(--muted);display:block;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .tr .num{font-family:var(--ff-d);font-weight:600;}
+  @media(max-width:760px){.tr,.tr.c4{grid-template-columns:1fr auto;gap:.3rem .8rem;padding:.85rem 1rem;} .tr.head{display:none;} .tr .c-mid{grid-column:1/2;} .tr .c-num{grid-column:1/2;} .tr .c-st{grid-column:2/3;grid-row:1/2;} .tr .c-date{grid-column:2/3;grid-row:2/3;text-align:right;}}
+
+  /* Produits */
+  .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;}
+  .prod{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
+  .prod .im{aspect-ratio:3/2;background:linear-gradient(135deg,#F2F4F7,#E9ECF1);display:grid;place-items:center;color:var(--muted2);font-family:var(--ff-d);font-weight:700;font-size:1.4rem;position:relative;}
+  .prod .im img{width:100%;height:100%;object-fit:cover;} .prod .im .pill{position:absolute;top:.6rem;left:.6rem;}
+  .prod .bd{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.35rem;flex:1;} .prod .bd b{font-family:var(--ff-d);font-size:1rem;}
+  .prod .ft{display:flex;gap:.5rem;margin-top:auto;padding-top:.6rem;}
+  .prod.off{opacity:.6;}
+
+  /* Formulaires */
+  .field{margin-bottom:.95rem;} .field label{display:block;font-weight:600;font-size:.82rem;margin-bottom:.32rem;}
+  .field input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]),.field select,.field textarea{width:100%;padding:.62rem .8rem;border:1px solid var(--line);border-radius:10px;background:#fff;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent);}
+  .field textarea{min-height:90px;resize:vertical;} .field .hint{color:var(--muted);font-size:.78rem;margin-top:.3rem;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;} .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
+  @media(max-width:560px){.row2,.row3{grid-template-columns:1fr;}}
+  .check{display:flex;align-items:center;gap:.55rem;font-weight:600;cursor:pointer;} .check input{width:18px;height:18px;accent-color:var(--accent);}
+  .upl{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem;} .upl img,.upl .ph{width:72px;height:72px;border-radius:12px;object-fit:cover;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted2);font-size:.7rem;}
+  .modes{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1rem;} @media(max-width:560px){.modes{grid-template-columns:1fr;}}
+  .mode{border:1.5px solid var(--line);border-radius:12px;padding:.8rem .95rem;background:#fff;text-align:left;} .mode b{display:block;} .mode span{color:var(--muted);font-size:.8rem;}
+  .mode.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,#fff);}
+  .opt-row{display:grid;grid-template-columns:1.2fr 1.6fr 90px 36px;gap:.5rem;margin-bottom:.5rem;align-items:center;}
+  @media(max-width:640px){.opt-row{grid-template-columns:1fr 90px 36px;} .opt-row .od{grid-column:1/-1;order:5;}}
+  .opt-row input{width:100%;padding:.55rem .7rem;border:1px solid var(--line);border-radius:9px;}
+  .preview{background:var(--bg);border-radius:10px;padding:.7rem .9rem;color:var(--muted);font-size:.85rem;}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:.5rem .9rem;margin-bottom:1rem;} .kv dt{color:var(--muted);} .kv dd{font-weight:600;word-break:break-word;}
+  code{background:#F2F4F7;padding:.1rem .4rem;border-radius:6px;font-size:.82rem;word-break:break-all;}
+
+  /* Fenêtre modale */
+  .scrim2{position:fixed;inset:0;z-index:200;background:rgba(16,20,28,.5);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;overflow-y:auto;}
+  .modal{width:100%;max-width:580px;background:#fff;border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.4);animation:pop .22s cubic-bezier(.22,1,.36,1);}
+  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98);}}
+  .m-head{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.3rem;border-bottom:1px solid var(--line);} .m-head h3{font-family:var(--ff-d);font-size:1.08rem;}
+  .m-head .x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;}
+  .m-body{padding:1.3rem;} .m-foot{display:flex;gap:.6rem;justify-content:flex-end;flex-wrap:wrap;padding:.95rem 1.3rem;border-top:1px solid var(--line);background:#FAFAFB;border-radius:0 0 18px 18px;}
+  .m-foot .spacer{margin-right:auto;}
+  .toast{position:fixed;left:50%;bottom:1.4rem;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:.7rem 1.2rem;border-radius:12px;opacity:0;pointer-events:none;transition:all .3s;z-index:400;max-width:92vw;}
+  .toast.show{opacity:1;transform:translate(-50%,0);} .toast.err{background:var(--err);}
+  .skel{height:110px;border-radius:16px;background:linear-gradient(90deg,#ECEEF1 25%,#F6F7F9 50%,#ECEEF1 75%);background-size:200% 100%;animation:sk 1.2s infinite;} @keyframes sk{to{background-position:-200% 0;}}
+  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+
+  /* Fonctions (interrupteurs) */
+  .fcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1rem 1.15rem;margin-bottom:.8rem;transition:border-color .2s,box-shadow .2s;}
+  .fcard.on{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 8px 22px -16px var(--accent);}
+  .fhead{display:flex;gap:.9rem;align-items:center;}
+  .fico{font-size:1.45rem;width:46px;height:46px;border-radius:13px;background:var(--bg);display:grid;place-items:center;flex-shrink:0;}
+  .fcard.on .fico{background:color-mix(in srgb,var(--accent) 12%,#fff);}
+  .ft2{flex:1;min-width:0;} .ft2 b{display:block;font-family:var(--ff-d);font-size:1rem;} .ft2 span{color:var(--muted);font-size:.86rem;}
+  .sw{position:relative;display:inline-block;width:54px;height:30px;flex-shrink:0;cursor:pointer;}
+  .sw input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;margin:0;z-index:2;}
+  .sw i{position:absolute;inset:0;background:#CBD0D8;border-radius:99px;transition:background .2s;}
+  .sw i::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;box-shadow:0 2px 5px rgba(0,0,0,.25);transition:transform .2s;}
+  .sw input:checked + i{background:var(--accent);} .sw input:checked + i::after{transform:translateX(24px);}
+  .sw input:focus-visible + i{outline:2.5px solid var(--accent);outline-offset:2px;}
+  .fbody{margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--line);}
+  .fbody .acts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem;}
+  .hrow{display:grid;grid-template-columns:96px 54px 1fr;gap:.6rem;align-items:center;padding:.45rem 0;border-top:1px solid var(--line);} .hrow:first-child{border-top:0;}
+  .hrow .tm{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;} .hrow input[type=time]{padding:.4rem .5rem;border:1px solid var(--line);border-radius:8px;background:#fff;}
+  .hrow .tm small{color:var(--muted);}
+  @media(max-width:560px){.hrow{grid-template-columns:1fr auto;} .hrow .tm{grid-column:1/-1;}}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem;}
+  .ci{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;} .ci.off{opacity:.6;}
+  .ci .stars{color:#F5A623;letter-spacing:.06em;} .ci p{color:var(--ink);white-space:pre-line;font-size:.9rem;} .ci .ft{display:flex;gap:.5rem;margin-top:auto;padding-top:.5rem;}
+  .ci img.th{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:var(--bg);}
+  .ci .two{display:grid;grid-template-columns:1fr 1fr;gap:4px;} .ci .two img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;}
+  .big-empty{text-align:center;padding:2.2rem 1rem;} .big-empty b{display:block;font-size:1.1rem;margin-bottom:.3rem;} .big-empty p{color:var(--muted);margin-bottom:1rem;}
+  .p-relance{background:var(--warn-bg);color:var(--warn);}
+  .upl{flex-wrap:wrap;} .upl > div{min-width:0;max-width:100%;} .upl input[type=file]{max-width:100%;}
+</style>
+</head>
+<body>
+
+<!-- ══════ Connexion ══════ -->
+<div class="login" id="login">
+  <form class="login-card" id="loginForm">
+    <h1>Espace professionnel</h1>
+    <p>Accès réservé au gérant.</p>
+    <div class="field"><label for="pw">Code d'accès</label><input type="password" id="pw" autocomplete="current-password" autofocus /></div>
+    <button class="btn primary" style="width:100%" id="loginBtn">Se connecter</button>
+    <p id="loginErr" class="small" style="color:var(--err);margin:.8rem 0 0"></p>
+    <p class="small muted" style="margin:1rem 0 0"><a href="index.html" style="text-decoration:underline">← Retour au site</a></p>
+  </form>
+</div>
+
+<!-- ══════ Application ══════ -->
+<div id="app" class="hidden">
+  <aside id="side">
+    <div class="side-brand"><span id="sideLogo"></span><span id="sideName">Espace pro</span></div>
+    <button class="nav-btn" data-view="dashboard"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Tableau de bord</button>
+    <button class="nav-btn" data-view="devis"><svg class="i" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Devis<span class="n hidden" id="bDevis"></span></button>
+    <button class="nav-btn" data-view="messages"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Messages<span class="n hidden" id="bMsg"></span></button>
+    <button class="nav-btn" data-view="rdv"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Rendez-vous</button>
+    <div class="side-sep"></div>
+    <button class="nav-btn" data-view="fonctions"><svg class="i" viewBox="0 0 24 24"><rect x="1" y="6" width="22" height="12" rx="6"/><circle cx="16" cy="12" r="3"/></svg>Fonctions du site</button>
+    <button class="nav-btn" data-view="produits"><svg class="i" viewBox="0 0 24 24"><path d="m7.5 4.27 9 5.15M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>Produits et prestations</button>
+    <button class="nav-btn" data-view="galerie"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>Réalisations</button>
+    <button class="nav-btn" data-view="avis"><svg class="i" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>Avis clients</button>
+    <button class="nav-btn" data-view="faq"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>Questions (FAQ)</button>
+    <button class="nav-btn" data-view="newsletter"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Newsletter</button>
+    <button class="nav-btn" data-view="blog"><svg class="i" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Blog</button>
+    <button class="nav-btn" data-view="simulateur"><svg class="i" viewBox="0 0 24 24"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/></svg>Simulateur de devis</button>
+    <button class="nav-btn" data-view="reglages"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Réglages</button>
+    <div class="side-foot">
+      <div class="side-sep"></div>
+      <a class="nav-btn" href="index.html" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Voir le site</a>
+      <button class="nav-btn" id="logout"><svg class="i" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Se déconnecter</button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <div class="main">
+    <div class="topbar">
+      <button class="burger" id="burger" aria-label="Menu"><svg class="i" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <h2 id="pageTitle">Tableau de bord</h2>
+      <div id="topActions"></div>
+    </div>
+    <div class="view" id="view"></div>
+  </div>
+</div>
+<div id="modalRoot"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const API = ((window.APP_CONFIG || {}).API_BASE || '').replace(/\/$/, '');
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmt = (n) => Number(n).toLocaleString('fr-FR');
+const fd = (iso) => new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+const fdt = (iso) => new Date(iso).toLocaleString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+const img = (u) => (!u ? '' : /^https?:/.test(u) ? u : API + u);
+const ST_DEVIS = { nouveau: 'Nouveau', en_cours: 'En cours', gagne: 'Gagné', perdu: 'Perdu' };
+const ST_CT = { nouveau: 'Nouveau', traite: 'Traité' };
+const pill = (st, map) => `<span class="pill p-${esc(st)}">${esc((map || {})[st] || st)}</span>`;
+const CHECK = '<svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+
+let TOKEN = sessionStorage.getItem('adm_t') || '';
+let LIST = {}, CONFIG = null, OV = null, DAYS = 30, DEVIS = null, CONTACTS = null, PRODS = null, ARTS = null, RDV = null;
+const F = { devis: 'all', dq: '', ct: 'all', cq: '' };
+let PENDING_DEVIS = null;
+
+/* ══════════ Réseau ══════════ */
+async function api(path, method, body, soft) {
+  const res = await fetch(API + path, { method: method || 'GET', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + TOKEN }, body: body ? JSON.stringify(body) : undefined });
+  let data = {}; try { data = await res.json(); } catch (e) { /* ignore */ }
+  if (res.status === 401 && path !== '/api/admin/login') { logout(true); throw new Error('Session expirée, reconnectez-vous.'); }
+  if (!res.ok || (data.ok === false && !soft)) throw new Error(data.error || 'Erreur ' + res.status);
+  return data;
+}
+function toast(msg, err) { const t = $('toast'); t.textContent = msg; t.className = 'toast show' + (err ? ' err' : ''); clearTimeout(toast.t); toast.t = setTimeout(() => (t.className = 'toast'), 3400); }
+let chartP = null;
+function loadChart() {
+  if (window.Chart) return Promise.resolve();
+  if (chartP) return chartP;
+  const urls = ['https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js', 'https://unpkg.com/chart.js@4.4.4/dist/chart.umd.min.js'];
+  const tryLoad = (i) => new Promise((ok, ko) => {
+    if (i >= urls.length) return ko(new Error('Chart.js indisponible'));
+    const s = document.createElement('script'); s.src = urls[i];
+    s.onload = () => (window.Chart ? ok() : tryLoad(i + 1).then(ok, ko));
+    s.onerror = () => { s.remove(); tryLoad(i + 1).then(ok, ko); };
+    document.head.appendChild(s);
+  });
+  chartP = tryLoad(0).catch((e) => { chartP = null; throw e; });
+  return chartP;
+}
+function onAccent(hex) { const m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return '#fff'; const n = parseInt(m[1], 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255 > 0.62 ? '#14161B' : '#fff'; }
+function setAccent(c) { document.documentElement.style.setProperty('--accent', c); document.documentElement.style.setProperty('--on-accent', onAccent(c)); }
+
+/* ══════════ Connexion ══════════ */
+$('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const err = $('loginErr'), btn = $('loginBtn'); err.textContent = '';
+  if (window.APP_CONFIG === undefined || API.includes('TON-SOUS-DOMAINE')) { err.textContent = "Configuration manquante : fichier pro-config.js introuvable."; return; }
+  btn.disabled = true;
+  try {
+    const d = await api('/api/admin/login', 'POST', { password: $('pw').value });
+    TOKEN = d.token; sessionStorage.setItem('adm_t', TOKEN); $('pw').value = ''; boot();
+  } catch (ex) { err.textContent = ex.message === 'Failed to fetch' ? "Impossible de joindre le serveur. Réessayez dans un instant." : ex.message; }
+  btn.disabled = false;
+});
+function logout(silent) {
+  TOKEN = ''; sessionStorage.removeItem('adm_t'); DEVIS = CONTACTS = PRODS = ARTS = RDV = OV = null; LIST = {};
+  $('app').classList.add('hidden'); $('login').classList.remove('hidden'); $('modalRoot').innerHTML = '';
+  if (!silent) toast('Déconnecté');
+}
+$('logout').onclick = () => logout();
+
+async function boot() {
+  try {
+    CONFIG = (await api('/api/admin/config')).config;
+  } catch (e) { $('login').classList.remove('hidden'); $('loginErr').textContent = e.message; return; }
+  $('login').classList.add('hidden'); $('app').classList.remove('hidden');
+  applyBrand();
+  api('/api/admin/overview?days=30').then((o) => { OV = OV || o; badges(o.a_traiter.nb_devis, o.a_traiter.nb_contacts); }).catch(() => {});
+  route();
+}
+const VIEW_FEAT = { newsletter: 'newsletter', produits: 'produits', simulateur: 'simulateur', rdv: 'rdv', blog: 'blog', avis: 'avis', galerie: 'galerie', faq: 'faq' };
+const PRO_HIDDEN = ['devis', 'rdv', 'produits', 'galerie', 'avis', 'faq', 'blog', 'simulateur'];
+function applyNav() {
+  const F = (CONFIG && CONFIG.features) || {};
+  document.querySelectorAll('.nav-btn[data-view]').forEach((b) => { if (PRO_HIDDEN.includes(b.dataset.view)) { b.classList.add('hidden'); return; } const k = VIEW_FEAT[b.dataset.view]; if (k) b.classList.toggle('hidden', F[k] === false || (F[k] === undefined && ['avis', 'galerie', 'faq', 'newsletter'].includes(k))); });
+}
+function applyBrand() {
+  applyNav();
+  setAccent(CONFIG.couleur_primaire);
+  document.title = 'Espace pro — ' + CONFIG.nom_entreprise;
+  $('sideName').textContent = CONFIG.nom_entreprise;
+  $('sideLogo').innerHTML = CONFIG.logo_url ? `<img src="${esc(img(CONFIG.logo_url))}" alt="" width="32" height="32"/>` : `<span class="dot">${esc(CONFIG.nom_entreprise.slice(0, 1).toUpperCase())}</span>`;
+}
+function badges(d, m) {
+  const set = (id, n) => { const el = $(id); el.textContent = n; el.classList.toggle('hidden', !n); };
+  set('bDevis', d); set('bMsg', m);
+}
+function refreshBadges() {
+  badges(DEVIS ? DEVIS.filter((x) => x.statut === 'nouveau').length : (OV ? OV.a_traiter.nb_devis : 0), CONTACTS ? CONTACTS.filter((x) => x.statut === 'nouveau').length : (OV ? OV.a_traiter.nb_contacts : 0));
+}
+
+/* ══════════ Navigation ══════════ */
+const TITLES = { newsletter: 'Newsletter', fonctions: 'Fonctions du site', galerie: 'Réalisations', avis: 'Avis clients', faq: 'Questions fréquentes', dashboard: 'Tableau de bord', devis: 'Devis', messages: 'Messages', rdv: 'Rendez-vous', produits: 'Produits et prestations', blog: 'Blog', simulateur: 'Simulateur de devis', reglages: 'Réglages' };
+function route() {
+  if (!TOKEN) return;
+  let v = location.hash.replace(/^#\/?/, '') || 'dashboard'; if (!VIEWS[v]) v = 'dashboard';
+  document.querySelectorAll('.nav-btn[data-view]').forEach((b) => b.classList.toggle('active', b.dataset.view === v));
+  $('pageTitle').textContent = TITLES[v]; $('topActions').innerHTML = ''; $('view').oninput = null; $('view').onchange = null; $('view').onclick = null;
+  document.body.classList.remove('drawer'); window.scrollTo(0, 0);
+  $('view').innerHTML = '<div class="grid g-kpi"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>';
+  VIEWS[v]().catch((e) => { $('view').innerHTML = `<div class="alert err">${esc(e.message)}</div>`; });
+}
+window.addEventListener('hashchange', route);
+document.querySelectorAll('.nav-btn[data-view]').forEach((b) => (b.onclick = () => { const t = '#/' + b.dataset.view; if (location.hash === t) route(); else location.hash = t; }));
+$('burger').onclick = () => document.body.classList.toggle('drawer');
+$('scrim').onclick = () => document.body.classList.remove('drawer');
+const go = (v) => { location.hash = '#/' + v; };
+
+/* ══════════ Fenêtres modales ══════════ */
+function modal(title, body, foot) {
+  $('modalRoot').innerHTML = `<div class="scrim2" data-close-bg><div class="modal" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="m-head"><h3>${esc(title)}</h3><button class="x" data-close aria-label="Fermer">✕</button></div><div class="m-body">${body}</div><div class="m-foot">${foot || ''}</div></div></div>`;
+  return $('modalRoot').querySelector('.modal');
+}
+const closeModal = () => ($('modalRoot').innerHTML = '');
+$('modalRoot').addEventListener('click', (e) => { if (e.target.closest('[data-close]') || e.target.matches('[data-close-bg]')) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+/* ══════════ Images : réduites avant envoi (les photos de téléphone dépassent souvent 5 Mo) ══════════ */
+async function shrink(file) {
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return file;
+  try {
+    const bmp = await createImageBitmap(file);
+    const k = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+    if (k === 1 && file.size < 600000) return file;
+    const c = document.createElement('canvas'); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    const blob = await new Promise((r) => c.toBlob(r, 'image/webp', 0.85));
+    return blob ? new File([blob], 'image.webp', { type: 'image/webp' }) : file;
+  } catch (e) { return file; }
+}
+async function uploadImage(file) {
+  const f = await shrink(file);
+  const fd2 = new FormData(); fd2.append('file', f);
+  const r = await fetch(API + '/api/admin/upload', { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN }, body: fd2 });
+  const d = await r.json(); if (!d.ok) throw new Error(d.error || 'Échec');
+  return d.url;
+}
+function bindUpload(fileId, hiddenId, prevId) {
+  $(fileId).addEventListener('change', async (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const prev = $(prevId); prev.outerHTML = `<div class="ph" id="${prevId}">Envoi…</div>`;
+    try {
+      const url = await uploadImage(f); $(hiddenId).value = url;
+      $(prevId).outerHTML = `<img id="${prevId}" src="${esc(img(url))}" alt="" />`;
+    } catch (ex) { $(prevId).outerHTML = `<div class="ph" id="${prevId}">Aucune</div>`; toast(ex.message, true); }
+  });
+}
+const uploadBlock = (id, url) => `<div class="upl">${url ? `<img id="${id}Prev" src="${esc(img(url))}" alt="" />` : `<div class="ph" id="${id}Prev">Aucune</div>`}<div><input type="file" id="${id}File" accept="image/*" /><div class="small muted" style="margin-top:.3rem">Redimensionnée automatiquement.</div></div><input type="hidden" id="${id}Url" value="${esc(url || '')}" /></div>`;
+
+/* ══════════ VUES ══════════ */
+const VIEWS = {};
+
+/* ── Tableau de bord ── */
+const delta = (c, p) => {
+  if (!p) return c ? '<span class="delta up">Nouveau</span>' : '<span class="delta">—</span>';
+  const v = Math.round(((c - p) / p) * 100);
+  return `<span class="delta ${v >= 0 ? 'up' : 'down'}">${v >= 0 ? '▲' : '▼'} ${Math.abs(v)} % vs période préc.</span>`;
+};
+let chartInst = null;
+VIEWS.dashboard = async () => {
+  const o = OV = await api('/api/admin/overview?days=' + DAYS);
+  badges(o.a_traiter.nb_devis, o.a_traiter.nb_contacts);
+  const s = o.setup;
+  const FT0 = o.features || {};
+  const steps = [
+    { ok: s.pro_email, t: 'Email de réception', d: 'Adresse qui reçoit les messages et les devis', v: 'reglages' },
+    { ok: s.resend_key, t: 'Envoi des emails', d: 'Clé Resend ajoutée au serveur', v: 'reglages' },
+    ...(FT0.contact_email ? [] : [{ ok: s.formspree, t: 'Formulaire de contact', d: 'Identifiant Formspree dans les réglages', v: 'reglages' }]),
+    ...(FT0.rdv !== false ? [{ ok: s.cal, t: 'Prise de rendez-vous', d: 'Lien Cal.com dans les réglages', v: 'reglages' }] : []),
+    ...(FT0.produits !== false ? [{ ok: s.stripe_produits > 0, t: 'Un produit avec lien Stripe', d: 'Bouton « Commander » sur le site', v: 'produits' }] : []),
+  ];
+  const FT = o.features || {};
+  if (FT.avis) steps.push({ ok: o.contenu.a > 0, t: 'Un premier avis client', d: 'Rassure les visiteurs', v: 'avis' });
+  if (FT.galerie) steps.push({ ok: o.contenu.g > 0, t: 'Une première photo de réalisation', d: 'Montrez votre travail', v: 'galerie' });
+  if (FT.faq) steps.push({ ok: o.contenu.f > 0, t: 'Une première question fréquente', d: 'Répond avant même qu\'on vous appelle', v: 'faq' });
+  const done = steps.filter((x) => x.ok).length;
+  const kp = [['Visites', 'visites'], ...(FT.simulateur !== false ? [['Devis reçus', 'devis']] : []), ['Messages', 'messages'], ['Clics paiement (Stripe)', 'achats'], ...(FT.rdv !== false ? [['Rendez-vous', 'rdv']] : [])];
+  if (FT.whatsapp) kp.push(['Clics WhatsApp', 'wa']);
+  const conv = o.cur.visites ? Math.round(((o.cur.devis + o.cur.messages + o.cur.rdv) / o.cur.visites) * 1000) / 10 : 0;
+  const simS = Math.max(o.cur.sim_start, o.cur.devis);
+  const pct = (a, b) => (b ? Math.min(100, Math.round((a / b) * 100)) : 0);
+  const alerts = [];
+  if (o.setup.emails_en_echec > 0) alerts.push(`<div class="alert err"><div><b>${o.setup.emails_en_echec} ${o.setup.emails_en_echec > 1 ? "emails n'ont pas pu partir" : "email n'a pas pu partir"}</b> (les messages et devis sont bien enregistrés dans leurs onglets). Testez l'envoi pour voir la cause.</div><button class="btn sm" data-go="reglages">Tester l'envoi</button></div>`);
+  if (s.resend_key && s.resend_from_test) alerts.push(`<div class="alert info"><div>Expéditeur de test actif : Resend n'envoie qu'à l'email de <b>votre compte Resend</b>. Pour écrire à n'importe quelle adresse, vérifiez un domaine dans Resend puis changez <code>RESEND_FROM</code>.</div></div>`);
+
+  const rl = o.a_relancer || { n: 0, liste: [], jours: 3 };
+  if (FT.relance && rl.n > 0) alerts.push(`<div class="card" style="margin-bottom:1rem;border-color:#F3D9A4;background:var(--warn-bg)"><div class="card-head"><h3>⏰ ${rl.n} devis sans réponse depuis plus de ${rl.jours} jour${rl.jours > 1 ? 's' : ''}</h3></div>${rl.liste.map((d) => `<div class="li"><span class="t"><b>${esc(d.nom)}</b><span>${esc(d.prestation)} · reçu le ${fd(d.created_at)}</span></span><button class="btn sm primary" data-relance="${d.id}" data-mail="${esc(d.email)}" data-nom="${esc(d.nom)}" data-prest="${esc(d.prestation)}" data-date="${esc(d.created_at)}">Relancer</button></div>`).join('')}</div>`);
+  $('topActions').innerHTML = `<div class="seg" id="seg">${[7, 30, 90].map((d) => `<button data-d="${d}" class="${d === DAYS ? 'on' : ''}">${d} j</button>`).join('')}</div>`;
+  $('seg').onclick = (e) => { const b = e.target.closest('button'); if (b) { DAYS = +b.dataset.d; route(); } };
+
+  $('view').innerHTML = `${alerts.join('')}
+    ${done < steps.length ? `<div class="card" style="margin-bottom:1rem"><div class="card-head"><h3>Mise en route</h3><span class="muted small">${done} sur ${steps.length}</span></div><div class="bar"><i style="width:${(done / steps.length) * 100}%"></i></div><div class="steps">${steps.map((x) => `<div class="step ${x.ok ? 'done' : ''}"><span class="ck">${x.ok ? CHECK : ''}</span><div class="t"><b>${x.t}</b><span>${x.d}</span></div>${x.ok ? '' : `<button class="btn sm" data-go="${x.v}">Configurer</button>`}</div>`).join('')}</div></div>` : ''}
+    <div class="grid g-kpi">${kp.map(([l, k]) => `<div class="card kpi"><small>${l}</small><b>${fmt(o.cur[k])}</b>${delta(o.cur[k], o.prev[k])}</div>`).join('')}</div>
+    <div class="card"><div class="card-head"><h3>Activité sur ${o.days} jours</h3><span class="muted small">Taux de conversion : <b>${String(conv).replace('.', ',')} %</b></span></div><div class="chart-box"><canvas id="ch"></canvas></div></div>
+    <div class="grid g-2">
+      <div class="card"><h3>À traiter</h3>${(o.a_traiter.devis.length + o.a_traiter.contacts.length) ? `${o.a_traiter.devis.map((d) => `<button class="li" data-open-devis="${d.id}"><span class="t"><b>${esc(d.nom)}</b><span>Devis · ${esc(d.prestation)} · ${fd(d.created_at)}</span></span>${d.mode === 'affiche' ? `<b class="num">${fmt(d.estimation_min)}–${fmt(d.estimation_max)} €</b>` : ''}</button>`).join('')}${o.a_traiter.contacts.map((c) => `<button class="li" data-go="messages"><span class="t"><b>${esc(c.nom)}</b><span>Message · ${esc(c.message.slice(0, 60))}</span></span>${pill('nouveau', ST_CT)}</button>`).join('')}` : '<div class="empty"><b>Tout est à jour</b>Aucune demande en attente.</div>'}</div>
+      <div class="card"><h3>Parcours des visiteurs</h3><div class="funnel">
+        <div class="fn"><b>Visites <span>${fmt(o.cur.visites)}</span></b><div class="trk"><i style="width:100%"></i></div></div>
+        <div class="fn"><b>Simulations démarrées <span>${fmt(simS)} · ${pct(simS, o.cur.visites)} %</span></b><div class="trk"><i style="width:${pct(simS, o.cur.visites)}%"></i></div></div>
+        <div class="fn"><b>Devis envoyés <span>${fmt(o.cur.devis)} · ${pct(o.cur.devis, simS)} % des simulations</span></b><div class="trk"><i style="width:${pct(o.cur.devis, o.cur.visites)}%"></i></div></div>
+      </div></div>
+      <div class="card"><h3>Boutons de paiement cliqués</h3>${o.top_produits.length ? o.top_produits.map((p) => `<div class="li"><span class="t"><b>${esc(p.label || '—')}</b></span><span class="pill p-ghost">${p.c} clic${p.c > 1 ? 's' : ''}</span></div>`).join('') : '<div class="empty">Les clics sur vos boutons de paiement (Stripe) apparaîtront ici.</div>'}</div>
+      ${(o.top_pages || []).length ? `<div class="card"><h3>Pages les plus vues</h3>${o.top_pages.map((p) => `<div class="li"><span class="t"><b>${esc(p.label || '/')}</b></span><span class="pill p-ghost">${p.c}</span></div>`).join('')}</div>` : ''}
+      <div class="card"><h3>D'où viennent les visites</h3>${o.sources.length ? o.sources.map((p) => `<div class="li"><span class="t"><b>${esc(p.label || 'direct')}</b></span><span class="pill p-ghost">${p.c}</span></div>`).join('') : '<div class="empty">Aucune visite enregistrée sur la période.</div>'}</div>
+      <div class="card"><h3>Prochains rendez-vous</h3>${o.rdv_a_venir.length ? o.rdv_a_venir.map((r) => `<div class="li"><span class="t"><b>${esc(r.nom || 'Client')}</b><span>${fdt(r.debut)}</span></span></div>`).join('') : `<div class="empty">${s.cal_webhook ? 'Aucun rendez-vous à venir.' : 'Connectez Cal.com pour les voir ici.'}</div>`}</div>
+    </div>`;
+  if (FT.simulateur === false) [...$('view').querySelectorAll('.card h3')].filter((h) => h.textContent === 'Parcours des visiteurs').forEach((h) => h.closest('.card').remove());
+  if (FT.rdv === false) [...$('view').querySelectorAll('.card h3')].filter((h) => h.textContent === 'Prochains rendez-vous').forEach((h) => h.closest('.card').remove());
+  try {
+    await loadChart();
+    if (chartInst) chartInst.destroy();
+    const css = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#FF5A2B';
+    const lab = o.labels.map((j) => j.slice(8, 10) + '/' + j.slice(5, 7));
+    chartInst = new Chart($('ch'), { type: 'bar', data: { labels: lab, datasets: [
+      { type: 'line', label: 'Visites', data: o.series.visites, borderColor: '#98A2B3', backgroundColor: 'rgba(152,162,179,.14)', fill: true, tension: .35, pointRadius: 0, borderWidth: 2, yAxisID: 'y' },
+      { type: 'bar', label: 'Devis', data: o.series.devis, backgroundColor: css, borderRadius: 4, yAxisID: 'y1' },
+      { type: 'bar', label: 'Messages', data: o.series.messages, backgroundColor: '#1F2937', borderRadius: 4, yAxisID: 'y1' }] },
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } } },
+        scales: { x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } }, y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#F0F1F3' } }, y1: { beginAtZero: true, position: 'right', ticks: { precision: 0 }, grid: { drawOnChartArea: false } } } } });
+  } catch (e) { $('ch').parentElement.innerHTML = '<div class="empty">Graphique indisponible (bloqueur de publicité ou réseau ?). Les chiffres ci-dessus restent valables.</div>'; }
+};
+
+document.addEventListener('click', (e) => {
+  const g = e.target.closest('[data-go]'); if (g) go(g.dataset.go);
+  const od = e.target.closest('[data-open-devis]'); if (od) { PENDING_DEVIS = +od.dataset.openDevis; go('devis'); }
+  const rb = e.target.closest('[data-relance]'); if (rb) relancer(rb.dataset);
+});
+
+/* ── Relance d'un devis : ouvre l'email déjà rédigé, puis note la relance ── */
+async function relancer(d) {
+  const nom = d.nom || '', date = d.date ? new Date(d.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }) : '';
+  const body = `Bonjour ${nom},\n\nJe me permets de revenir vers vous au sujet de votre demande de devis${d.prest ? ' (' + d.prest + ')' : ''}${date ? ' du ' + date : ''}.\nSouhaitez-vous que nous en parlions ? Je reste à votre disposition.\n\nBien cordialement,\n${CONFIG.nom_entreprise}${CONFIG.telephone ? '\n' + CONFIG.telephone : ''}`;
+  window.location.href = 'mailto:' + d.mail + '?subject=' + encodeURIComponent('Votre demande de devis — ' + CONFIG.nom_entreprise) + '&body=' + encodeURIComponent(body);
+  try { await api('/api/admin/devis/' + d.relance, 'PUT', { relance: true }); toast('Relance notée — le rappel disparaît de la liste'); if (DEVIS) { const x = DEVIS.find((y) => y.id === +d.relance); if (x) x.relance_le = new Date().toISOString(); } setTimeout(() => route(), 600); } catch (e) { toast(e.message, true); }
+}
+const aRelancer = (d) => { const j = ((CONFIG.extras || {}).relance_jours) || 3; return (CONFIG.features || {}).relance !== false && ['nouveau', 'en_cours'].includes(d.statut) && !d.relance_le && Date.now() - new Date(d.created_at).getTime() > j * 86400000; };
+
+/* ── Devis ── */
+const estTxt = (d) => (d.mode === 'affiche' ? `${fmt(d.estimation_min)}–${fmt(d.estimation_max)} €` : 'À chiffrer');
+const relBadge = (d) => (aRelancer(d) ? ' <span class="pill p-relance">À relancer</span>' : '');
+const emailBadge = (d) => relBadge(d) + (d.email_statut === 'envoye' ? '' : d.email_statut === 'echec' ? '<span class="pill p-echec" title="Email non envoyé">Email non envoyé</span>' : '<span class="pill p-ghost">Email non configuré</span>');
+VIEWS.devis = async () => {
+  DEVIS = (await api('/api/admin/devis')).devis; refreshBadges();
+  $('topActions').innerHTML = '<button class="btn sm" id="exp">Exporter (CSV)</button>';
+  $('exp').onclick = () => exportCsv('devis');
+  $('view').innerHTML = `<div class="toolbar"><input class="search" id="dq" placeholder="Rechercher un nom, un email…" value="${esc(F.dq)}" /><div class="chips" id="dchips"></div></div><div id="dlist"></div>`;
+  $('dq').oninput = (e) => { F.dq = e.target.value; drawDevis(); };
+  $('dchips').onclick = (e) => { const b = e.target.closest('.chip'); if (b) { F.devis = b.dataset.f; drawDevis(); } };
+  drawDevis();
+  if (PENDING_DEVIS) { const id = PENDING_DEVIS; PENDING_DEVIS = null; devisDetail(id); }
+};
+function drawDevis() {
+  const q = F.dq.toLowerCase();
+  const cnt = (s) => DEVIS.filter((d) => s === 'all' || d.statut === s).length;
+  $('dchips').innerHTML = [['all', 'Tous'], ...Object.entries(ST_DEVIS)].map(([k, l]) => `<button class="chip ${F.devis === k ? 'on' : ''}" data-f="${k}">${l}<em>${cnt(k)}</em></button>`).join('');
+  const list = DEVIS.filter((d) => (F.devis === 'all' || d.statut === F.devis) && (!q || (d.nom + d.email + d.prestation + d.tel).toLowerCase().includes(q)));
+  $('dlist').innerHTML = list.length
+    ? `<div class="table"><div class="tr head"><span>Client</span><span>Prestation</span><span>Estimation</span><span>Statut</span><span>Reçu le</span></div>${list.map((d) => `<button class="tr" data-devis="${d.id}"><span><b>${esc(d.nom)}</b><small>${esc(d.email)}</small></span><span class="c-mid">${esc(d.prestation)}<small>${d.quantite} ${esc(d.unite)}</small></span><span class="c-num num">${estTxt(d)}</span><span class="c-st">${pill(d.statut, ST_DEVIS)}</span><span class="c-date"><small>${fdt(d.created_at)}</small>${emailBadge(d)}</span></button>`).join('')}</div>`
+    : `<div class="card empty"><b>${DEVIS.length ? 'Aucun résultat' : 'Aucun devis pour le moment'}</b>${DEVIS.length ? 'Essayez un autre filtre.' : 'Les demandes du simulateur arrivent ici, en plus de votre boîte email.'}</div>`;
+  $('dlist').querySelectorAll('[data-devis]').forEach((b) => (b.onclick = () => devisDetail(+b.dataset.devis)));
+}
+function devisDetail(id) {
+  const d = (DEVIS || []).find((x) => x.id === id); if (!d) return;
+  let opts = []; try { opts = JSON.parse(d.options_json); } catch (e) { /* ignore */ }
+  const em = d.email_statut === 'envoye' ? '<span class="pill p-envoye">Email envoyé au pro</span>' : d.email_statut === 'echec' ? `<span class="pill p-echec">Email non envoyé</span><div class="small muted" style="margin-top:.3rem">${esc(d.email_detail)}</div>` : '<span class="pill p-ghost">Email non configuré</span>';
+  const m = modal('Devis · ' + d.nom, `
+    <dl class="kv">
+      <dt>Reçu le</dt><dd>${fdt(d.created_at)}</dd>
+      <dt>Client</dt><dd>${esc(d.nom)}</dd>
+      <dt>Email</dt><dd><a href="mailto:${esc(d.email)}" style="color:var(--accent)">${esc(d.email)}</a></dd>
+      <dt>Téléphone</dt><dd>${d.tel ? `<a href="tel:${esc(d.tel)}" style="color:var(--accent)">${esc(d.tel)}</a>` : '—'}</dd>
+      <dt>Prestation</dt><dd>${esc(d.prestation)}</dd>
+      <dt>Quantité</dt><dd>${d.quantite} ${esc(d.unite)}</dd>
+      <dt>Options</dt><dd>${opts.length ? opts.map((o) => `${esc(o.label)}${d.mode === 'affiche' ? ` (${o.price >= 0 ? '+' : ''}${fmt(o.price)} €)` : ''}`).join('<br>') : 'Aucune'}</dd>
+      <dt>Estimation</dt><dd>${d.mode === 'affiche' ? estTxt(d) + ' <span class="muted small">(affichée au client)</span>' : 'Prix masqué au client : à chiffrer'}</dd>
+      <dt>Message</dt><dd style="font-weight:500;white-space:pre-wrap">${esc(d.message) || '—'}</dd>
+      <dt>Notification</dt><dd>${em}</dd>
+      ${d.client_email_statut ? `<dt>Confirmation client</dt><dd>${d.client_email_statut === 'envoye' ? '<span class="pill p-envoye">Email envoyé au client</span>' : `<span class="pill p-echec">Non envoyé au client</span><div class="small muted" style="margin-top:.3rem">${esc(d.client_email_detail)}</div>`}</dd>` : ''}
+      ${d.remise_pct > 0 ? `<dt>Code promo</dt><dd>${esc(d.remise_code)} (−${d.remise_pct} %)</dd>` : ''}
+      ${d.lang && d.lang !== 'fr' ? `<dt>Langue du client</dt><dd>${esc({ en: 'English', es: 'Español', ar: 'العربية' }[d.lang] || d.lang)}</dd>` : ''}
+      <dt>Relance</dt><dd>${d.relance_le ? 'Relancé le ' + fdt(d.relance_le) : aRelancer(d) ? '<span class="pill p-relance">À relancer</span>' : '—'}</dd>
+    </dl>
+    <div class="row2"><div class="field"><label for="dSt">Statut</label><select id="dSt">${Object.entries(ST_DEVIS).map(([k, l]) => `<option value="${k}" ${d.statut === k ? 'selected' : ''}>${l}</option>`).join('')}</select></div></div>
+    <div class="field"><label for="dNote">Note interne (invisible pour le client)</label><textarea id="dNote" placeholder="Prix proposé, rappel à faire…">${esc(d.note)}</textarea></div>`,
+    `<button class="btn danger spacer" id="dDel">Supprimer</button><a class="btn" href="mailto:${esc(d.email)}?subject=${encodeURIComponent('Votre demande de devis')}">Répondre</a><button class="btn" id="dPdf">PDF</button><button class="btn" id="dRel">Relancer</button>${d.tel ? `<a class="btn" href="tel:${esc(d.tel)}">Appeler</a>` : ''}<button class="btn primary" id="dSave">Enregistrer</button>`);
+  $('dPdf').onclick = (e) => openPdf(d.id, e.currentTarget);
+  $('dRel').onclick = () => { closeModal(); relancer({ relance: d.id, mail: d.email, nom: d.nom, prest: d.prestation, date: d.created_at }); };
+  $('dSave').onclick = async () => {
+    try { await api('/api/admin/devis/' + id, 'PUT', { statut: $('dSt').value, note: $('dNote').value }); d.statut = $('dSt').value; d.note = $('dNote').value; closeModal(); toast('Devis mis à jour'); refreshBadges(); if ($('dlist')) drawDevis(); } catch (e) { toast(e.message, true); }
+  };
+  $('dDel').onclick = async () => {
+    if (!confirm('Supprimer définitivement ce devis ?')) return;
+    try { await api('/api/admin/devis/' + id, 'DELETE'); DEVIS = DEVIS.filter((x) => x.id !== id); closeModal(); toast('Devis supprimé'); refreshBadges(); if ($('dlist')) drawDevis(); } catch (e) { toast(e.message, true); }
+  };
+}
+
+/* ── Messages ── */
+VIEWS.messages = async () => {
+  CONTACTS = (await api('/api/admin/contacts')).contacts; refreshBadges();
+  $('topActions').innerHTML = '<button class="btn sm" id="exp">Exporter (CSV)</button>';
+  $('exp').onclick = () => exportCsv('contacts');
+  $('view').innerHTML = `<div class="toolbar"><input class="search" id="cq" placeholder="Rechercher…" value="${esc(F.cq)}" /><div class="chips" id="cchips"></div></div><div id="clist"></div>`;
+  $('cq').oninput = (e) => { F.cq = e.target.value; drawContacts(); };
+  $('cchips').onclick = (e) => { const b = e.target.closest('.chip'); if (b) { F.ct = b.dataset.f; drawContacts(); } };
+  drawContacts();
+};
+function drawContacts() {
+  const q = F.cq.toLowerCase();
+  const cnt = (s) => CONTACTS.filter((d) => s === 'all' || d.statut === s).length;
+  $('cchips').innerHTML = [['all', 'Tous'], ...Object.entries(ST_CT)].map(([k, l]) => `<button class="chip ${F.ct === k ? 'on' : ''}" data-f="${k}">${l}<em>${cnt(k)}</em></button>`).join('');
+  const list = CONTACTS.filter((c) => (F.ct === 'all' || c.statut === F.ct) && (!q || (c.nom + c.email + c.message).toLowerCase().includes(q)));
+  $('clist').innerHTML = list.length
+    ? `<div class="table"><div class="tr c4 head"><span>Contact</span><span>Message</span><span>Statut</span><span>Reçu le</span></div>${list.map((c) => `<button class="tr c4" data-ct="${c.id}"><span><b>${esc(c.nom)}</b><small>${esc(c.email)}</small></span><span class="c-mid">${esc(c.message.slice(0, 90))}<small>${esc(c.prestation_interessee || 'Question générale')}</small></span><span class="c-st">${pill(c.statut, ST_CT)}</span><span class="c-date"><small>${fdt(c.created_at)}</small></span></button>`).join('')}</div>`
+    : `<div class="card empty"><b>${CONTACTS.length ? 'Aucun résultat' : 'Aucun message pour le moment'}</b>${CONTACTS.length ? 'Essayez un autre filtre.' : 'Les messages du formulaire de contact sont archivés ici.'}</div>`;
+  $('clist').querySelectorAll('[data-ct]').forEach((b) => (b.onclick = () => contactDetail(+b.dataset.ct)));
+}
+function contactDetail(id) {
+  const c = CONTACTS.find((x) => x.id === id); if (!c) return;
+  modal('Message · ' + c.nom, `<dl class="kv"><dt>Reçu le</dt><dd>${fdt(c.created_at)}</dd>${c.email_statut ? `<dt>Notification</dt><dd>${c.email_statut === 'envoye' ? '<span class="pill p-envoye">Email reçu par vous</span>' : `<span class="pill p-echec">Email non envoyé</span><div class="small muted" style="margin-top:.3rem">${esc(c.email_detail)}</div>`}</dd>` : ''}${c.client_email_statut ? `<dt>Confirmation client</dt><dd>${c.client_email_statut === 'envoye' ? '<span class="pill p-envoye">Envoyée au client</span>' : `<span class="pill p-echec">Non envoyée</span><div class="small muted" style="margin-top:.3rem">${esc(c.client_email_detail)}</div>`}</dd>` : ''}<dt>Email</dt><dd><a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a></dd><dt>Téléphone</dt><dd>${c.tel ? `<a href="tel:${esc(c.tel)}" style="color:var(--accent)">${esc(c.tel)}</a>` : '—'}</dd><dt>Sujet</dt><dd>${esc(c.prestation_interessee || 'Question générale')}</dd></dl><div class="card" style="background:var(--bg);border:0;white-space:pre-wrap">${esc(c.message)}</div>`,
+    `<button class="btn danger spacer" id="cDel">Supprimer</button><a class="btn" href="mailto:${esc(c.email)}">Répondre</a><button class="btn primary" id="cTog">${c.statut === 'traite' ? 'Marquer non traité' : 'Marquer comme traité'}</button>`);
+  $('cTog').onclick = async () => { const s = c.statut === 'traite' ? 'nouveau' : 'traite'; try { await api('/api/admin/contacts/' + id, 'PUT', { statut: s }); c.statut = s; closeModal(); refreshBadges(); drawContacts(); } catch (e) { toast(e.message, true); } };
+  $('cDel').onclick = async () => { if (!confirm('Supprimer ce message ?')) return; try { await api('/api/admin/contacts/' + id, 'DELETE'); CONTACTS = CONTACTS.filter((x) => x.id !== id); closeModal(); refreshBadges(); drawContacts(); } catch (e) { toast(e.message, true); } };
+}
+
+/* ── Export CSV (Excel FR : séparateur « ; ») ── */
+function exportCsv(kind) {
+  const q = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""').replace(/\n/g, ' ') + '"';
+  let head, rows;
+  if (kind === 'devis') {
+    head = ['Date', 'Nom', 'Email', 'Téléphone', 'Prestation', 'Quantité', 'Unité', 'Options', 'Estimation min', 'Estimation max', 'Statut', 'Message', 'Note'];
+    rows = DEVIS.map((d) => { let o = []; try { o = JSON.parse(d.options_json).map((x) => x.label); } catch (e) { /* ignore */ } return [d.created_at.slice(0, 16).replace('T', ' '), d.nom, d.email, d.tel, d.prestation, d.quantite, d.unite, o.join(' + '), d.mode === 'affiche' ? d.estimation_min : '', d.mode === 'affiche' ? d.estimation_max : '', ST_DEVIS[d.statut], d.message, d.note]; });
+  } else {
+    head = ['Date', 'Nom', 'Email', 'Téléphone', 'Sujet', 'Message', 'Statut'];
+    rows = CONTACTS.map((c) => [c.created_at.slice(0, 16).replace('T', ' '), c.nom, c.email, c.tel, c.prestation_interessee, c.message, ST_CT[c.statut]]);
+  }
+  const csv = '\ufeff' + [head, ...rows].map((r) => r.map(q).join(';')).join('\r\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = kind + '-' + new Date().toISOString().slice(0, 10) + '.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+/* ── Rendez-vous ── */
+VIEWS.rdv = async () => {
+  RDV = (await api('/api/admin/rdv')).rdv;
+  const now = new Date().toISOString();
+  $('view').innerHTML = `${RDV.length ? `<div class="table">${RDV.map((r) => `<div class="tr c4" style="cursor:default"><span><b>${esc(r.nom || 'Client')}</b><small>${esc(r.email)}</small></span><span class="c-mid">${esc(r.titre)}</span><span class="c-st">${pill(r.statut, { confirme: r.debut < now ? 'Passé' : 'Confirmé', annule: 'Annulé' })}</span><span class="c-date"><small>${fdt(r.debut)}</small></span></div>`).join('')}</div>` : '<div class="card empty"><b>Aucun rendez-vous enregistré</b>Les réservations faites depuis le site apparaîtront ici dès que Cal.com sera relié (ci-dessous).</div>'}
+    <div class="card" style="margin-top:1rem"><h3>Recevoir les rendez-vous ici (facultatif)</h3>
+    <p class="muted" style="margin-bottom:.8rem">Le calendrier du site fonctionne déjà avec le lien Cal.com des réglages. Pour voir aussi les réservations dans cet espace :</p>
+    <ol class="muted" style="padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem">
+      <li>Dans le Worker : <code>wrangler secret put CAL_WEBHOOK_KEY</code> (choisissez une longue clé secrète).</li>
+      <li>Dans Cal.com → Settings → Developer → Webhooks → Nouveau webhook.</li>
+      <li>Adresse : <code>${esc(API)}/api/cal-webhook?key=VOTRE_CLE</code></li>
+      <li>Événements : réservation créée, reportée et annulée.</li>
+    </ol></div>`;
+};
+
+/* ── Produits & prestations ── */
+VIEWS.produits = async () => {
+  PRODS = (await api('/api/admin/prestations')).prestations;
+  $('topActions').innerHTML = '<button class="btn primary sm" id="addP">+ Ajouter</button>';
+  $('addP').onclick = () => prodForm(null);
+  drawProds();
+};
+function drawProds() {
+  $('view').innerHTML = PRODS.length ? `<div class="alert info"><div>Chaque carte peut avoir un <b>lien Stripe</b> : le bouton « Commander » du site ouvre alors le paiement. Sans lien, le bouton devient « Demander un devis ».</div></div><div class="prod-grid">${PRODS.map((p) => `<div class="prod ${p.actif ? '' : 'off'}"><div class="im">${p.image_url ? `<img src="${esc(img(p.image_url))}" alt="" loading="lazy" />` : esc(p.titre.slice(0, 2).toUpperCase())}${p.badge ? `<span class="pill p-nouveau">${esc(p.badge)}</span>` : ''}</div><div class="bd"><b>${esc(p.titre)}</b><span class="muted">${esc(p.prix_affiche)}</span><div>${p.stripe_url ? '<span class="pill p-envoye">Lien Stripe</span>' : '<span class="pill p-ghost">Sur devis</span>'} ${p.actif ? '' : '<span class="pill p-perdu">Masqué</span>'}</div><div class="ft"><button class="btn sm" data-ep="${p.id}">Modifier</button><button class="btn sm danger" data-dp="${p.id}">Supprimer</button></div></div></div>`).join('')}</div>` : '<div class="card empty"><b>Aucun produit</b>Ajoutez votre premier produit ou service : il apparaît tout de suite sur le site.</div>';
+  $('view').querySelectorAll('[data-ep]').forEach((b) => (b.onclick = () => prodForm(PRODS.find((x) => x.id === +b.dataset.ep))));
+  $('view').querySelectorAll('[data-dp]').forEach((b) => (b.onclick = async () => { if (!confirm('Supprimer ce produit ?')) return; try { await api('/api/admin/prestations/' + b.dataset.dp, 'DELETE'); PRODS = PRODS.filter((x) => x.id !== +b.dataset.dp); drawProds(); toast('Produit supprimé'); } catch (e) { toast(e.message, true); } }));
+}
+function prodForm(p) {
+  p = p || { titre: '', description: '', prix_affiche: '', image_url: '', stripe_url: '', bouton_label: '', badge: '', prix_base: '', ordre: (PRODS.length + 1), actif: 1 };
+  modal(p.id ? 'Modifier le produit' : 'Nouveau produit', `${uploadBlock('pi', p.image_url)}
+    <div class="field"><label for="pT">Titre</label><input id="pT" value="${esc(p.titre)}" maxlength="120" /></div>
+    <div class="field"><label for="pD">Description</label><textarea id="pD">${esc(p.description)}</textarea></div>
+    <div class="row2"><div class="field"><label for="pP">Prix affiché</label><input id="pP" value="${esc(p.prix_affiche)}" placeholder="49 € · À partir de 50 € · Sur devis" /></div><div class="field"><label for="pB">Badge (facultatif)</label><input id="pB" value="${esc(p.badge)}" placeholder="Nouveau, Populaire…" maxlength="24" /></div></div>
+    <div class="field"><label for="pS">Lien de paiement Stripe</label><input id="pS" value="${esc(p.stripe_url)}" placeholder="https://buy.stripe.com/…" inputmode="url" /><div class="hint">Stripe → Liens de paiement → créer un lien → copier. Laissez vide pour un bouton « Demander un devis ».</div></div>
+    <div class="row3"><div class="field"><label for="pL">Texte du bouton</label><input id="pL" value="${esc(p.bouton_label)}" placeholder="Commander" maxlength="30" /></div><div class="field"><label for="pBase">Prix unitaire simulateur (€)</label><input id="pBase" type="number" min="0" step="0.01" value="${p.prix_base == null ? '' : p.prix_base}" placeholder="Défaut" /></div><div class="field"><label for="pO">Ordre</label><input id="pO" type="number" value="${p.ordre}" /></div></div>
+    <label class="check"><input type="checkbox" id="pA" ${p.actif ? 'checked' : ''} /> Visible sur le site</label>`,
+    `<button class="btn" data-close>Annuler</button><button class="btn primary" id="pSave">Enregistrer</button>`);
+  bindUpload('piFile', 'piUrl', 'piPrev');
+  $('pSave').onclick = async () => {
+    const stripe = $('pS').value.trim();
+    if (!$('pT').value.trim()) return toast('Le titre est obligatoire', true);
+    if (stripe && !/^https:\/\//i.test(stripe)) return toast('Le lien Stripe doit commencer par https://', true);
+    const body = { titre: $('pT').value, description: $('pD').value, prix_affiche: $('pP').value, image_url: $('piUrl').value, stripe_url: stripe, bouton_label: $('pL').value, badge: $('pB').value, prix_base: $('pBase').value, ordre: $('pO').value, actif: $('pA').checked };
+    try { await api('/api/admin/prestations' + (p.id ? '/' + p.id : ''), p.id ? 'PUT' : 'POST', body); closeModal(); toast('Produit enregistré — visible sur le site'); PRODS = (await api('/api/admin/prestations')).prestations; drawProds(); } catch (e) { toast(e.message, true); }
+  };
+}
+
+/* ── Blog ── */
+VIEWS.blog = async () => {
+  ARTS = (await api('/api/admin/articles')).articles;
+  $('topActions').innerHTML = '<button class="btn primary sm" id="addA">+ Nouvel article</button>';
+  $('addA').onclick = () => artForm(null);
+  drawArts();
+};
+function drawArts() {
+  $('view').innerHTML = ARTS.length ? `<div class="table">${ARTS.map((a) => `<button class="tr c4" data-ea="${a.id}"><span><b>${esc(a.titre)}</b><small>${esc(a.extrait)}</small></span><span class="c-mid muted">${esc(a.slug)}</span><span class="c-st">${a.publie ? '<span class="pill p-envoye">Publié</span>' : '<span class="pill p-ghost">Brouillon</span>'}</span><span class="c-date"><small>${fd(a.date_publication)}</small></span></button>`).join('')}</div>` : '<div class="card empty"><b>Aucun article</b>Publiez des conseils pour rassurer vos visiteurs et améliorer votre référencement.</div>';
+  $('view').querySelectorAll('[data-ea]').forEach((b) => (b.onclick = () => artForm(ARTS.find((x) => x.id === +b.dataset.ea))));
+}
+function artForm(a) {
+  a = a || { titre: '', extrait: '', contenu: '', image_url: '', publie: 0 };
+  modal(a.id ? "Modifier l'article" : 'Nouvel article', `${uploadBlock('ai', a.image_url)}
+    <div class="field"><label for="aT">Titre</label><input id="aT" value="${esc(a.titre)}" maxlength="160" /></div>
+    <div class="field"><label for="aE">Résumé court</label><textarea id="aE" style="min-height:60px">${esc(a.extrait)}</textarea></div>
+    <div class="field"><label for="aC">Contenu</label><textarea id="aC" style="min-height:190px">${esc(a.contenu)}</textarea></div>
+    <label class="check"><input type="checkbox" id="aP" ${a.publie ? 'checked' : ''} /> Publié (visible sur le site)</label>`,
+    `${a.id ? '<button class="btn danger spacer" id="aDel">Supprimer</button>' : ''}<button class="btn" data-close>Annuler</button><button class="btn primary" id="aSave">Enregistrer</button>`);
+  bindUpload('aiFile', 'aiUrl', 'aiPrev');
+  $('aSave').onclick = async () => {
+    if (!$('aT').value.trim()) return toast('Le titre est obligatoire', true);
+    const body = { titre: $('aT').value, extrait: $('aE').value, contenu: $('aC').value, image_url: $('aiUrl').value, publie: $('aP').checked, date_publication: a.date_publication };
+    try { await api('/api/admin/articles' + (a.id ? '/' + a.id : ''), a.id ? 'PUT' : 'POST', body); closeModal(); toast('Article enregistré'); ARTS = (await api('/api/admin/articles')).articles; drawArts(); } catch (e) { toast(e.message, true); }
+  };
+  if (a.id) $('aDel').onclick = async () => { if (!confirm('Supprimer cet article ?')) return; try { await api('/api/admin/articles/' + a.id, 'DELETE'); closeModal(); ARTS = ARTS.filter((x) => x.id !== a.id); drawArts(); toast('Article supprimé'); } catch (e) { toast(e.message, true); } };
+}
+
+/* ── Simulateur de devis ── */
+let SIM = null;
+VIEWS.simulateur = async () => {
+  CONFIG = (await api('/api/admin/config')).config; SIM = JSON.parse(JSON.stringify(CONFIG.sim));
+  $('topActions').innerHTML = '<button class="btn primary sm" id="simSave">Enregistrer</button>';
+  $('simSave').onclick = saveSim;
+  $('view').innerHTML = `<div class="card" style="margin-bottom:1rem"><h3>Ce que voit le visiteur</h3><div class="modes">
+      <button class="mode" data-mode="affiche"><b>Afficher une estimation</b><span>Le client voit une fourchette de prix, vous la recevez aussi dans l'email.</span></button>
+      <button class="mode" data-mode="masque"><b>Masquer le prix</b><span>Le client ne voit aucun prix : vous recevez sa demande et vous chiffrez vous-même.</span></button></div>
+      <div class="row3"><div class="field"><label for="sUP">Prix par unité (€)</label><input id="sUP" type="number" min="0" step="0.01" /><div class="hint">Modifiable produit par produit.</div></div><div class="field"><label for="sUL">Nom de l'unité</label><input id="sUL" maxlength="30" placeholder="m², heures, personnes…" /></div><div class="field"><label for="sDef">Quantité par défaut</label><input id="sDef" type="number" min="1" /></div></div>
+      <div class="row2"><div class="field"><label for="sMin">Quantité minimale</label><input id="sMin" type="number" min="1" /></div><div class="field"><label for="sMax">Quantité maximale</label><input id="sMax" type="number" min="1" /></div></div>
+      <div class="row2"><div class="field"><label for="sLow">Fourchette basse (%)</label><input id="sLow" type="number" min="-90" max="0" /></div><div class="field"><label for="sHigh">Fourchette haute (%)</label><input id="sHigh" type="number" min="0" max="300" /></div></div>
+      <div class="preview" id="simPrev"></div></div>
+    <div class="card"><div class="card-head"><h3>Options proposées</h3><button class="btn sm" id="addOpt">+ Ajouter une option</button></div><div id="optRows"></div></div>`;
+  paintSim();
+  $('view').oninput = simInput;
+  $('view').querySelectorAll('[data-mode]').forEach((b) => (b.onclick = () => { SIM.mode = b.dataset.mode; paintModes(); }));
+  $('addOpt').onclick = () => { readSim(); SIM.options.push({ key: '', label: '', desc: '', price: 0 }); paintOpts(); };
+};
+function paintSim() {
+  $('sUP').value = SIM.unit_price; $('sUL').value = SIM.unit_label; $('sDef').value = SIM.qty_default; $('sMin').value = SIM.qty_min; $('sMax').value = SIM.qty_max; $('sLow').value = SIM.range_low; $('sHigh').value = SIM.range_high;
+  paintModes(); paintOpts(); simPreview();
+}
+function paintModes() { $('view').querySelectorAll('[data-mode]').forEach((b) => b.classList.toggle('on', b.dataset.mode === SIM.mode)); }
+function paintOpts() {
+  $('optRows').innerHTML = SIM.options.length ? SIM.options.map((o, i) => `<div class="opt-row" data-i="${i}"><input class="ol" placeholder="Nom de l'option" value="${esc(o.label)}" /><input class="od" placeholder="Courte description" value="${esc(o.desc)}" /><input class="op" type="number" step="0.01" value="${o.price}" aria-label="Prix" /><button class="btn sm danger" data-rm="${i}" aria-label="Retirer">✕</button></div>`).join('') : '<div class="empty">Aucune option : le client passe directement à l\'estimation.</div>';
+  $('optRows').querySelectorAll('[data-rm]').forEach((b) => (b.onclick = () => { readSim(); SIM.options.splice(+b.dataset.rm, 1); paintOpts(); }));
+}
+function readSim() {
+  SIM.unit_price = +$('sUP').value || 0; SIM.unit_label = $('sUL').value || 'unité(s)'; SIM.qty_default = +$('sDef').value || 1; SIM.qty_min = +$('sMin').value || 1; SIM.qty_max = +$('sMax').value || 1; SIM.range_low = +$('sLow').value || 0; SIM.range_high = +$('sHigh').value || 0;
+  SIM.options = [...$('optRows').querySelectorAll('.opt-row')].map((r, i) => ({ key: (SIM.options[i] && SIM.options[i].key) || '', label: r.querySelector('.ol').value, desc: r.querySelector('.od').value, price: +r.querySelector('.op').value || 0 }));
+}
+function simInput() { if (!$('sUP')) return; readSim(); simPreview(); }
+function simPreview() {
+  const tot = SIM.unit_price * SIM.qty_default, r5 = (x) => Math.round(x / 5) * 5;
+  $('simPrev').innerHTML = `Exemple : ${fmt(SIM.qty_default)} ${esc(SIM.unit_label)} × ${fmt(SIM.unit_price)} € = <b>${fmt(tot)} €</b> → le client verrait <b>${fmt(r5(tot * (1 + SIM.range_low / 100)))} € – ${fmt(r5(tot * (1 + SIM.range_high / 100)))} €</b>${SIM.mode === 'masque' ? ' <span class="muted">(masqué en mode « prix masqué »)</span>' : ''}`;
+}
+async function saveSim() {
+  readSim(); paintModes();
+  try { await saveConfig({ sim: SIM }); toast('Simulateur mis à jour sur le site'); } catch (e) { toast(e.message, true); }
+}
+async function saveConfig(patch) {
+  const body = { ...CONFIG, ...patch };
+  const d = await api('/api/admin/config', 'POST', body);
+  CONFIG = (await api('/api/admin/config')).config; applyBrand(); return d;
+}
+
+/* ── Réglages ── */
+VIEWS.reglages = async () => {
+  CONFIG = (await api('/api/admin/config')).config; const c = CONFIG;
+  $('topActions').innerHTML = '<button class="btn primary sm" id="cfgSave">Enregistrer</button>';
+  $('view').innerHTML = `<div class="card" style="margin-bottom:1rem"><h3>Identité du site</h3>${uploadBlock('lg', c.logo_url)}
+      <div class="row2"><div class="field"><label for="rN">Nom de l'entreprise</label><input id="rN" value="${esc(c.nom_entreprise)}" /></div><div class="field"><label for="rC">Couleur principale</label><input id="rC" type="color" value="${esc(c.couleur_primaire)}" style="width:100%;height:42px;border:1px solid var(--line);border-radius:10px;padding:3px;background:#fff" /></div></div>
+      <div class="field"><label for="rT">Slogan (titre du site)</label><input id="rT" value="${esc(c.tagline)}" /></div>
+      <div class="field"><label for="rD">Description courte</label><textarea id="rD">${esc(c.description)}</textarea></div></div>
+    <div class="card" style="margin-bottom:1rem"><h3>Coordonnées affichées</h3>
+      <div class="row2"><div class="field"><label for="rE">Email affiché aux visiteurs</label><input id="rE" type="email" value="${esc(c.email_contact)}" /></div><div class="field"><label for="rTel">Téléphone</label><input id="rTel" value="${esc(c.telephone)}" /></div></div>
+      <div class="field"><label for="rA">Adresse</label><input id="rA" value="${esc(c.adresse)}" /></div></div>
+    <div class="card" style="margin-bottom:1rem"><h3>Devis par email</h3>
+      <div class="field"><label for="rP">Email de réception des devis</label><input id="rP" type="email" value="${esc(c.pro_email)}" /><div class="hint">Cette adresse reçoit chaque simulation. Répondre à l'email écrit directement au client.</div></div>
+      <button class="btn" id="testMail">Envoyer un email de test</button><div id="testRes" style="margin-top:.8rem"></div></div>
+    <div class="card" style="margin-bottom:1rem"><h3>Formulaire de contact (Formspree)</h3>
+      <div class="field"><label for="rF">Identifiant ou adresse du formulaire</label><input id="rF" value="${esc(c.formspree_id)}" placeholder="xyzabcde ou https://formspree.io/f/xyzabcde" /><div class="hint">Formspree vous prévient à chaque message. L'email de confirmation envoyé au visiteur se règle dans Formspree (Settings du formulaire) — selon votre formule, cette option peut être payante.</div></div></div>
+    <div class="card"><h3>Prise de rendez-vous (Cal.com)</h3>
+      <div class="field"><label for="rCal">Lien Cal.com</label><input id="rCal" value="${esc(c.cal_link)}" placeholder="votre-pseudo/sitetest" /><div class="hint">Collez « votre-pseudo/sitetest » ou l'adresse complète. Si vous n'indiquez que votre pseudo, l'événement <b>sitetest</b> est utilisé. Laissez vide pour masquer la section sur le site.</div></div></div>
+    <div class="card" style="margin-top:1rem"><h3>Sauvegarde de mes données</h3><p class="muted" style="margin-bottom:.8rem">Téléchargez en un clic une copie de tout : devis, messages, produits, abonnés, réglages. Conservez-la en lieu sûr.</p><button class="btn" id="expAll">Télécharger ma sauvegarde</button></div>
+    <p class="muted small" style="margin-top:1rem">Le code d'accès à cet espace se change côté Worker avec <code>wrangler secret put ADMIN_PASSWORD</code>.</p>`;
+  bindUpload('lgFile', 'lgUrl', 'lgPrev');
+  $('expAll').onclick = (e) => exportAll(e.currentTarget);
+  $('cfgSave').onclick = async () => {
+    try {
+      const d = await saveConfig({ nom_entreprise: $('rN').value, couleur_primaire: $('rC').value, tagline: $('rT').value, description: $('rD').value, email_contact: $('rE').value, telephone: $('rTel').value, adresse: $('rA').value, pro_email: $('rP').value, formspree_id: $('rF').value, cal_link: $('rCal').value, logo_url: $('lgUrl').value });
+      $('rF').value = d.formspree_id; $('rCal').value = d.cal_link; toast('Réglages enregistrés — le site est à jour');
+    } catch (e) { toast(e.message, true); }
+  };
+  $('testMail').onclick = async () => {
+    const b = $('testMail'), out = $('testRes'); b.disabled = true; out.innerHTML = '<span class="muted">Envoi en cours…</span>';
+    try {
+      const r = await api('/api/admin/test-email', 'POST', null, true);
+      out.innerHTML = r.ok ? `<div class="alert ok"><div>Email de test envoyé à <b>${esc(r.to)}</b>. Vérifiez votre boîte (et les indésirables).</div></div>` : `<div class="alert err"><div><b>L'envoi a échoué.</b><br>${esc(r.detail)}${r.hint ? `<br><br>${esc(r.hint)}` : ''}</div></div>`;
+    } catch (e) { out.innerHTML = `<div class="alert err">${esc(e.message)}</div>`; }
+    b.disabled = false;
+  };
+};
+
+/* ══════════ Fonctions du site : des interrupteurs, rien d'autre ══════════ */
+const FEATS = [
+  { k: 'contact_email', ico: '📨', t: 'Messages de contact par email', d: 'Chaque message du formulaire du site vous arrive par email (Resend) et s\'affiche aussi ici. Éteint : retour au système Formspree, sans rien casser.', go: 'messages', gl: 'Voir mes messages' },
+  { k: 'produits', ico: '🛍️', t: 'Produits & boutique', d: 'Présentez vos produits avec un bouton de paiement Stripe (ou « Demander un devis »).', go: 'produits', gl: 'Gérer mes produits' },
+  { k: 'simulateur', ico: '🧮', t: 'Devis en ligne', d: 'Vos visiteurs obtiennent une estimation en 1 minute, et vous recevez la demande par email.', go: 'simulateur', gl: 'Régler mes prix' },
+  { k: 'rdv', ico: '📅', t: 'Prise de rendez-vous', d: 'Un calendrier sur votre site : vos clients réservent tout seuls.', go: 'reglages', gl: 'Mettre mon lien Cal.com', warn: (c) => (c.cal_link ? '' : 'Il manque votre lien Cal.com (dans Réglages) : tant qu\'il est vide, rien ne s\'affiche.') },
+  { k: 'pdf', ico: '📄', t: 'Devis en PDF', d: 'Le client télécharge son estimation en PDF (et la reçoit en pièce jointe). Vous pouvez aussi l\'ouvrir depuis chaque devis.', fields: 'pdf' },
+  { k: 'whatsapp', ico: '💬', t: 'Bouton WhatsApp', d: 'Votre numéro WhatsApp est ajouté à l\'email de confirmation envoyé au visiteur.', fields: 'wa' },
+  { k: 'avis', ico: '⭐', t: 'Avis clients', d: 'Affichez vos meilleurs avis avec les étoiles. Ça rassure avant de vous contacter.', go: 'avis', gl: 'Gérer mes avis' },
+  { k: 'galerie', ico: '🖼️', t: 'Réalisations (photos)', d: 'Une galerie de vos travaux, avec option « avant / après ».', go: 'galerie', gl: 'Gérer mes photos' },
+  { k: 'apropos', ico: '🏢', t: 'À propos + chiffres clés', d: 'Présentez-vous avec une photo, un texte et jusqu\'à 3 chiffres qui rassurent (« 10 ans d\'expérience »).', fields: 'apropos' },
+  { k: 'newsletter', ico: '📬', t: 'Newsletter (collecte d\'emails)', d: 'Un formulaire d\'inscription apparaît au-dessus du pied de page de toutes vos pages, et vous envoyez vos nouveautés à vos abonnés.', go: 'newsletter', gl: 'Gérer mes abonnés', fields: 'newsletter' },
+  { k: 'reseaux', ico: '📱', t: 'Réseaux sociaux + avis Google', d: 'Des boutons vers vos pages, et un bouton « Laisser un avis Google ».', fields: 'reseaux' },
+  { k: 'langues', ico: '🌍', t: 'Site en plusieurs langues', d: 'Anglais, espagnol, arabe : le visiteur change de langue en un clic.', fields: 'langues' },
+  { k: 'legal', ico: '⚖️', t: 'Mentions légales + confidentialité', d: 'Les pages obligatoires, générées pour vous à partir de vos informations.', fields: 'legal' },
+  { k: 'faq', ico: '❓', t: 'Questions fréquentes', d: 'Répondez d\'avance aux questions qu\'on vous pose tout le temps.', go: 'faq', gl: 'Gérer mes questions' },
+  { k: 'horaires', ico: '🕒', t: 'Horaires & carte', d: 'Vos horaires, le badge « Ouvert maintenant » et une carte pour venir.', fields: 'hours' },
+  { k: 'promo', ico: '🏷️', t: 'Bandeau promo', d: 'Une bande de couleur en haut du site pour annoncer une offre, avec un code à copier.', fields: 'promo' },
+  { k: 'blog', ico: '📰', t: 'Blog / actualités', d: 'Publiez des articles : c\'est utile pour être trouvé sur Google.', go: 'blog', gl: 'Écrire un article' },
+  { k: 'seo', ico: '🔎', t: 'Être bien trouvé sur Google', d: 'Titre, description et ville pour le référencement local.', fields: 'seo' },
+  { k: 'confirmation_client', ico: '✉️', t: 'Email de confirmation au client', d: 'Après un message de contact ou un devis, le client reçoit un email « bien reçu ».', fields: 'confirm' },
+  { k: 'relance', ico: '⏰', t: 'Rappel des devis à relancer', d: 'Le tableau de bord vous rappelle les devis restés sans réponse.', fields: 'relance' },
+];
+const PRO_FEATS = ['contact_email', 'confirmation_client', 'newsletter', 'whatsapp'];
+const DAYS_FR = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+const fld = (id, label, val, ph, hint, type) => `<div class="field"><label for="${id}">${label}</label><input id="${id}" type="${type || 'text'}" value="${esc(val)}" placeholder="${esc(ph || '')}" />${hint ? `<div class="hint">${hint}</div>` : ''}</div>`;
+const FIELDS = {
+  wa: (c, X) => fld('x_wa_numero', 'Numéro WhatsApp', X.wa_numero, c.telephone || '06 12 34 56 78', 'Laissez vide pour utiliser le téléphone affiché sur votre site.')
+    + fld('x_wa_message', 'Message déjà écrit pour le client', X.wa_message, 'Bonjour, je vous contacte depuis votre site.'),
+  hours: (c, X) => `<div>${X.horaires.map((h, i) => `<div class="hrow"><b>${DAYS_FR[i]}</b><label class="sw"><input type="checkbox" id="h_o${i}" ${h.o ? 'checked' : ''} aria-label="${DAYS_FR[i]} ouvert" /><i></i></label><div class="tm"><small>de</small><input type="time" id="h_d${i}" value="${h.d}" /><small>à</small><input type="time" id="h_f${i}" value="${h.f}" /><small>puis</small><input type="time" id="h_d2${i}" value="${h.d2}" /><small>à</small><input type="time" id="h_f2${i}" value="${h.f2}" /></div></div>`).join('')}</div>
+    <div class="hint" style="margin:.4rem 0 .9rem;color:var(--muted);font-size:.78rem">Interrupteur éteint = fermé ce jour-là. La 2e plage (« puis… ») sert pour la pause de midi : laissez-la vide sinon.</div>`
+    + fld('x_horaires_note', 'Petite note (facultatif)', X.horaires_note, 'Fermé les jours fériés')
+    + `<label class="check" style="margin-bottom:.6rem"><input type="checkbox" id="x_carte" ${X.carte ? 'checked' : ''} /> Afficher la carte (d'après l'adresse : ${esc(c.adresse || 'à renseigner dans Réglages')})</label>`,
+  promo: (c, X) => fld('x_promo_texte', 'Texte du bandeau', X.promo_texte, '-10 % sur votre première commande')
+    + `<div class="row2">${fld('x_promo_code', 'Code promo (facultatif)', X.promo_code, 'BIENVENUE10')}${fld('x_promo_fin', 'Dernier jour de l\'offre (facultatif)', X.promo_fin, '', 'Le bandeau disparaît tout seul après cette date.', 'date')}</div>`,
+  seo: (c, X) => fld('x_seo_titre', 'Titre sur Google', X.seo_titre, `${c.nom_entreprise} — plombier à Marseille`, 'Environ 60 caractères. Mettez votre métier et votre ville.')
+    + `<div class="field"><label for="x_seo_description">Description sur Google</label><textarea id="x_seo_description" maxlength="160" style="min-height:70px" placeholder="En une ou deux phrases : ce que vous faites et où.">${esc(X.seo_description)}</textarea></div>`
+    + fld('x_seo_ville', 'Ville ou zone desservie', X.seo_ville, 'Marseille et alentours'),
+  confirm: (c, X) => `<div class="field"><label for="x_confirm_message">Votre message au client</label><textarea id="x_confirm_message" maxlength="500" style="min-height:80px" placeholder="Nous avons bien reçu votre demande et nous revenons vers vous très rapidement.">${esc(X.confirm_message)}</textarea><div class="hint">Laissez vide pour le message par défaut. Pour écrire à n'importe quel client, le domaine d'envoi doit être vérifié dans Resend (sinon l'email au client peut être refusé ; votre devis, lui, est toujours enregistré).</div></div>`,
+  relance: (c, X) => fld('x_relance_jours', 'Me rappeler après combien de jours ?', X.relance_jours, '3', '', 'number'),
+};
+const READ = {
+  wa: () => ({ wa_numero: $('x_wa_numero').value, wa_message: $('x_wa_message').value }),
+  hours: () => ({ horaires: DAYS_FR.map((_, i) => ({ o: $('h_o' + i).checked ? 1 : 0, d: $('h_d' + i).value, f: $('h_f' + i).value, d2: $('h_d2' + i).value, f2: $('h_f2' + i).value })), horaires_note: $('x_horaires_note').value, carte: $('x_carte').checked ? 1 : 0 }),
+  promo: () => ({ promo_texte: $('x_promo_texte').value, promo_code: $('x_promo_code').value, promo_fin: $('x_promo_fin').value }),
+  seo: () => ({ seo_titre: $('x_seo_titre').value, seo_description: $('x_seo_description').value, seo_ville: $('x_seo_ville').value }),
+  confirm: () => ({ confirm_message: $('x_confirm_message').value }),
+  relance: () => ({ relance_jours: $('x_relance_jours').value }),
+};
+
+const LNAMES = { en: 'English', es: 'Español', ar: 'العربية' };
+Object.assign(FIELDS, {
+  pdf: (c, X) => `<div class="row2">${fld('x_devis_validite', 'Validité du devis (jours)', X.devis_validite, '30', '', 'number')}${fld('x_devis_mention', 'Mention TVA (facultatif)', X.devis_mention, 'TVA non applicable, art. 293 B du CGI')}</div>`
+    + `<div class="field"><label for="x_devis_conditions">Conditions de paiement (facultatif)</label><textarea id="x_devis_conditions" maxlength="400" style="min-height:70px" placeholder="Acompte de 30 % à la commande, solde à la livraison.">${esc(X.devis_conditions)}</textarea><div class="hint">Le SIRET et l'adresse affichés sur le PDF viennent du bloc « Mentions légales » plus bas.</div></div>`,
+  apropos: (c, X) => fld('x_apropos_titre', 'Titre', X.apropos_titre, 'Notre histoire')
+    + `<div class="field"><label for="x_apropos_texte">Votre texte</label><textarea id="x_apropos_texte" maxlength="1500" style="min-height:110px" placeholder="Qui êtes-vous ? Depuis quand ? Qu'est-ce qui vous rend différent ?">${esc(X.apropos_texte)}</textarea></div>`
+    + `<div class="field"><label>Photo (facultatif)</label>${uploadBlock('ap', X.apropos_image)}<button class="btn sm" type="button" id="apClear">Retirer la photo</button></div>`
+    + `<div class="hint" style="margin:.2rem 0 .5rem;font-size:.78rem;color:var(--muted)">Chiffres clés (facultatif, 3 maximum)</div>`
+    + [0, 1, 2].map((i) => { const ch = (X.chiffres || [])[i] || { n: '', l: '' }; return `<div class="row2">${fld('x_ch_n' + i, 'Chiffre ' + (i + 1), ch.n, ['10', '500+', '98 %'][i])}${fld('x_ch_l' + i, 'Ce que ça veut dire', ch.l, ["ans d'expérience", 'clients satisfaits', 'de recommandation'][i])}</div>`; }).join(''),
+  newsletter: (c, X) => fld('x_newsletter_titre', 'Titre au-dessus du formulaire', X.newsletter_titre, 'Restez informé') + fld('x_newsletter_texte', 'Petit texte', X.newsletter_texte, 'Recevez nos actualités et nos offres.'),
+  reseaux: (c, X) => { const r = X.reseaux || {}; return `<div class="hint" style="margin-bottom:.6rem;font-size:.78rem;color:var(--muted)">Collez l'adresse complète de la page (elle commence par https://). Laissez vide ce que vous n'avez pas.</div>`
+    + fld('x_r_instagram', 'Instagram', r.instagram, 'https://instagram.com/votre-compte') + fld('x_r_facebook', 'Facebook', r.facebook, 'https://facebook.com/votre-page')
+    + fld('x_r_tiktok', 'TikTok', r.tiktok, 'https://tiktok.com/@votre-compte') + fld('x_r_youtube', 'YouTube', r.youtube, 'https://youtube.com/@votre-chaine') + fld('x_r_linkedin', 'LinkedIn', r.linkedin, 'https://linkedin.com/company/votre-entreprise')
+    + fld('x_r_google_avis', 'Lien pour laisser un avis Google', r.google_avis, 'https://g.page/r/…/review', 'Dans Google Business Profile : « Demander des avis » → copiez le lien.'); },
+  legal: (c, X) => { const L = X.legal || {}; return `<div class="alert info" style="margin-bottom:.8rem"><div>Ces pages sont générées automatiquement à partir de ces informations. <b>Relisez-les</b> : elles ne remplacent pas un conseil juridique.</div></div>`
+    + `<div class="row2">${fld('x_l_raison', 'Nom légal (raison sociale)', L.raison, c.nom_entreprise)}${fld('x_l_forme', 'Forme juridique', L.forme, 'Entreprise individuelle, SARL…')}</div>`
+    + `<div class="row2">${fld('x_l_siret', 'SIRET', L.siret, '123 456 789 00012')}${fld('x_l_directeur', 'Directeur de la publication', L.directeur, 'Votre nom')}</div>`
+    + fld('x_l_adresse', 'Adresse du siège', L.adresse, c.adresse) + fld('x_l_email', 'Email de contact légal', L.email, c.email_contact) + fld('x_l_tva', 'Mention TVA (facultatif)', L.tva, 'TVA non applicable, art. 293 B du CGI'); },
+  langues: (c, X) => `<div class="field"><label>Langues proposées en plus du français</label><div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.3rem">${['en', 'es', 'ar'].map((l) => `<label class="check"><input type="checkbox" id="lg_${l}" ${(X.langues || []).includes(l) ? 'checked' : ''} /> ${LNAMES[l]}</label>`).join('')}</div></div>`
+    + `<div class="alert info" style="margin:.6rem 0"><div>Les boutons, formulaires et messages du site sont <b>traduits automatiquement</b>. Vos propres textes (produits, FAQ, avis, articles) restent dans la langue où vous les écrivez. Pour le slogan, la description et le bandeau promo, vous pouvez ajouter une version par langue ci-dessous.</div></div>`
+    + ['en', 'es', 'ar'].map((l) => { const o = (X.i18n || {})[l] || {}; return `<details style="margin-bottom:.5rem"><summary style="cursor:pointer;font-weight:600;padding:.4rem 0">Mes textes en ${LNAMES[l]} (facultatif)</summary>${fld('i_' + l + '_tagline', 'Slogan', o.tagline)}<div class="field"><label for="i_${l}_description">Description</label><textarea id="i_${l}_description" maxlength="600" style="min-height:70px" ${l === 'ar' ? 'dir="rtl"' : ''}>${esc(o.description || '')}</textarea></div>${fld('i_' + l + '_promo', 'Texte du bandeau promo', o.promo_texte)}</details>`; }).join(''),
+});
+const _hours = FIELDS.hours, _promo = FIELDS.promo;
+FIELDS.hours = (c, X) => _hours(c, X) + `<div class="field" style="margin-top:.4rem"><div class="hint" style="font-weight:600;color:var(--ink);margin-bottom:.4rem">Fermeture exceptionnelle (congés, travaux…)</div>${fld('x_fermeture_texte', 'Message affiché', X.fermeture_texte, 'Fermé du 10 au 20 août pour congés')}<div class="row2">${fld('x_fermeture_du', 'Du', X.fermeture_du, '', '', 'date')}${fld('x_fermeture_au', 'Au (inclus)', X.fermeture_au, '', '', 'date')}</div><div class="hint">Le bandeau rouge apparaît seulement entre ces deux dates, puis disparaît tout seul.</div></div>`;
+FIELDS.promo = (c, X) => _promo(c, X) + fld('x_promo_remise', 'Remise appliquée au devis (en %)', X.promo_remise || '', '0', 'Si vous mettez 10, le code fait vraiment baisser l\'estimation de 10 %. Laissez vide pour juste afficher le code.', 'number');
+const _rh = READ.hours, _rp = READ.promo;
+READ.hours = () => ({ ..._rh(), fermeture_texte: $('x_fermeture_texte').value, fermeture_du: $('x_fermeture_du').value, fermeture_au: $('x_fermeture_au').value });
+READ.promo = () => ({ ..._rp(), promo_remise: +$('x_promo_remise').value || 0 });
+Object.assign(READ, {
+  pdf: () => ({ devis_validite: +$('x_devis_validite').value || 30, devis_mention: $('x_devis_mention').value, devis_conditions: $('x_devis_conditions').value }),
+  apropos: () => ({ apropos_titre: $('x_apropos_titre').value, apropos_texte: $('x_apropos_texte').value, apropos_image: $('apUrl').value, chiffres: [0, 1, 2].map((i) => ({ n: $('x_ch_n' + i).value, l: $('x_ch_l' + i).value })) }),
+  newsletter: () => ({ newsletter_titre: $('x_newsletter_titre').value, newsletter_texte: $('x_newsletter_texte').value }),
+  reseaux: () => ({ reseaux: Object.fromEntries(['instagram', 'facebook', 'tiktok', 'youtube', 'linkedin', 'google_avis'].map((k) => [k, $('x_r_' + k).value.trim()])) }),
+  legal: () => ({ legal: Object.fromEntries(['raison', 'forme', 'siret', 'directeur', 'adresse', 'email', 'tva'].map((k) => [k, $('x_l_' + k).value])) }),
+  langues: () => ({ langues: ['en', 'es', 'ar'].filter((l) => $('lg_' + l).checked), i18n: Object.fromEntries(['en', 'es', 'ar'].map((l) => [l, { tagline: $('i_' + l + '_tagline').value, description: $('i_' + l + '_description').value, promo_texte: $('i_' + l + '_promo').value }])) }),
+});
+function afterFeat() {
+  if ($('apFile')) { bindUpload('apFile', 'apUrl', 'apPrev'); $('apClear').onclick = () => { $('apUrl').value = ''; $('apPrev').outerHTML = '<div class="ph" id="apPrev">Aucune</div>'; }; }
+}
+function featCard(f) {
+  const c = CONFIG, on = !!c.features[f.k], w = f.warn ? f.warn(c) : '';
+  const body = on ? `<div class="fbody">${w ? `<div class="alert err" style="margin-bottom:.8rem"><div>${w}</div></div>` : ''}${f.fields ? FIELDS[f.fields](c, c.extras) : ''}<div class="acts">${f.fields ? `<button class="btn primary sm" data-fsave="${f.fields}">Enregistrer</button>` : ''}${f.go ? `<button class="btn sm ${f.fields ? '' : 'primary'}" data-fgo="${f.go}">${f.gl}</button>` : ''}</div></div>` : '';
+  return `<div class="fcard ${on ? 'on' : ''}" id="fc_${f.k}"><div class="fhead"><span class="fico">${f.ico}</span><div class="ft2"><b>${f.t}</b><span>${f.d}</span></div><label class="sw"><input type="checkbox" data-sw="${f.k}" ${on ? 'checked' : ''} aria-label="${esc(f.t)}" /><i></i></label></div>${body}</div>`;
+}
+VIEWS.fonctions = async () => {
+  CONFIG = (await api('/api/admin/config')).config; applyNav();
+  $('view').innerHTML = `<div class="alert info"><div><b>Activez seulement ce dont vous avez besoin.</b> Chaque interrupteur ajoute ou retire la fonction sur votre site, tout de suite. Rien n'est définitif : vous pouvez changer d'avis quand vous voulez.</div></div>${FEATS.filter((f) => PRO_FEATS.includes(f.k)).map(featCard).join('')}`;
+  afterFeat();
+  $('view').onchange = async (e) => {
+    const sw = e.target.closest('[data-sw]'); if (!sw) return;
+    const k = sw.dataset.sw, on = sw.checked;
+    try {
+      await saveConfig({ features: { ...CONFIG.features, [k]: on } }); applyNav();
+      $('fc_' + k).outerHTML = featCard(FEATS.find((f) => f.k === k)); afterFeat();
+      toast(on ? 'Activé — visible sur votre site' : 'Désactivé — retiré de votre site');
+    } catch (err) { sw.checked = !on; toast(err.message, true); }
+  };
+  $('view').onclick = async (e) => {
+    const g = e.target.closest('[data-fgo]'); if (g) return go(g.dataset.fgo);
+    const b = e.target.closest('[data-fsave]'); if (!b) return;
+    b.disabled = true;
+    try { await saveConfig({ extras: READ[b.dataset.fsave]() }); toast('Enregistré — le site est à jour'); } catch (err) { toast(err.message, true); }
+    b.disabled = false;
+  };
+};
+
+/* ══════════ Avis, réalisations, FAQ : même mécanique, un seul code ══════════ */
+const stars5 = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+const COLLS = {
+  avis: {
+    add: '+ Ajouter un avis', emptyT: 'Aucun avis pour le moment', emptyD: 'Copiez ici les bons retours de vos clients (Google, Facebook, SMS…).', del: 'Supprimer cet avis ?', one: 'l\'avis',
+    blank: { auteur: '', texte: '', note: 5, source: '', actif: 1 },
+    card: (x) => `<span class="stars">${stars5(x.note)}</span><p>« ${esc(x.texte)} »</p><b>${esc(x.auteur)}</b>${x.source ? `<span class="muted small">${esc(x.source)}</span>` : ''}`,
+    form: (x) => `${fld('cAu', 'Prénom (ou prénom + initiale)', x.auteur, 'Sophie M.')}<div class="field"><label for="cTx">Son avis</label><textarea id="cTx" maxlength="700">${esc(x.texte)}</textarea></div><div class="row2"><div class="field"><label for="cNo">Note</label><select id="cNo">${[5, 4, 3, 2, 1].map((n) => `<option value="${n}" ${x.note === n ? 'selected' : ''}>${stars5(n)}</option>`).join('')}</select></div>${fld('cSo', 'Où a-t-il été laissé ? (facultatif)', x.source, 'Google, Facebook…')}</div>`,
+    read: () => ({ auteur: $('cAu').value, texte: $('cTx').value, note: +$('cNo').value, source: $('cSo').value }),
+  },
+  galerie: {
+    add: '+ Ajouter une photo', emptyT: 'Aucune photo pour le moment', emptyD: 'Ajoutez des photos de vos réalisations. Pour un « avant / après », ajoutez les deux photos.', del: 'Supprimer cette photo ?', one: 'la photo',
+    blank: { titre: '', legende: '', image_url: '', image_apres_url: '', actif: 1 },
+    card: (x) => (x.image_apres_url ? `<div class="two"><img src="${esc(img(x.image_url))}" alt="Avant" loading="lazy" /><img src="${esc(img(x.image_apres_url))}" alt="Après" loading="lazy" /></div>` : `<img class="th" src="${esc(img(x.image_url))}" alt="" loading="lazy" />`) + `<b>${esc(x.titre) || 'Sans titre'}</b>${x.image_apres_url ? '<span class="muted small">Avant / après</span>' : ''}`,
+    form: (x) => `<div class="field"><label>Photo${'' } (ou photo « avant »)</label>${uploadBlock('gi', x.image_url)}</div><div class="field"><label>Photo « après » (facultatif)</label>${uploadBlock('ga', x.image_apres_url)}<button class="btn sm" type="button" id="gaClear">Retirer la photo « après »</button></div>${fld('cTi', 'Titre (facultatif)', x.titre, 'Rénovation salle de bain')}${fld('cLe', 'Légende (facultatif)', x.legende, 'Réalisé en 3 jours')}`,
+    ready: () => { bindUpload('giFile', 'giUrl', 'giPrev'); bindUpload('gaFile', 'gaUrl', 'gaPrev'); $('gaClear').onclick = () => { $('gaUrl').value = ''; $('gaPrev').outerHTML = '<div class="ph" id="gaPrev">Aucune</div>'; }; },
+    read: () => ({ image_url: $('giUrl').value, image_apres_url: $('gaUrl').value, titre: $('cTi').value, legende: $('cLe').value }),
+  },
+  faq: {
+    add: '+ Ajouter une question', emptyT: 'Aucune question pour le moment', emptyD: 'Exemples : « Faites-vous des devis gratuits ? », « Quels sont vos délais ? ».', del: 'Supprimer cette question ?', one: 'la question',
+    blank: { question: '', reponse: '', actif: 1 },
+    card: (x) => `<b>${esc(x.question)}</b><p>${esc(x.reponse)}</p>`,
+    form: (x) => `${fld('cQ', 'La question', x.question, 'Faites-vous des devis gratuits ?')}<div class="field"><label for="cR">La réponse</label><textarea id="cR" maxlength="1500">${esc(x.reponse)}</textarea></div>`,
+    read: () => ({ question: $('cQ').value, reponse: $('cR').value }),
+  },
+};
+['avis', 'galerie', 'faq'].forEach((key) => {
+  VIEWS[key] = async () => {
+    LIST[key] = (await api('/api/admin/' + key)).items;
+    $('topActions').innerHTML = `<button class="btn primary sm" id="addC">${COLLS[key].add}</button>`;
+    $('addC').onclick = () => collForm(key, null);
+    drawColl(key);
+  };
+});
+function drawColl(key) {
+  const C = COLLS[key], list = LIST[key], on = !!(CONFIG.features || {})[key];
+  $('view').innerHTML = (on ? '' : `<div class="alert info"><div>Cette fonction est <b>désactivée</b> : rien ne s'affiche sur le site pour le moment.</div><button class="btn sm primary" id="actC">Activer</button></div>`)
+    + (list.length
+      ? `<div class="coll">${list.map((x) => `<div class="ci ${x.actif ? '' : 'off'}">${C.card(x)}${x.actif ? '' : '<span class="pill p-perdu" style="align-self:flex-start">Masqué</span>'}<div class="ft"><button class="btn sm" data-ec="${x.id}">Modifier</button><button class="btn sm danger" data-dc="${x.id}">Supprimer</button></div></div>`).join('')}</div>`
+      : `<div class="card big-empty"><b>${C.emptyT}</b><p>${C.emptyD}</p><button class="btn primary" id="addC2">${C.add}</button></div>`);
+  if ($('addC2')) $('addC2').onclick = () => collForm(key, null);
+  if ($('actC')) $('actC').onclick = async () => { try { await saveConfig({ features: { ...CONFIG.features, [key]: true } }); applyNav(); toast('Activé — visible sur votre site'); drawColl(key); } catch (e) { toast(e.message, true); } };
+  $('view').querySelectorAll('[data-ec]').forEach((b) => (b.onclick = () => collForm(key, list.find((x) => x.id === +b.dataset.ec))));
+  $('view').querySelectorAll('[data-dc]').forEach((b) => (b.onclick = async () => {
+    if (!confirm(C.del)) return;
+    try { await api('/api/admin/' + key + '/' + b.dataset.dc, 'DELETE'); LIST[key] = LIST[key].filter((x) => x.id !== +b.dataset.dc); drawColl(key); toast('Supprimé'); } catch (e) { toast(e.message, true); }
+  }));
+}
+function collForm(key, x) {
+  const C = COLLS[key], cur = x || { ...C.blank, ordre: LIST[key].length + 1 };
+  modal(x ? 'Modifier' : C.add.replace('+ ', ''), `${C.form(cur)}<div class="row2"><div class="field"><label for="cO">Position (1 = en premier)</label><input id="cO" type="number" min="0" value="${cur.ordre == null ? LIST[key].length + 1 : cur.ordre}" /></div><div class="field"><label>&nbsp;</label><label class="check"><input type="checkbox" id="cA" ${cur.actif ? 'checked' : ''} /> Visible sur le site</label></div></div>`,
+    `<button class="btn" data-close>Annuler</button><button class="btn primary" id="cSave">Enregistrer</button>`);
+  if (C.ready) C.ready();
+  $('cSave').onclick = async () => {
+    const body = { ...C.read(), ordre: +$('cO').value || 0, actif: $('cA').checked };
+    try {
+      await api('/api/admin/' + key + (x ? '/' + x.id : ''), x ? 'PUT' : 'POST', body);
+      closeModal(); toast('Enregistré — visible sur le site');
+      LIST[key] = (await api('/api/admin/' + key)).items; drawColl(key);
+    } catch (e) { toast(e.message, true); }
+  };
+}
+
+/* ══════════ Newsletter : abonnés + envoi ══════════ */
+const dlBlob = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); };
+VIEWS.newsletter = async () => {
+  const [ab, ca] = await Promise.all([api('/api/admin/abonnes'), api('/api/admin/campagnes')]);
+  LIST.ab = ab.items; LIST.ca = ca.items; drawNl();
+};
+function drawNl(keep) {
+  const on = !!(CONFIG.features || {}).newsletter, act = LIST.ab.filter((x) => x.actif).length;
+  const k = keep || {};
+  $('topActions').innerHTML = '<button class="btn sm" id="nlAdd">+ Ajouter un abonné</button><button class="btn sm" id="nlCsv">Exporter (CSV)</button>';
+  $('view').innerHTML = (on ? '' : '<div class="alert info"><div>Cette fonction est <b>désactivée</b> : le formulaire d\'inscription n\'apparaît pas sur le site.</div><button class="btn sm primary" id="nlOn">Activer</button></div>')
+    + `<div class="card" style="margin-bottom:1rem"><h3>✍️ Écrire un message à mes abonnés</h3>
+      <div class="field"><label for="nSujet">Sujet de l'email</label><input id="nSujet" maxlength="150" value="${esc(k.sujet || '')}" placeholder="Notre offre de la semaine" /></div>
+      <div class="field"><label for="nCorps">Votre message</label><textarea id="nCorps" maxlength="5000" style="min-height:150px" placeholder="Bonjour,&#10;&#10;Écrivez simplement. Une ligne vide = un nouveau paragraphe.">${esc(k.corps || '')}</textarea></div>
+      <div class="row2">${fld('nBtnL', 'Texte du bouton (facultatif)', k.bl || '', 'Voir l\'offre')}${fld('nBtnU', 'Lien du bouton (https://…)', k.bu || '', 'https://')}</div>
+      <div class="alert info" style="margin:.4rem 0 .8rem"><div>Chaque email contient automatiquement un lien de désinscription. Pour écrire à d'autres adresses que la vôtre, le domaine d'envoi doit être vérifié dans Resend, et votre formule Resend limite le nombre d'emails par jour.</div></div>
+      <div class="acts" style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn" id="nTest">M'envoyer un test</button><button class="btn primary" id="nSend" ${act ? '' : 'disabled'}>Envoyer à ${act} abonné${act > 1 ? 's' : ''}</button></div><div id="nRes" style="margin-top:.8rem"></div></div>`
+    + `<div class="card" style="margin-bottom:1rem"><h3>👥 Mes abonnés <span class="muted small">(${act} actif${act > 1 ? 's' : ''} sur ${LIST.ab.length})</span></h3>${LIST.ab.length ? LIST.ab.map((x) => `<div class="li"><span class="t"><b>${esc(x.email)}</b><span>Inscrit le ${fdt(x.created_at)} · ${esc(x.source)} · ${esc((x.lang || 'fr').toUpperCase())}</span></span>${x.actif ? '<span class="pill p-envoye">Actif</span>' : '<span class="pill p-perdu">Désinscrit</span>'}<button class="btn sm danger" data-nldel="${x.id}">Supprimer</button></div>`).join('') : '<div class="big-empty"><b>Aucun abonné pour le moment</b><p>Ils apparaîtront ici dès qu\'un visiteur s\'inscrit depuis votre site.</p></div>'}</div>`
+    + `<div class="card"><h3>🕘 Messages déjà envoyés</h3>${LIST.ca.length ? LIST.ca.map((c) => `<div class="li"><span class="t"><b>${esc(c.sujet)}</b><span>${fdt(c.created_at)} · ${c.nb_ok} / ${c.nb_dest} envoyés${c.detail ? ' · ' + esc(c.detail) : ''}</span></span><span class="pill ${c.statut === 'envoye' ? 'p-envoye' : c.statut === 'partiel' ? 'p-relance' : 'p-echec'}">${c.statut === 'envoye' ? 'Envoyé' : c.statut === 'partiel' ? 'Partiel' : 'Échec'}</span></div>`).join('') : '<p class="muted">Rien d\'envoyé pour l\'instant.</p>'}</div>`;
+  const body = () => ({ sujet: $('nSujet').value, corps: $('nCorps').value, bouton_label: $('nBtnL').value, bouton_url: $('nBtnU').value });
+  const keepNow = () => ({ sujet: $('nSujet').value, corps: $('nCorps').value, bl: $('nBtnL').value, bu: $('nBtnU').value });
+  const show = (ok, html) => { $('nRes').innerHTML = `<div class="alert ${ok ? 'ok' : 'err'}"><div>${html}</div></div>`; };
+  if ($('nlOn')) $('nlOn').onclick = async () => { try { await saveConfig({ features: { ...CONFIG.features, newsletter: true } }); applyNav(); toast('Activé — le formulaire est sur votre site'); drawNl(keepNow()); } catch (e) { toast(e.message, true); } };
+  $('nlCsv').onclick = () => {
+    const q = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+    const rows = [['Email', 'Inscrit le', 'Consentement le', 'Source', 'Langue', 'Statut'], ...LIST.ab.map((x) => [x.email, x.created_at.slice(0, 16).replace('T', ' '), (x.consent_at || '').slice(0, 16).replace('T', ' '), x.source, x.lang, x.actif ? 'actif' : 'désinscrit'])];
+    dlBlob(new Blob(['\ufeff' + rows.map((r) => r.map(q).join(';')).join('\r\n')], { type: 'text/csv;charset=utf-8' }), 'abonnes-' + new Date().toISOString().slice(0, 10) + '.csv');
+  };
+  $('nlAdd').onclick = () => {
+    modal('Ajouter un abonné', `${fld('aEmail', 'Adresse email', '', 'client@exemple.fr', '', 'email')}<label class="check" style="margin-top:.5rem"><input type="checkbox" id="aConsent" /> Cette personne m'a demandé de recevoir mes emails</label><div class="hint" style="margin-top:.5rem;font-size:.78rem;color:var(--muted)">N'ajoutez jamais quelqu'un qui ne l'a pas demandé : c'est interdit par la loi (RGPD).</div>`, '<button class="btn" data-close>Annuler</button><button class="btn primary" id="aSave">Ajouter</button>');
+    $('aSave').onclick = async () => {
+      try { await api('/api/admin/abonnes', 'POST', { email: $('aEmail').value, consent: $('aConsent').checked }); closeModal(); toast('Abonné ajouté'); await VIEWS.newsletter(); } catch (e) { toast(e.message, true); }
+    };
+  };
+  $('view').querySelectorAll('[data-nldel]').forEach((b) => (b.onclick = async () => {
+    if (!confirm('Supprimer définitivement cet abonné ?')) return;
+    try { await api('/api/admin/abonnes/' + b.dataset.nldel, 'DELETE'); LIST.ab = LIST.ab.filter((x) => x.id !== +b.dataset.nldel); drawNl(keepNow()); toast('Supprimé'); } catch (e) { toast(e.message, true); }
+  }));
+  $('nTest').onclick = async () => {
+    $('nTest').disabled = true; $('nRes').innerHTML = '<span class="muted">Envoi du test…</span>';
+    try { await api('/api/admin/campagnes', 'POST', { ...body(), test: true }); show(true, `Test envoyé à <b>${esc(CONFIG.pro_email)}</b>. Vérifiez votre boîte (et les indésirables).`); } catch (e) { show(false, esc(e.message)); }
+    $('nTest').disabled = false;
+  };
+  $('nSend').onclick = async () => {
+    if (!confirm(`Envoyer ce message à ${act} abonné${act > 1 ? 's' : ''} ? Cette action est définitive.`)) return;
+    $('nSend').disabled = true; $('nRes').innerHTML = '<span class="muted">Envoi en cours… ne fermez pas la page.</span>';
+    try { const r = await api('/api/admin/campagnes', 'POST', body()); toast(`Envoyé à ${r.sent} abonné${r.sent > 1 ? 's' : ''}`); LIST.ca = (await api('/api/admin/campagnes')).items; drawNl(); }
+    catch (e) { show(false, esc(e.message)); $('nSend').disabled = false; }
+  };
+}
+
+/* ── PDF d'un devis (le pro peut toujours l'ouvrir) ── */
+async function openPdf(id, btn) {
+  if (btn) btn.disabled = true;
+  try {
+    const r = await fetch(API + '/api/admin/devis/' + id + '/pdf', { headers: { Authorization: 'Bearer ' + TOKEN } });
+    if (!r.ok) throw new Error('Impossible de générer le PDF (erreur ' + r.status + ')');
+    dlBlob(await r.blob(), 'devis-' + id + '.pdf'); toast('PDF téléchargé');
+  } catch (e) { toast(e.message, true); }
+  if (btn) btn.disabled = false;
+}
+
+/* ── Sauvegarde complète ── */
+async function exportAll(btn) {
+  btn.disabled = true;
+  try { const d = (await api('/api/admin/export')).data; dlBlob(new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' }), 'sauvegarde-' + new Date().toISOString().slice(0, 10) + '.json'); toast('Sauvegarde téléchargée'); }
+  catch (e) { toast(e.message, true); }
+  btn.disabled = false;
+}
+
+if (TOKEN) boot();
+</script>
+</body>
+</html>
