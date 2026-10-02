@@ -6,6 +6,13 @@ compatibility_date = "2026-08-01"
 directory = "./public"
 binding = "ASSETS"
 
+# Expéditeur des emails (Resend).
+# Tant que le domaine byemreh.fr n'est pas « Verified » dans Resend, garde onboarding@resend.dev
+# (les emails ne partent alors que vers l'adresse de ton compte Resend).
+# Une fois le domaine vérifié, remplace par : "ByEmreh <contact@byemreh.fr>"
+[vars]
+RESEND_FROM = "ByEmreh <onboarding@resend.dev>"
+
 [[d1_databases]]
 binding = "DB"
 database_name = "byemreh-blog-db"
